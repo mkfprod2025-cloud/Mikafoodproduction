@@ -6,19 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
+    /* Reset / base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root{
+      --bg-top: #05010a;
+      --bg-page: radial-gradient(circle at top, #1b1026, #05010a);
+      --accent: #9b5cff;
+      --accent-strong: #e399ff;
+      --text-light: #e6e0ff;
+      --muted: rgba(230,224,255,0.75);
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(155,92,255,0.12);
+      --shadow: 0 10px 30px rgba(0,0,0,0.45);
+      --radius: 12px;
+      --max-width: 1100px;
+      --gap: 1rem;
+      --focus-outline: 3px solid rgba(155,92,255,0.28);
       font-family: "Segoe UI", Arial, sans-serif;
-      background: radial-gradient(circle at top, #1b1026, #05010a);
-      color: #e6e0ff;
-      line-height: 1.6;
     }
 
+    html, body { height: 100%; }
+    body {
+      background: var(--bg-page);
+      color: var(--text-light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-bottom: 60px; /* pour éviter chevauchement sur mobile */
+    }
+
+    /* Header */
     header {
       position: relative;
       padding: 60px 20px 90px;
@@ -32,13 +49,16 @@
       width: 90%;
       margin-bottom: 30px;
       filter: drop-shadow(0 0 25px rgba(155,92,255,0.35));
+      border-radius: 10px;
+      display: inline-block;
+      object-fit: cover;
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #9b5cff;
+      color: var(--accent);
     }
 
     .scroll-indicator {
@@ -49,7 +69,7 @@
       font-size: 0.75rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(155,92,255,0.7);
+      color: rgba(155,92,255,0.85);
       animation: fadeMove 2.5s infinite;
     }
 
@@ -60,185 +80,155 @@
       100% { opacity: 0; transform: translate(-50%, 12px); }
     }
 
+    /* Main content */
     main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 70px 20px;
+      max-width: var(--max-width);
+      margin: -30px auto 40px; /* léger chevauchement avec header pour effet */
+      padding: 20px;
     }
 
     h2 {
       font-size: 1.9rem;
-      margin-bottom: 25px;
-      color: #9b5cff;
+      margin-bottom: 20px;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    ul {
-      list-style: none;
-      margin-bottom: 50px; /* Espace avant les boutons */
-    }
-
+    ul { list-style: none; margin-bottom: 30px; }
     li {
-      margin-bottom: 18px;
-      padding: 16px;
-      border-left: 4px solid #5e17eb;
-      background: rgba(255,255,255,0.03);
+      margin-bottom: 14px;
+      padding: 14px;
+      border-left: 4px solid rgba(94,23,235,0.25);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      border-radius: 6px;
     }
 
-    /* CONTENEUR DES 4 BOUTONS ALIGNÉS */
+    /* ACTION BUTTONS (améliorées) */
     .actions-bar {
       display: flex;
-      justify-content: center; /* Centre le groupe */
+      justify-content: center;
       align-items: center;
-      flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+      flex-wrap: wrap;
       gap: 20px;
-      margin-top: 40px;
+      margin-top: 18px;
     }
 
-    /* Style commun pour tous les boutons (Telegram + Contacts) */
     .action-btn {
       text-decoration: none;
-      width: 70px;
-      height: 70px;
-      border: 2px solid #9b5cff;
-      box-shadow: 0 0 20px rgba(155,92,255,0.4);
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      border: 2px solid rgba(155,92,255,0.45);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 18px rgba(155,92,255,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.2s, background 0.2s;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      outline: none;
     }
 
-    .action-btn:hover {
-      transform: translateY(-3px);
-      background: rgba(155, 92, 255, 0.1);
+    .action-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(0,0,0,0.5); }
+    .action-btn:focus { box-shadow: var(--shadow); outline: var(--focus-outline); }
+
+    .action-btn svg { width: 34px; height: 34px; fill: var(--text-light); }
+
+    /* THREE WINDOWS SECTION (nouvelle) */
+    .three-windows {
+      margin-top: 36px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
     }
 
-    .action-btn svg {
-      width: 32px;
-      height: 32px;
-      fill: #9b5cff;
+    .three-windows .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
 
+    .windows-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .window {
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid rgba(155,92,255,0.06);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .window:focus-within,
+    .window:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .window .window-title {
+      font-size: 1.05rem;
+      color: var(--accent-strong);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .window .window-text {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.45;
+      flex: 1 1 auto;
+    }
+
+    .window .window-cta {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(155,92,255,0.18);
+      font-weight: 600;
+      align-self: start;
+      transition: background .12s ease, transform .12s ease;
+    }
+
+    .window .window-cta:hover,
+    .window .window-cta:focus {
+      background: rgba(155,92,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
     footer {
-      padding: 30px 20px;
-      background: #05010a;
-      border-top: 1px solid rgba(155,92,255,0.2);
+      padding: 26px 20px;
+      background: var(--bg-top);
+      border-top: 1px solid rgba(155,92,255,0.12);
       text-align: center;
+      margin-top: 28px;
+      border-radius: 8px;
     }
 
-    .siren {
-      font-size: 0.85rem;
-      opacity: 0.7;
+    .siren { font-size: 0.85rem; opacity: 0.78; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .windows-grid { grid-template-columns: repeat(2, 1fr); }
+      main { margin-top: -10px; }
     }
-  </style>
-</head>
+    @media (max-width: 640px){
+      .windows-grid { grid-template-columns: 1fr; }
+      .logo { max-width: 360px; }
+      header { padding-bottom: 70px; }
+    }
 
-<body>
-
-  <header>
-    <video
-      src="https://files.catbox.moe/vwgrno.mp4"
-      class="logo"
-      autoplay
-      muted
-      playsinline
-    ></video>
-
-    <p>Création, optimisation, action</p>
-
-    <div class="scroll-indicator">
-      ↓ Découvrir
-    </div>
-  </header>
-
-  <main>
-    <section>
-      <h2>Services</h2>
-      <ul>
-        <li>Conseil stratégique et opérationnel en restauration</li>
-        <li>Création de recettes et fiches techniques professionnelles</li>
-        <li>Production et fourniture de produits préparés pour restaurants</li>
-        <li>Renfort terrain : service en salle et opérations critiques</li>
-      </ul>
-
-      <div class="actions-bar">
-        
-        <a href="https://t.me/+JO6sCY2tZng0MTg0" target="_blank" class="action-btn" title="Telegram">
-          <svg viewBox="0 0 240 240">
-            <path d="M120 0C53.7 0 0 53.7 0 120s53.7 120 120 120 120-53.7 120-120S186.3 0 120 0zm58.5 82.6-19.7 93c-1.5 6.6-5.5 8.2-11.1 5.1l-30.7-22.6-14.8 14.2c-1.6 1.6-3 3-6.2 3l2.2-31.5 57.4-51.8c2.5-2.2-.5-3.4-3.9-1.2L80.7 129.6l-30.1-9.4c-6.5-2-6.6-6.5 1.4-9.6l117.7-45.4c5.4-2 10.1 1.3 8.8 7.4z"/>
-          </svg>
-        </a>
-
-        <a href="tel:+33664624506" class="action-btn" title="Appeler">
-          <svg viewBox="0 0 24 24">
-            <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.3 22 2 13.7 2 3c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/>
-          </svg>
-        </a>
-
-        <a href="mailto:mkfprod2025@gmail.com?subject=Contact%20professionnel" class="action-btn" title="Email">
-          <svg viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-        </a>
-
-        <a href="https://www.google.com/maps/search/?api=1&query=4a+avenue+de+la+baronne" target="_blank" class="action-btn" title="Localisation">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
-          </svg>
-        </a>
-
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="siren">
-      SIREN : —
-    </div>
-  </footer>
-<section id="expertise-solutions" style="max-width: 1000px; margin: 20px auto; padding: 10px; font-family: sans-serif;">
-    <h2 style="text-align: center; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px;">Solutions d'Optimisation Opérationnelle</h2>
-
-    <div style="border: 2px solid #e67e22; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #fffaf5;">
-        <h3 style="color: #d35400; margin-top: 0;">💡 Trick #1 : Le gouffre financier de l'essuie-tout</h3>
-        <p><strong>Le constat :</strong> L'interdiction du torchon pousse au "tout papier". Résultat ? Un budget consommables qui explose de <strong>20%</strong> sans améliorer la sécurité réelle.</p>
-        <div style="background: #fff; border-left: 4px solid #e67e22; padding: 10px; margin: 10px 0;">
-            <p style="margin: 0;"><strong>Ma solution :</strong> Réintégration du textile via un protocole de désinfection thermique (>90°C) validé et inscrit dans votre <strong>PMS</strong>.</p>
-        </div>
-        <ul style="list-style-type: '✅ '; padding-left: 20px; font-size: 0.95em;">
-            <li>Économie : <strong>400€ à 700€ / an</strong> pour un petit restaurant.</li>
-            <li>Sécurité : Mise à jour du PMS pour les contrôles vétérinaires.</li>
-        </ul>
-    </div>
-
-    <div style="border: 2px solid #2980b9; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f0f7fc;">
-        <h3 style="color: #2980b9; margin-top: 0;">💡 Trick #2 : Arrêtez de payer du "temps mort"</h3>
-        <p><strong>Le problème :</strong> Le décalage entre le planning et la charge réelle est votre premier poste de perte de marge nette.</p>
-        <div style="background: #fff; border-left: 4px solid #2980b9; padding: 10px; margin: 10px 0;">
-            <p style="margin: 0;"><strong>Mon analyse :</strong> Chronométrage des tâches clés vs coût salarial. Alignement du temps payé sur le temps productif réel.</p>
-        </div>
-        <ul style="list-style-type: '🕒 '; padding-left: 20px; font-size: 0.95em;">
-            <li>Objectif : Identifier les <strong>heures de fuite</strong> (souvent 1h à 2h par jour/employé).</li>
-            <li>Résultat : Un planning basé sur la production, pas sur l'habitude.</li>
-        </ul>
-    </div>
-
-    <div style="border: 2px solid #27ae60; border-radius: 8px; padding: 15px; background-color: #f4fdf7;">
-        <h3 style="color: #27ae60; margin-top: 0;">💡 Trick #3 : Inventaire Flash & Stock Dormant</h3>
-        <p><strong>Le constat :</strong> Un inventaire long est un inventaire jamais fait. L'argent qui dort en réserve est du cash que vous ne réinvestissez pas.</p>
-        <div style="background: #fff; border-left: 4px solid #27ae60; padding: 10px; margin: 10px 0;">
-            <p style="margin: 0;"><strong>Mon outil :</strong> Création de <strong>cadenciers personnalisés</strong> par zone pour un inventaire bar/cuisine en moins d'une heure.</p>
-        </div>
-        <ul style="list-style-type: '📦 '; padding-left: 20px; font-size: 0.95em;">
-            <li>Objectif : Libérer la trésorerie bloquée et stopper le coulage.</li>
-            <li>Résultat : Alerte immédiate sur les écarts de consommation.</li>
-        </ul>
-    </div>
-
-    <p style="text-align: center; font-style: italic; color: #7f8c8d; margin-top: 20px;">"Si c'est gratuit, c'est vous le produit. Ici, on calcule l'impact réel."</p>
-</section>
-</body>
-</html>
-
+    /* Reduced motion
