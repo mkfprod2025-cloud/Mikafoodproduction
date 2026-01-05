@@ -1,196 +1,324 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mika Food Solutions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agence Conseil – Modules Stratégiques</title>
 
-  <style>
-    /* Reset / base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root{
-      --bg-top: #05010a;
-      --bg-page: radial-gradient(circle at top, #1b1026, #05010a);
-      --accent: #9b5cff;
-      --accent-strong: #e399ff;
-      --text-light: #e6e0ff;
-      --muted: rgba(230,224,255,0.75);
-      --card-bg: rgba(255,255,255,0.03);
-      --card-border: rgba(155,92,255,0.12);
-      --shadow: 0 10px 30px rgba(0,0,0,0.45);
-      --radius: 12px;
-      --max-width: 1100px;
-      --gap: 1rem;
-      --focus-outline: 3px solid rgba(155,92,255,0.28);
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    html, body { height: 100%; }
-    body {
-      background: var(--bg-page);
-      color: var(--text-light);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      padding-bottom: 60px;
-    }
+<style>
+:root{
+  --black:#0a0a0a;
+  --violet:#6a0dad;
+  --violet-soft:rgba(106,13,173,0.45);
+  --text:#f4f4f4;
+}
 
-    /* Header */
-    header {
-      position: relative;
-      padding: 60px 20px 90px;
-      text-align: center;
-      background: linear-gradient(135deg, #0b0b0f, #1a0f2e);
-      border-bottom: 1px solid rgba(155,92,255,0.3);
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--black);
+  color:var(--text);
+}
 
-    .logo {
-      max-width: 420px;
-      width: 90%;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 0 25px rgba(155,92,255,0.35));
-      border-radius: 10px;
-      display: inline-block;
-      object-fit: cover;
-    }
+/* ---------- GLOBAL ---------- */
+section{padding:100px 7vw}
+h1,h2,h3{font-weight:700;letter-spacing:0.3px}
+p{line-height:1.8;color:#d6d6d6;font-size:1.08rem}
+button{
+  background:none;
+  border:2px solid var(--violet);
+  border-radius:16px;
+  color:var(--text);
+  padding:20px 48px;
+  cursor:pointer;
+  font-size:1.15rem;
+  transition:.3s;
+}
+button:hover{
+  box-shadow:0 0 35px var(--violet-soft);
+}
 
-    header p {
-      font-size: 1.05rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
+/* ---------- HERO ---------- */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.25;
+}
+.hero-content{
+  position:relative;
+  max-width:960px;
+  padding:40px;
+}
+.hero h1{
+  font-size:clamp(2.4rem,4.5vw,3.8rem);
+  margin-bottom:26px;
+}
+.hero p{
+  font-size:1.15rem;
+  margin-bottom:36px;
+}
+.hero .transition-text{
+  margin-bottom:46px;
+  font-size:1.08rem;
+  color:#cfcfcf;
+}
 
-    /* Main content */
-    main {
-      max-width: var(--max-width);
-      margin: -30px auto 40px;
-      padding: 20px;
-    }
+/* ---------- MODULES ---------- */
+.modules{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:36px;
+}
+.module-card{
+  border:3px solid var(--violet-soft);
+  border-radius:22px;
+  padding:26px;
+  cursor:pointer;
+  transition:.35s;
+  background:rgba(0,0,0,0.6);
+}
+.module-card:hover{
+  box-shadow:0 0 35px var(--violet-soft);
+}
+.module-card.selected{
+  border-color:var(--violet);
+  box-shadow:0 0 45px var(--violet);
+}
+.module-thumb{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#111;
+  margin-bottom:20px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#666;
+  font-size:.95rem;
+}
+.module-card h3{
+  font-size:1.15rem;
+  margin-bottom:12px;
+}
+.module-card span{
+  font-size:1rem;
+  color:#cfcfcf;
+  line-height:1.6;
+}
 
-    h2 {
-      font-size: 1.9rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-align: center;
-    }
+/* ---------- STICKY BAR (AFFINÉE) ---------- */
+.sticky-bar{
+  position:fixed;
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(10px);
+  border:1.5px solid var(--violet-soft);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:10px 18px;
+  z-index:50;
+  opacity:.85;
+  transition:.3s;
+}
+.sticky-bar:hover{
+  opacity:1;
+}
+.sticky-bar strong{
+  color:var(--violet);
+  font-size:.95rem;
+}
+.sticky-bar button{
+  padding:10px 22px;
+  font-size:.95rem;
+  border-width:1.5px;
+}
 
-    /* THREE WINDOWS SECTION */
-    .three-windows {
-      margin-top: 36px;
-      padding: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border-radius: 14px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
-    }
+/* ---------- FORM ---------- */
+.form-box{
+  max-width:860px;
+  margin:auto;
+  border:3px solid var(--violet);
+  border-radius:26px;
+  padding:50px;
+  background:#000;
+}
+.form-box h2{
+  margin-bottom:30px;
+}
+.form-box ul{
+  margin-bottom:30px;
+}
+.form-box li{
+  list-style:none;
+  margin-bottom:8px;
+  color:#cfcfcf;
+}
+input,textarea{
+  width:100%;
+  margin-bottom:24px;
+  padding:16px;
+  background:#000;
+  border:2px solid var(--violet-soft);
+  border-radius:14px;
+  color:#fff;
+  font-size:1rem;
+}
+textarea{min-height:140px}
 
-    .windows-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .window {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 12px;
-      padding: 22px;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      border: 1px solid rgba(155,92,255,0.1);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .window:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      border-color: var(--accent);
-    }
-
-    .window .window-title {
-      font-size: 1.1rem;
-      color: var(--accent-strong);
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .window .window-text {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      flex: 1 1 auto;
-    }
-
-    .window-text strong { color: #fff; }
-
-    /* Footer */
-    footer {
-      padding: 26px 20px;
-      background: var(--bg-top);
-      border-top: 1px solid rgba(155,92,255,0.12);
-      text-align: center;
-      margin-top: 28px;
-    }
-
-    @media (max-width: 980px){
-      .windows-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px){
-      .windows-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ---------- MOBILE ---------- */
+@media(max-width:600px){
+  section{padding:80px 6vw}
+  .sticky-bar{
+    bottom:10px;
+    gap:12px;
+    padding:10px 14px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <img src="logo.png" alt="Mika Food Solutions" class="logo">
-    <p>Expertise Opérationnelle & Rentabilité</p>
-  </header>
+<section class="hero">
+  <!-- EMPLACEMENT VIDEO / LOGO ANIMÉ -->
+  <video autoplay muted loop>
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
 
-  <main>
-    <h2>Solutions & Cas Pratiques</h2>
+  <div class="hero-content">
+    <h1>Le sur-mesure pour propulser votre établissement.</h1>
+    <p>Découvrez nos missions et composez votre stratégie idéale : sélectionnez les modules adaptés à vos besoins réels.</p>
 
-    <section class="three-windows">
-      <div class="windows-grid">
-        
-        <div class="window">
-          <div class="window-title">💡 Trick #1 : L'essuie-tout</div>
-          <div class="window-text">
-            Le passage au "tout papier" explose vos frais de <strong>20%</strong>. Je réintègre le textile via un protocole de désinfection thermique (>90°C) validé dans votre <strong>PMS</strong>.
-            <br><br>
-            <strong>Économie :</strong> 400€ à 700€ / an.
-          </div>
-        </div>
+    <p class="transition-text">
+      Parce que chaque établissement est unique, nous avons déconstruit nos expertises en 9 modules indépendants.
+      Pas de package imposé, pas de superflu : vous faites votre marché.
+    </p>
 
-        <div class="window">
-          <div class="window-title">💡 Trick #2 : Heures Utiles</div>
-          <div class="window-text">
-            Le temps mort est votre premier coût. J'identifie les <strong>heures de fuite</strong> (souvent 2h/jour par employé) pour aligner votre planning sur la production réelle.
-            <br><br>
-            <strong>Impact :</strong> Récupération immédiate de marge nette.
-          </div>
-        </div>
+    <button onclick="document.getElementById('modules').scrollIntoView()">Explorer les Modules</button>
+  </div>
+</section>
 
-        <div class="window">
-          <div class="window-title">💡 Trick #3 : Stock Dormant</div>
-          <div class="window-text">
-            Inventaire bar en 1h ? Je crée vos <strong>cadenciers personnalisés</strong> pour transformer l'inventaire en outil de pilotage hebdomadaire.
-            <br><br>
-            <strong>Résultat :</strong> Libération du cash bloqué en réserve.
-          </div>
-        </div>
+<section id="modules">
+  <div class="modules">
 
-      </div>
-    </section>
-  </main>
+    <div class="module-card" data-title="Clientèle & Fidélité">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Clientèle & Fidélité</h3>
+      <span>Attirer, qualifier et retenir vos meilleurs clients.</span>
+    </div>
 
-  <footer>
-    <p class="siren">Expertise Restauration - SIREN : [Votre Numéro]</p>
-  </footer>
+    <div class="module-card" data-title="Fluidité & Service">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Fluidité & Service</h3>
+      <span>Optimiser les gestes, les flux et le temps.</span>
+    </div>
+
+    <div class="module-card" data-title="Expérience & Parcours Client">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Expérience & Parcours Client</h3>
+      <span>Créer un parcours mémorable et cohérent.</span>
+    </div>
+
+    <div class="module-card" data-title="Rentabilité & Gestion">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Rentabilité & Gestion</h3>
+      <span>Reprendre le contrôle des marges.</span>
+    </div>
+
+    <div class="module-card" data-title="Carte & Menu Stratégique">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Carte & Menu Stratégique</h3>
+      <span>Vendre mieux, sans vendre plus.</span>
+    </div>
+
+    <div class="module-card" data-title="Réseau & Alliances Locales">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Réseau & Alliances Locales</h3>
+      <span>Créer des synergies rentables.</span>
+    </div>
+
+    <div class="module-card" data-title="Ambiance & Identité Sonore">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Ambiance & Identité Sonore</h3>
+      <span>Faire ressentir avant de convaincre.</span>
+    </div>
+
+    <div class="module-card" data-title="Événements & Programmation">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Événements & Programmation</h3>
+      <span>Créer le rendez-vous.</span>
+    </div>
+
+    <div class="module-card" data-title="Image & Rayonnement Digital">
+      <div class="module-thumb">Miniature 16:9</div>
+      <h3>Image & Rayonnement Digital</h3>
+      <span>Exister fort, clairement, durablement.</span>
+    </div>
+
+  </div>
+</section>
+
+<section id="formulaire">
+  <div class="form-box">
+    <h2>Votre Panier de Solutions</h2>
+    <ul id="selectedList"></ul>
+
+    <input type="text" placeholder="Nom de l'établissement">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Votre défi principal"></textarea>
+
+    <button>Envoyer la demande</button>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div><strong id="count">0</strong> module(s)</div>
+  <button onclick="document.getElementById('formulaire').scrollIntoView()">Finaliser</button>
+</div>
+
+<script>
+const cards=document.querySelectorAll('.module-card');
+const countEl=document.getElementById('count');
+const list=document.getElementById('selectedList');
+
+cards.forEach(card=>{
+  card.addEventListener('click',()=>{
+    card.classList.toggle('selected');
+    updateSelection();
+  });
+});
+
+function updateSelection(){
+  const selected=[...cards].filter(c=>c.classList.contains('selected'));
+  countEl.textContent=selected.length;
+  list.innerHTML='';
+  selected.forEach(c=>{
+    const li=document.createElement('li');
+    li.textContent='• '+c.dataset.title;
+    list.appendChild(li);
+  });
+}
+</script>
 
 </body>
 </html>
+```
