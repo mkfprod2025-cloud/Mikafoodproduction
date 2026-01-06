@@ -296,6 +296,18 @@ textarea{min-height:140px}
 </div>
 
 <script>
+const MODULES_DATA = {
+  "module1": {
+    "titre": "Clientèle & Fidélité",
+    "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une ingénierie de données précise.",
+    "points": [
+      "Audit de la base de données actuelle et segmentation RFM (Récence, Fréquence, Montant).",
+      "Mise en place d'un système de parrainage à haute valeur perçue.",
+      "Scénarios d'automation marketing (Relance post-visite, anniversaires, offres exclusives).",
+      "Indicateurs clés : Augmentation du panier moyen de 15% et réduction du churn rate."
+    ],
+    "selectionne": false
+  }
 const cards=document.querySelectorAll('.module-card');
 const countEl=document.getElementById('count');
 const list=document.getElementById('selectedList');
@@ -322,6 +334,7 @@ function updateSelection(){
 </body>
 </html>
 ```
+
 
 
 
