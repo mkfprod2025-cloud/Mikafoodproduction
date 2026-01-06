@@ -3,340 +3,171 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Agence Conseil – Modules Stratégiques</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<title>Mikafood Production - Stratégie</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --black:#0a0a0a;
-  --violet:#6a0dad;
-  --violet-soft:rgba(106,13,173,0.45);
-  --text:#f4f4f4;
-}
-
+:root{ --black:#0a0a0a; --violet:#6a0dad; --violet-soft:rgba(106,13,173,0.45); --text:#f4f4f4; }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--black);
-  color:var(--text);
-  overflow-x: hidden;
-}
+body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; overflow-x: hidden; }
 
-/* ---------- GLOBAL ---------- */
-section{padding:100px 7vw}
-h1,h2,h3{font-weight:700;letter-spacing:0.3px}
-p{line-height:1.8;color:#d6d6d6;font-size:1.08rem}
-button{
-  background:none;
-  border:2px solid var(--violet);
-  border-radius:16px;
-  color:var(--text);
-  padding:20px 48px;
-  cursor:pointer;
-  font-size:1.15rem;
-  transition:.3s;
-}
-button:hover{
-  box-shadow:0 0 35px var(--violet-soft);
-}
-
-/* ---------- HERO ---------- */
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.25;
-}
-.hero-content{
-  position:relative;
-  max-width:960px;
-  padding:40px;
-}
-.hero h1{
-  font-size:clamp(2.4rem,4.5vw,3.8rem);
-  margin-bottom:26px;
-}
-
-/* ---------- MODULES (GRILLE 3X3) ---------- */
+section{padding:60px 7vw}
 .modules {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 30px;
-  max-width: 1200px;
+  gap: 25px;
+  max-width: 1100px;
   margin: 0 auto;
 }
-
 .module-card {
-  border: 3px solid var(--violet-soft);
-  border-radius: 22px;
+  border: 2px solid var(--violet-soft);
+  border-radius: 20px;
   padding: 20px;
   cursor: pointer;
-  transition: .35s;
-  background: rgba(0,0,0,0.6);
+  background: rgba(20,20,20,0.6);
+  aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 1 / 1; /* Carré */
-  justify-content: space-between;
+  align-items: center;
   text-align: center;
+  transition: 0.3s;
 }
+.module-card:hover { border-color: var(--violet); transform: translateY(-5px); }
+.module-card.selected { border-color: var(--violet); box-shadow: 0 0 30px var(--violet); background: rgba(106,13,173,0.1); }
+.module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; pointer-events: none;}
+h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
+span { font-size: 0.8rem; color: #aaa; pointer-events: none;}
 
-.module-card:hover { box-shadow: 0 0 35px var(--violet-soft); transform: translateY(-5px); }
-.module-card.selected { border-color: var(--violet); box-shadow: 0 0 45px var(--violet); }
-
-.module-thumb {
-  width: 100%;
-  height: 55%;
-  object-fit: cover;
-  border-radius: 14px;
-  background: #111;
-}
-
-.module-card h3 { font-size: 1.1rem; margin: 10px 0; }
-.module-card span { font-size: 0.85rem; color: #cfcfcf; }
-
-/* ---------- STICKY BAR ---------- */
-.sticky-bar{
-  position:fixed;
-  bottom:16px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,0.8);
-  backdrop-filter:blur(10px);
-  border:1.5px solid var(--violet-soft);
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:10px 18px;
-  z-index:50;
-}
-
-/* ---------- FORM ---------- */
-.form-box{
-  max-width:860px;
-  margin:auto;
-  border:3px solid var(--violet);
-  border-radius:26px;
-  padding:50px;
-  background:#000;
-}
-
-/* ---------- MODALE 2/3 ---------- */
 #modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(8px);
+  position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+  z-index: 9999; display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(10px);
 }
-
 .modal-content {
-  background: #0a0a0a;
-  border: 2px solid var(--violet);
-  width: 66vw;
-  max-height: 85vh;
-  border-radius: 20px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
-  overflow-y: auto;
+  background: #050505; border: 1px solid var(--violet);
+  width: 66vw; max-height: 85vh; border-radius: 24px;
+  padding: 40px; position: relative; display: flex; flex-direction: column;
 }
-
-.choice-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin: 30px 0;
-}
-
+.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0; }
 .choice-item {
-  background: #161616;
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid #333;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  background: #111; padding: 18px; border-radius: 15px; border: 1px solid #222;
+  display: flex; align-items: center; cursor: pointer; transition: 0.2s;
 }
+.choice-item:hover { border-color: var(--violet); }
+.choice-item input { width: 22px; height: 22px; margin-right: 15px; accent-color: var(--violet); }
 
-.choice-item input { width: 20px; height: 20px; margin-right: 15px; accent-color: var(--violet); }
+.sticky-bar {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.8); border: 1px solid var(--violet);
+  padding: 15px 30px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100;
+}
+button { background: var(--violet); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
 
 @media(max-width:900px){
   .modules { grid-template-columns: 1fr 1fr !important; }
-  .modal-content { width: 90vw; }
+  .modal-content { width: 90vw; padding: 20px; }
   .choice-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
-  <video autoplay muted loop>
-    <source src="assets/Mika Food Solutions.mp4" type="video/mp4">
-  </video>
-  <div class="hero-content">
-    <h1>Le sur-mesure pour propulser votre établissement.</h1>
-    <button onclick="document.getElementById('modules').scrollIntoView()">Explorer les Modules</button>
-  </div>
-</section>
-
 <section id="modules">
-  <div class="modules">
-    <div class="module-card" id="module1" onclick="openModule('module1')" data-title="Clientèle & Fidélité">
-      <img src="assets/1Fidélitéxclusivité.png" class="module-thumb">
-      <h3>Clientèle & Fidélité</h3>
-      <span>Attirer et retenir vos meilleurs clients.</span>
+  <div class="modules" id="main-grid">
     </div>
-
-    <div class="module-card" id="module2" data-title="Fluidité & Service">
-      <img src="assets/2FluiditéServiceVitesse.png" class="module-thumb">
-      <h3>Fluidité & Service</h3>
-    </div>
-    <div class="module-card" id="module3" data-title="Expérience Client">
-      <img src="assets/3ExpérienceParcoursClient.png" class="module-thumb">
-      <h3>Expérience Client</h3>
-    </div>
-    <div class="module-card" id="module4" data-title="Rentabilité">
-      <img src="assets/4RentabilitéCroissance.png" class="module-thumb">
-      <h3>Rentabilité</h3>
-    </div>
-    <div class="module-card" id="module5" data-title="Carte Stratégique">
-      <img src="assets/5CarteMenuStratégique.jpg" class="module-thumb">
-      <h3>Carte Stratégique</h3>
-    </div>
-    <div class="module-card" id="module6" data-title="Réseau">
-      <img src="assets/6RéseauAlliances.jpg" class="module-thumb">
-      <h3>Réseau</h3>
-    </div>
-    <div class="module-card" id="module7" data-title="Ambiance Sonore">
-      <img src="assets/7SonoreIdentité.jpg" class="module-thumb">
-      <h3>Ambiance Sonore</h3>
-    </div>
-    <div class="module-card" id="module8" data-title="Événements">
-      <img src="assets/8ÉvénementsProgrammation.jpg" class="module-thumb">
-      <h3>Événements</h3>
-    </div>
-    <div class="module-card" id="module9" data-title="Digital">
-      <img src="assets/9DigitalRayonnement.jpg" class="module-thumb">
-      <h3>Digital</h3>
-    </div>
-  </div>
 </section>
 
-<div id="modal-overlay" onclick="closeModal(event)">
+<div id="modal-overlay" onclick="closeModal()">
   <div class="modal-content" onclick="event.stopPropagation()">
     <h2 id="modal-title" style="color:var(--violet)"></h2>
-    <p id="modal-desc" style="margin-top:10px;"></p>
+    <p id="modal-desc" style="margin-top:10px; color:#ccc;"></p>
     <div class="choice-grid" id="modal-choices"></div>
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-        <span id="modal-goal" style="color:var(--violet); font-weight:bold; font-size:0.9rem;"></span>
-        <button onclick="saveAndClose()">Enregistrer</button>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="modal-goal" style="color:var(--violet); font-weight:bold;"></span>
+        <button onclick="saveAndClose()">Enregistrer la sélection</button>
     </div>
   </div>
 </div>
 
-<section id="formulaire">
-  <div class="form-box">
-    <h2>Votre Panier</h2>
-    <ul id="selectedList" style="margin-bottom:20px;"></ul>
-    <input type="text" placeholder="Nom de l'établissement">
-    <input type="email" placeholder="Email">
-    <button>Envoyer la demande</button>
-  </div>
-</section>
-
 <div class="sticky-bar">
-  <div><strong id="count">0</strong> module(s) sélectionné(s)</div>
+  <span><strong id="count" style="color:var(--violet)">0</strong> module(s) choisi(s)</span>
   <button onclick="document.getElementById('formulaire').scrollIntoView()">Finaliser</button>
 </div>
 
 <script>
 const MODULES_DATA = {
-  "module1": {
-    "titre": "Clientèle & Fidélité",
-    "description": "Transformez vos visiteurs en ambassadeurs actifs par une gestion précise des données.",
-    "sub_modules": [
-      { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Wi-Fi, QR codes, réservations." },
-      { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Réactiver les clients absents." },
-      { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat." },
-      { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Relances et anniversaires." }
-    ],
-    "objectif": "Objectif : +10% de panier moyen"
-  }
+  "module1": { "titre": "Clientèle & Fidélité", "label": "Acquisition & Rétention", "img": "assets/1Fidélitéxclusivité.png", "desc": "L'acquisition coûte 5x plus cher que la rétention. Transformez vos visiteurs en ambassadeurs actifs.", "goal": "Objectif : +10% de panier moyen", "subs": [
+    ["m1s1", "Data-Capture", "Wi-Fi, QR, réservations."], ["m1s2", "Analyse Récence", "Réactiver les clients absents."], ["m1s3", "Segmentation RFM", "Ciblage Fréquence/Montant."], ["m1s4", "Automation", "Relances et anniversaires."]
+  ]},
+  "module2": { "titre": "Fluidité & Service", "label": "Vitesse & Organisation", "img": "assets/2FluiditéServiceVitesse.png", "desc": "Un service fluide réduit le stress des équipes et augmente naturellement la rotation des tables.", "goal": "Objectif : +10% de productivité", "subs": [
+    ["m2s1", "Audit des Flux", "Analyse salle/cuisine pour supprimer les pas inutiles."], ["m2s2", "Organisation Espaces", "Aménagement optimisé de tous les volumes."], ["m2s3", "Standardisation", "Fiches réflexes et protocoles de service."], ["m2s4", "Gestion de la Casse", "Réduction des pertes et erreurs de commande."]
+  ]},
+  "module3": { "titre": "Expérience Client", "label": "Parcours & Immersion", "img": "assets/3ExpérienceParcoursClient.png", "desc": "On ne vend plus seulement un plat, on vend un moment. Chaque détail du parcours doit être soigné.", "goal": "Objectif : +0.5 sur vos notes Google", "subs": [
+    ["m3s1", "Audit du Parcours", "Analyse de l'accueil jusqu'à l'encaissement."], ["m3s2", "Mise en scène", "Visuel de la table et gestuelle du service."], ["m3s3", "Gestion de l'Attente", "Transformer les temps morts en moments positifs."], ["m3s4", "Avis Instantanés", "Capter la satisfaction avant le départ."]
+  ]},
+  "module4": { "titre": "Rentabilité & Gestion", "label": "Contrôle des Marges", "img": "assets/4RentabilitéCroissance.png", "desc": "Reprenez le contrôle total sur vos marges sans sacrifier la qualité.", "goal": "Objectif : -5% de coût matière", "subs": [
+    ["m4s1", "Fiches Techniques", "Calcul précis des ratios par recette."], ["m4s2", "Analyse des Écarts", "Identifier où part la marchandise perdue."], ["m4s3", "Audit Achats", "Négociation et mise en concurrence fournisseurs."], ["m4s4", "Suivi Flash", "Tableau de bord de rentabilité hebdomadaire."]
+  ]},
+  "module5": { "titre": "Carte Stratégique", "label": "Menu Engineering", "img": "assets/5CarteMenuStratégique.jpg", "desc": "Votre carte doit orienter le client vers vos plats les plus rentables.", "goal": "Objectif : +10% de marge brute", "subs": [
+    ["m5s1", "Structure du Menu", "Identification des stars et suppression des poids morts."], ["m5s2", "Psychologie de Carte", "Mise en page pour attirer l'œil sur les bons plats."], ["m5s3", "Valorisation Produits", "Storytelling pour justifier vos prix."], ["m5s4", "Briefing Équipe", "Coaching pour pousser les plats clés."]
+  ]},
+  "module6": { "titre": "Réseau & Alliances", "label": "Partenariats Locaux", "img": "assets/6RéseauAlliances.jpg", "desc": "Allez chercher vos clients là où ils dorment et là où ils travaillent.", "goal": "Objectif : Flux régulier d'apporteur d'affaires", "subs": [
+    ["m6s1", "Hôtels & Hébergements", "Devenir l'adresse recommandée du secteur."], ["m6s2", "Offres Entreprises", "Solutions pour capter la clientèle de bureau."], ["m6s3", "Synergie Commerçants", "Échanges de visibilité de proximité."], ["m6s4", "Action de Quartier", "Visibilité lors des événements locaux."]
+  ]},
+  "module7": { "titre": "Identité Sonore", "label": "Ambiance & Acoustique", "img": "assets/7SonoreIdentité.jpg", "desc": "Le son influence le confort des clients et l'énergie de vos équipes.", "goal": "Objectif : Confort acoustique optimal", "subs": [
+    ["m7s1", "Audit Acoustique", "Analyse de l'écho et des bruits parasites."], ["m7s2", "Curation Musicale", "Playlists sur-mesure selon les moments du jour."], ["m7s3", "Gestion de l'Énergie", "Ajustement du volume et du zonage."], ["m7s4", "Signature Sonore", "Style musical unique et reconnaissable."]
+  ]},
+  "module8": { "titre": "Événements", "label": "Programmation & Vie", "img": "assets/8ÉvénementsProgrammation.jpg", "desc": "Faites de votre établissement un lieu de vie pour remplir vos heures creuses.", "goal": "Objectif : Hausse du ticket moyen groupe", "subs": [
+    ["m8s1", "Conception de Soirées", "Planification de rendez-vous thématiques."], ["m8s2", "Privatisations", "Offres packagées pour anniversaires et séminaires."], ["m8s3", "Logistique Interne", "Gérer l'événement sans perturber le service."], ["m8s4", "Stratégie Remplissage", "Communication ciblée pour vos temps forts."]
+  ]},
+  "module9": { "titre": "Rayonnement Digital", "label": "Visibilité & Avis", "img": "assets/9DigitalRayonnement.jpg", "desc": "Devenez l'adresse numéro 1 sur les recherches locales.", "goal": "Objectif : Domination des recherches locales", "subs": [
+    ["m9s1", "Mise en valeur Vitrine", "Shooting photo et style visuel attractif."], ["m9s2", "Maîtrise Réputation", "Booster les avis et répondre stratégiquement."], ["m9s3", "Domination Google", "Optimisation technique pour Maps."], ["m9s4", "Ciblage Proximité", "Publicité ultra-locale (rayon 2km)."]
+  ]}
 };
 
+const grid = document.getElementById('main-grid');
 let currentModuleId = null;
 
+// Génération des cartes
+Object.keys(MODULES_DATA).forEach(id => {
+  const m = MODULES_DATA[id];
+  grid.innerHTML += `
+    <div class="module-card" id="${id}" onclick="openModule('${id}')">
+      <img src="${m.img}" class="module-thumb">
+      <h3>${m.titre}</h3>
+      <span>${m.label}</span>
+    </div>`;
+});
+
 function openModule(id) {
-  const data = MODULES_DATA[id];
-  if (!data) return;
-  
   currentModuleId = id;
+  const data = MODULES_DATA[id];
   document.getElementById('modal-title').textContent = data.titre;
-  document.getElementById('modal-desc').textContent = data.description;
-  document.getElementById('modal-goal').textContent = data.objectif;
+  document.getElementById('modal-desc').textContent = data.desc;
+  document.getElementById('modal-goal').textContent = data.goal;
   
   const choicesCont = document.getElementById('modal-choices');
-  choicesCont.innerHTML = data.sub_modules.map(sub => `
+  choicesCont.innerHTML = data.subs.map(s => `
     <label class="choice-item">
-      <input type="checkbox" class="sub-check" data-subid="${sub.id}">
-      <div>
-        <strong style="display:block;">${sub.label}</strong>
-        <small style="color:#888;">${sub.detail}</small>
-      </div>
-    </label>
-  `).join('');
-
+      <input type="checkbox" class="sub-check" data-subid="${s[0]}">
+      <div><strong>${s[1]}</strong><br><small style="color:#777">${s[2]}</small></div>
+    </label>`).join('');
   document.getElementById('modal-overlay').style.display = 'flex';
 }
 
-function closeModal(e) {
-  document.getElementById('modal-overlay').style.display = 'none';
-}
+function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
 function saveAndClose() {
   const checks = document.querySelectorAll('.sub-check');
-  let anyChecked = false;
-  checks.forEach(c => { if(c.checked) anyChecked = true; });
-
-  const card = document.getElementById(currentModuleId);
-  if(anyChecked) card.classList.add('selected');
-  else card.classList.remove('selected');
-
-  updateSelection();
-  document.getElementById('modal-overlay').style.display = 'none';
+  let selected = false;
+  checks.forEach(c => { if(c.checked) selected = true; });
+  document.getElementById(currentModuleId).classList.toggle('selected', selected);
+  updateCount();
+  closeModal();
 }
 
-function updateSelection(){
-  const cards = document.querySelectorAll('.module-card.selected');
-  document.getElementById('count').textContent = cards.length;
-  const list = document.getElementById('selectedList');
-  list.innerHTML = '';
-  cards.forEach(c => {
-    const li = document.createElement('li');
-    li.textContent = '• ' + c.dataset.title;
-    list.appendChild(li);
-  });
+function updateCount() {
+  document.getElementById('count').textContent = document.querySelectorAll('.module-card.selected').length;
 }
 </script>
-
 </body>
 </html>
