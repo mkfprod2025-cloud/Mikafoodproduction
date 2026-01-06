@@ -171,23 +171,38 @@ function updateFinalSummary() {
   document.getElementById('count').textContent = total;
   list.innerHTML = html || "<li>Aucun module sélectionné</li>";
 }
-
 async function sendData() {
-  const btn = document.querySelector('.btn-main');
+  const btn = document.querySelector('#formulaire .btn-main');
   const formData = {
     gerant: document.getElementById('f_nom_complet').value,
     email: document.getElementById('f_mail').value,
     resto: document.getElementById('f_resto_adresse').value,
+    societe: document.getElementById('f_societe').value, // Ajouté
+    tel: document.getElementById('f_tel').value,         // Ajouté
     situation: document.getElementById('f_situation').value,
     missions: document.getElementById('selectedList').innerText
   };
-  if(!formData.email) return alert("Email requis");
+
+  if(!formData.email || !formData.gerant) return alert("Nom et Email requis");
+
   btn.textContent = "Transmission...";
+  btn.disabled = true;
+
   try {
-    await fetch(WEBHOOK_URL, { method: "POST", body: JSON.stringify(formData) });
+    await fetch(WEBHOOK_URL, { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, // Ajouté
+      body: JSON.stringify(formData) 
+    });
     alert("Succès ! Mika Food reviendra vers vous.");
-  } catch (e) { alert("Erreur d'envoi."); }
+    btn.textContent = "Demande envoyée";
+  } catch (e) { 
+    alert("Erreur de connexion."); 
+    btn.textContent = "Envoyer la demande d'audit";
+    btn.disabled = false;
+  }
 }
 </script>
 </body>
 </html>
+
