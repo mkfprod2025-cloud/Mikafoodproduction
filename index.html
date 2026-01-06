@@ -124,99 +124,7 @@ input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #
 
 <section id="formulaire">
 <div class="form-box">
-  <button class="btn-main" onclick="sendByEmail()" ...>
 
-<button class="btn-main" onclick="sendData()" style="width:100%; margin-top:10px;">Envoyer la demande d'audit</button>
-    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Sélection Stratégique</h2>
-    
-    <ul id="selectedList" style="margin-bottom:30px; list-style:none; color:#aaa; border-left: 2px solid var(--violet); padding-left: 15px;">
-        <li>Aucun module sélectionné</li>
-    </ul>
-
-    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <input type="text" id="f_nom_complet" placeholder="Nom & Prénom du Gérant" style="grid-column: span 2;">
-        
-        <input type="text" id="f_resto_adresse" placeholder="Nom et Adresse du Restaurant" style="grid-column: span 2;">
-        
-        <input type="text" id="f_societe" placeholder="Nom de la Société (Optionnel)">
-        <input type="tel" id="f_tel" placeholder="Téléphone">
-        
-        <input type="email" id="f_mail" placeholder="Email professionnel" style="grid-column: span 2;">
-    </div>
-
-    <textarea id="f_situation" placeholder="Votre situation actuelle et votre recherche principale..." style="margin-top:12px;"></textarea>
-    
-    <button class="btn-main" onclick="sendByEmail()" style="width:100%; margin-top:10px;">Envoyer la demande d'audit</button>
-</div>
-</section>
-
-<div id="modal-overlay" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h2 id="modal-title" style="color:var(--violet)"></h2>
-    <p id="modal-desc" style="margin-top:10px; color:#ccc;"></p>
-    <div class="choice-grid" id="modal-choices"></div>
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-        <span id="modal-goal" style="color:var(--violet); font-weight:bold;"></span>
-        <button class="btn-main" onclick="saveAndClose()" style="padding:10px 20px; font-size:0.9rem;">Enregistrer</button>
-    </div>
-  </div>
-</div>
-
-<div class="sticky-bar">
-  <span><strong id="count" style="color:var(--violet)">0</strong> module(s)</span>
-  <button onclick="document.getElementById('formulaire').scrollIntoView()" style="background:none; border:none; color:var(--violet); cursor:pointer; font-weight:bold;">Finaliser</button>
-</div>
-// --- ÉTAPE 2 : On remplacera cette URL plus tard ---
-const WEBHOOK_URL = "https://hook.eu1.make.com/xxxxxxxxxxxx"; 
-
-async function sendData() {
-  const btn = document.querySelector('.btn-main');
-  
-  // Collecte des infos du formulaire compact
-  const formData = {
-    gerant: document.getElementById('f_nom_complet').value,
-    resto_adresse: document.getElementById('f_resto_adresse').value,
-    societe: document.getElementById('f_societe').value,
-    tel: document.getElementById('f_tel').value,
-    email: document.getElementById('f_mail').value,
-    situation: document.getElementById('f_situation').value,
-    // On transforme les sélections en texte lisible pour Notion/Email
-    missions: Object.keys(userSelections)
-              .filter(id => userSelections[id].length > 0)
-              .map(id => {
-                const subs = DATA[id].s
-                  .filter(s => userSelections[id].includes(s[0]))
-                  .map(s => s[1]).join(', ');
-                return `${DATA[id].t} (${subs})`;
-              }).join(' | ')
-  };
-
-  // Sécurité : Vérifier si le mail est rempli
-  if(!formData.email) {
-      alert("Veuillez entrer votre adresse email.");
-      return;
-  }
-
-  btn.textContent = "Transmission en cours...";
-  btn.disabled = true;
-
-  try {
-    // Envoi invisible vers le "Pont" (Notion + Email automatique)
-    await fetch(WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-
-    alert("Merci ! Votre demande a été transmise avec succès. Mika Food Production reviendra vers vous par email.");
-    btn.textContent = "Demande envoyée";
-    
-  } catch (error) {
-    // Si problème de connexion, on propose le mail classique en secours
-    console.error(error);
-    alert("Une erreur est survenue. Nous traitons votre demande manuellement.");
-  }
-}
 <script>
 const DATA = {
   "module1": { 
@@ -392,6 +300,7 @@ function updateFinalSummary() {
 </script>
 </body>
 </html>
+
 
 
 
