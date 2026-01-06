@@ -178,6 +178,52 @@ textarea{min-height:140px}
   }
 }
 </style>
+  /* Grille de modules 3x3 */
+.modules {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+    gap: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.module-card {
+    background: #111;
+    border: 1px solid #333;
+    aspect-ratio: 1 / 1; /* Format carré */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 15px;
+}
+
+.module-card:hover {
+    border-color: #6a0dad;
+    transform: translateY(-5px);
+}
+
+.module-card.selected {
+    border: 2px solid #6a0dad;
+    box-shadow: 0 0 20px rgba(106, 13, 173, 0.5);
+}
+
+.module-thumb {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.module-card h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #fff;
+}
 </head>
 
 <body>
@@ -281,77 +327,77 @@ textarea{min-height:140px}
 </div>
 
 <script>
-// 1. Base de données des modules
 const MODULES_DATA = {
-  "module1": {
-    "titre": "Clientèle & Fidélité",
-    "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une gestion précise des données.",
-    "sub_modules": [
-      { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Tunnels de capture (Wi-Fi, QR, résas) pour extraire les données brutes sans intermédiaire." },
-      { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Analyse du délai depuis la dernière visite pour réactiver les clients qui s'éloignent." },
-      { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat pour supprimer la dépendance aux plateformes tierces." },
-      { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Systèmes de parrainage et scénarios automatisés (Relances, Anniversaires)." }
-    ],
-    "objectif": "Objectif : Augmentation du panier moyen de 10%."
-  }
+    "module1": {
+        "titre": "Clientèle & Fidélité",
+        "description": "L'acquisition coûte 5x plus cher que la rétention. Transformez vos visiteurs en ambassadeurs par une gestion précise des données.",
+        "sub_modules": [
+            { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Tunnels de capture (Wi-Fi, QR, résas) pour extraire les données brutes." },
+            { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Analyse du délai depuis la dernière visite pour réactiver les clients." },
+            { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat pour l'indépendance aux plateformes." },
+            { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Scénarios automatisés (Relances, Anniversaires) et parrainage." }
+        ],
+        "objectif": "Objectif : Augmentation du panier moyen de 10%."
+    }
 };
 
-// 2. Fonction d'ouverture de la fenêtre (Modale)
 function openModule(id) {
-  const data = MODULES_DATA[id];
-  if (!data) {
-    alert("Données du module en cours de configuration.");
-    return;
-  }
+    const data = MODULES_DATA[id];
+    if (!data) return;
 
-  let htmlChoices = data.sub_modules.map(sub => `
-    <div style="background:#1a1a1a; padding:15px; border-radius:10px; margin-bottom:12px; border:1px solid #333; text-align:left;">
-      <strong style="color:#6a0dad; display:block; margin-bottom:5px;">${sub.label}</strong>
-      <p style="font-size:0.85em; color:#bbb; margin-bottom:12px;">${sub.detail}</p>
-      <select id="${sub.id}" style="width:100%; background:#000; color:white; border:1px solid #6a0dad; padding:8px; border-radius:5px;">
-        <option value="inutile">Inutile pour mon projet</option>
-        <option value="necessaire">Nécessaire</option>
-      </select>
-    </div>
-  `).join('');
+    let htmlChoices = data.sub_modules.map(sub => `
+        <label style="display:flex; align-items:center; background:#1a1a1a; padding:20px; border-radius:12px; cursor:pointer; border:1px solid #333;">
+            <input type="checkbox" id="${sub.id}" style="width:22px; height:22px; accent-color:#6a0dad; margin-right:15px;">
+            <div style="text-align:left;">
+                <strong style="color:#fff; display:block; margin-bottom:5px;">${sub.label}</strong>
+                <span style="color:#888; font-size:0.85em;">${sub.detail}</span>
+            </div>
+        </label>
+    `).join('');
 
-  const modal = document.createElement('div');
-  modal.id = "custom-modal";
-  modal.style = "position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:1000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(5px); padding:20px;";
-  modal.innerHTML = `
-    <div style="background:#111; border:2px solid #6a0dad; padding:30px; border-radius:20px; max-width:500px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
-      <h2 style="color:#6a0dad; margin-bottom:10px;">${data.titre}</h2>
-      <p style="margin-bottom:20px; font-size:0.9em; color:#eee;">${data.description}</p>
-      ${htmlChoices}
-      <p style="font-size:0.8em; color:#6a0dad; font-weight:bold; margin-top:15px;">${data.objectif}</p>
-      <button onclick="saveChoices('${id}')" style="width:100%; background:#6a0dad; color:white; padding:16px; border-radius:12px; margin-top:20px; font-weight:bold; border:none; cursor:pointer;">ENREGISTRER LA CONFIGURATION</button>
-    </div>
-  `;
-  document.body.appendChild(modal);
+    const modal = document.createElement('div');
+    modal.id = "custom-modal";
+    modal.style = "position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px);";
+    
+    modal.innerHTML = `
+        <div style="background:#0a0a0a; border:1px solid #6a0dad; width:66vw; height:85vh; border-radius:20px; display:flex; flex-direction:column; overflow:hidden;">
+            <div style="padding:40px; border-bottom:1px solid #222;">
+                <h2 style="color:#6a0dad; margin:0; text-transform:uppercase;">${data.titre}</h2>
+                <p style="color:#ccc; margin-top:10px;">${data.description}</p>
+            </div>
+            
+            <div style="flex:1; padding:40px; display:grid; grid-template-columns:1fr 1fr; gap:20px; align-content:start;">
+                ${htmlChoices}
+            </div>
+
+            <div style="padding:40px; border-top:1px solid #222; background:#0f0f0f;">
+                <p style="color:#6a0dad; font-weight:bold; margin-bottom:20px;">${data.objectif}</p>
+                <button onclick="saveChoices('${id}')" style="width:100%; background:#6a0dad; color:white; padding:20px; border-radius:10px; font-weight:bold; border:none; cursor:pointer;">VALIDER LA SÉLECTION</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
 }
 
-// 3. Fonction de sauvegarde
 function saveChoices(moduleId) {
-  const data = MODULES_DATA[moduleId];
-  let hasNecessaire = false;
-  
-  data.sub_modules.forEach(sub => {
-    const el = document.getElementById(sub.id);
-    if(el && el.value === "necessaire") hasNecessaire = true;
-  });
+    const data = MODULES_DATA[moduleId];
+    let selectedCount = 0;
+    
+    data.sub_modules.forEach(sub => {
+        if(document.getElementById(sub.id).checked) selectedCount++;
+    });
 
-  const card = document.getElementById(moduleId);
-  if (card) {
-    hasNecessaire ? card.classList.add('selected') : card.classList.remove('selected');
-  }
-  
-  document.getElementById('custom-modal').remove();
-  if (typeof updateSelection === "function") updateSelection();
-}</script>
+    const card = document.getElementById(moduleId);
+    selectedCount > 0 ? card.classList.add('selected') : card.classList.remove('selected');
+    
+    document.getElementById('custom-modal').remove();
+}
+</script>
 
 </body>
 </html>
 ```
+
 
 
 
