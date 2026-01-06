@@ -297,98 +297,78 @@ textarea{min-height:140px}
 </div>
 
 <script>
+// 1. Base de données des modules
 const MODULES_DATA = {
   "module1": {
     "titre": "Clientèle & Fidélité",
     "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une gestion précise des données.",
     "sub_modules": [
-      {
-        "id": "m1_s1",
-        "label": "Data-Capture & Souveraineté",
-        "detail": "Déploiement de tunnels de capture (Wi-Fi, QR codes, réservations) pour extraire les données brutes sans intermédiaire."
-      },
-      {
-        "id": "m1_s2",
-        "label": "Audit & Analyse de Récence",
-        "detail": "Analyse du délai depuis la dernière visite pour identifier et réactiver les clients qui s'éloignent de votre enseigne."
-      },
-      {
-        "id": "m1_s3",
-        "label": "Segmentation Fréquence/Montant",
-        "detail": "Ciblage des profils selon leur nombre de visites et leur panier moyen pour supprimer la dépendance aux plateformes tierces."
-      },
-      {
-        "id": "m1_s4",
-        "label": "Automation & Parrainage",
-        "detail": "Mise en place de systèmes de parrainage et de scénarios automatisés (Relances personnalisées, Anniversaires)."
-      }
+      { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Tunnels de capture (Wi-Fi, QR, résas) pour extraire les données brutes sans intermédiaire." },
+      { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Analyse du délai depuis la dernière visite pour réactiver les clients qui s'éloignent." },
+      { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat pour supprimer la dépendance aux plateformes tierces." },
+      { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Systèmes de parrainage et scénarios automatisés (Relances, Anniversaires)." }
     ],
     "objectif": "Objectif : Augmentation du panier moyen de 10%."
   }
 };
+
+// 2. Fonction d'ouverture de la fenêtre (Modale)
 function openModule(id) {
   const data = MODULES_DATA[id];
-  if (!data) return;
+  if (!data) {
+    alert("Données du module en cours de configuration.");
+    return;
+  }
 
-  // Création dynamique de la modale
+  let htmlChoices = data.sub_modules.map(sub => `
+    <div style="background:#1a1a1a; padding:15px; border-radius:10px; margin-bottom:12px; border:1px solid #333; text-align:left;">
+      <strong style="color:#6a0dad; display:block; margin-bottom:5px;">${sub.label}</strong>
+      <p style="font-size:0.85em; color:#bbb; margin-bottom:12px;">${sub.detail}</p>
+      <select id="${sub.id}" style="width:100%; background:#000; color:white; border:1px solid #6a0dad; padding:8px; border-radius:5px;">
+        <option value="inutile">Inutile pour mon projet</option>
+        <option value="necessaire">Nécessaire</option>
+      </select>
+    </div>
+  `).join('');
+
   const modal = document.createElement('div');
   modal.id = "custom-modal";
+  modal.style = "position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:1000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(5px); padding:20px;";
   modal.innerHTML = `
-    <div style="position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px;">
-      <div style="background:#111; border:2px solid #6a0dad; padding:40px; border-radius:20px; max-width:600px; width:100%; position:relative;">
-        <button onclick="this.parentElement.parentElement.remove()" style="position:absolute; top:20px; right:20px; border:none; color:white; cursor:pointer;">✕ Fermer</button>
-        <h2 style="color:#6a0dad; margin-bottom:20px;">${data.titre}</h2>
-        <p style="margin-bottom:20px; line-height:1.6;">${data.description}</p>
-        <ul style="margin-bottom:30px; color:#cfcfcf;">
-          ${data.points.map(p => `<li style='margin-bottom:10px;'>• ${p}</li>`).join('')}
-        </ul>
-        <div style="display:flex; gap:15px;">
-          <button onclick="confirmSelection('${id}', true)" style="background:#6a0dad; flex:1;">Nécessaire</button>
-          <button onclick="confirmSelection('${id}', false)" style="border:1px solid #444; flex:1;">Inutile</button>
-        </div>
-      </div>
+    <div style="background:#111; border:2px solid #6a0dad; padding:30px; border-radius:20px; max-width:500px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
+      <h2 style="color:#6a0dad; margin-bottom:10px;">${data.titre}</h2>
+      <p style="margin-bottom:20px; font-size:0.9em; color:#eee;">${data.description}</p>
+      ${htmlChoices}
+      <p style="font-size:0.8em; color:#6a0dad; font-weight:bold; margin-top:15px;">${data.objectif}</p>
+      <button onclick="saveChoices('${id}')" style="width:100%; background:#6a0dad; color:white; padding:16px; border-radius:12px; margin-top:20px; font-weight:bold; border:none; cursor:pointer;">ENREGISTRER LA CONFIGURATION</button>
     </div>
   `;
   document.body.appendChild(modal);
 }
 
-function confirmSelection(id, isNeeded) {
-  const card = document.getElementById(id);
-  if (isNeeded) {
-    card.classList.add('selected');
-  } else {
-    card.classList.remove('selected');
+// 3. Fonction de sauvegarde
+function saveChoices(moduleId) {
+  const data = MODULES_DATA[moduleId];
+  let hasNecessaire = false;
+  
+  data.sub_modules.forEach(sub => {
+    const el = document.getElementById(sub.id);
+    if(el && el.value === "necessaire") hasNecessaire = true;
+  });
+
+  const card = document.getElementById(moduleId);
+  if (card) {
+    hasNecessaire ? card.classList.add('selected') : card.classList.remove('selected');
   }
+  
   document.getElementById('custom-modal').remove();
-  // La fonction updateSelection() existante mettra à jour le compteur
   if (typeof updateSelection === "function") updateSelection();
-}
-const cards=document.querySelectorAll('.module-card');
-const countEl=document.getElementById('count');
-const list=document.getElementById('selectedList');
-
-cards.forEach(card=>{
-  card.addEventListener('click',()=>{
-    card.classList.toggle('selected');
-    updateSelection();
-  });
-});
-
-function updateSelection(){
-  const selected=[...cards].filter(c=>c.classList.contains('selected'));
-  countEl.textContent=selected.length;
-  list.innerHTML='';
-  selected.forEach(c=>{
-    const li=document.createElement('li');
-    li.textContent='• '+c.dataset.title;
-    list.appendChild(li);
-  });
-}
-</script>
+}</script>
 
 </body>
 </html>
 ```
+
 
 
 
