@@ -150,41 +150,119 @@ input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #
 
 <script>
 const DATA = {
-  "module1": { "t": "Clientèle & Fidélité", "d": "L'acquisition coûte 5x plus cher que la rétention.", "g": "Objectif : +10% de panier moyen", 
-    "s": [["m1s1", "Data-Capture", "Wi-Fi, QR, réservations."], ["m1s2", "Analyse Récence", "Réactiver les clients absents."], ["m1s3", "Segmentation RFM", "Ciblage Fréquence/Montant."], ["m1s4", "Automation", "Relances et anniversaires."]] },
-  "module2": { "t": "Fluidité & Service", "d": "Un service fluide réduit le stress et augmente la rotation.", "g": "Objectif : +10% de productivité", 
-    "s": [["m2s1", "Audit des Flux", "Supprimer les pas inutiles."], ["m2s2", "Organisation Espaces", "Aménagement optimisé."], ["m2s3", "Standardisation", "Fiches réflexes et protocoles."], ["m2s4", "Gestion de la Casse", "Réduction des pertes."]] },
-  "module3": { "t": "Expérience Client", "d": "Chaque détail du parcours doit être soigné.", "g": "Objectif : +0.5 sur Google", 
-    "s": [["m3s1", "Audit du Parcours", "De l'accueil à l'encaissement."], ["m3s2", "Mise en scène", "Visuel et gestuelle."], ["m3s3", "Gestion de l'Attente", "Temps morts positifs."], ["m3s4", "Avis Instantanés", "Capter la satisfaction."]] },
-  "module4": { "t": "Rentabilité & Gestion", "d": "Reprenez le contrôle total sur vos marges.", "g": "Objectif : -5% de coût matière", 
-    "s": [["m4s1", "Fiches Techniques", "Calcul des ratios précis."], ["m4s2", "Analyse des Écarts", "Identifier les pertes."], ["m4s3", "Audit Achats", "Négociation fournisseurs."], ["m4s4", "Suivi Flash", "Rentabilité hebdomadaire."]] },
-  "module5": { "t": "Carte Stratégique", "d": "Orientez le client vers vos plats rentables.", "g": "Objectif : +10% de marge brute", 
-    "s": [["m5s1", "Structure du Menu", "Identification des stars."], ["m5s2", "Psychologie de Carte", "Mise en page stratégique."], ["m5s3", "Valorisation", "Storytelling prix."], ["m5s4", "Briefing Équipe", "Coaching vente."]] },
-  "module6": { "t": "Réseau & Alliances", "d": "Allez chercher vos clients là où ils dorment.", "g": "Objectif : Flux régulier", 
-    "s": [["m6s1", "Hébergements", "Recommandation officielle."], ["m6s2", "Offres Entreprises", "Clientèle de bureau."], ["m6s3", "Synergie Commerçants", "Visibilité proximité."], ["m6s4", "Action de Quartier", "Événements locaux."]] },
-  "module7": { "t": "Identité Sonore", "d": "Le son influence le confort et l'énergie.", "g": "Objectif : Confort acoustique", 
-    "s": [["m7s1", "Audit Acoustique", "Bruit parasite."], ["m7s2", "Curation Musicale", "Playlists sur-mesure."], ["m7s3", "Gestion Énergie", "Volume et zonage."], ["m7s4", "Signature Sonore", "Style reconnaissable."]] },
-  "module8": { "t": "Événements", "d": "Faites de votre établissement un lieu de vie.", "g": "Objectif : Hausse du ticket groupe", 
-    "s": [["m8s1", "Conception Soirées", "Rendez-vous thématiques."], ["m8s2", "Privatisations", "Offres anniversaires/pro."], ["m8s3", "Logistique Interne", "Gérer sans perturber."], ["m8s4", "Stratégie Remplissage", "Com temps forts."]] },
-  "module9": { "t": "Rayonnement Digital", "d": "Devenez l'adresse n°1 en ligne.", "g": "Objectif : Domination locale", 
-    "s": [["m9s1", "Mise en valeur", "Shooting photo pro."], ["m9s2", "Maîtrise Réputation", "Booster les avis."], ["m9s3", "Domination Google", "Optimisation Maps."], ["m9s4", "Ciblage Proximité", "Pub ultra-locale."]] }
+  "module1": { 
+    "t": "Clientèle & Fidélité", 
+    "d": "L'acquisition coûte 5x plus cher que la rétention. Transformez vos visiteurs en ambassadeurs actifs.", 
+    "g": "Objectif : +10% de panier moyen", 
+    "s": [
+      ["m1s1", "Data-Capture", "Mise en place d'outils (Wi-Fi, QR, réservations) pour récolter les données clients."],
+      ["m1s2", "Analyse de Récence", "Identification et réactivation ciblée des clients qui ne sont pas revenus récemment."],
+      ["m1s3", "Segmentation RFM", "Ciblage précis selon la Fréquence de visite et le Montant des dépenses."],
+      ["m1s4", "Automation Marketing", "Envoi automatisé de relances et d'offres pour les anniversaires ou événements."]
+    ] 
+  },
+  "module2": { 
+    "t": "Fluidité & Service", 
+    "d": "Un service fluide réduit le stress des équipes et augmente naturellement la rotation des tables.", 
+    "g": "Objectif : +10% de productivité", 
+    "s": [
+      ["m2s1", "Audit des Flux & Postes", "Analyse des déplacements salle/cuisine pour supprimer les pas inutiles."],
+      ["m2s2", "Organisation des Espaces", "Aménagement de tous les volumes (salle, stock, débarras) pour fluidifier le passage."],
+      ["m2s3", "Standardisation", "Fiches réflexes et protocoles de service pour garantir une qualité constante."],
+      ["m2s4", "Gestion de la Casse", "Contrôles simples pour réduire les pertes matières et les erreurs de commande."]
+    ] 
+  },
+  "module3": { 
+    "t": "Expérience Client", 
+    "d": "On ne vend plus seulement un plat, on vend un moment. Chaque détail du parcours doit être soigné.", 
+    "g": "Objectif : +0.5 sur vos notes Google", 
+    "s": [
+      ["m3s1", "Audit du Parcours", "Analyse critique du parcours client, de l'accueil jusqu'à l'encaissement."],
+      ["m3s2", "Mise en scène", "Optimisation du visuel de la table et de la gestuelle de service pour l'immersion."],
+      ["m3s3", "Gestion de l'Attente", "Stratégies pour transformer les temps morts inévitables en moments positifs."],
+      ["m3s4", "Avis Instantanés", "Système pour capter la satisfaction ou les griefs avant le départ du client."]
+    ] 
+  },
+  "module4": { 
+    "t": "Rentabilité & Gestion", 
+    "d": "Reprenez le contrôle total sur vos marges pour que chaque plat servi soit réellement profitable.", 
+    "g": "Objectif : -5% de coût matière", 
+    "s": [
+      ["m4s1", "Fiches Techniques", "Calcul précis et mise à jour des ratios et coûts de revient par recette."],
+      ["m4s2", "Analyse des Écarts", "Identification des sources de pertes de marchandise entre achat et vente."],
+      ["m4s3", "Audit Achats", "Négociation, optimisation des volumes et mise en concurrence des fournisseurs."],
+      ["m4s4", "Suivi Flash", "Installation d'un tableau de bord de rentabilité simple pour un pilotage hebdomadaire."]
+    ] 
+  },
+  "module5": { 
+    "t": "Carte Stratégique", 
+    "d": "Votre carte est votre premier vendeur. Elle doit orienter le client vers vos plats les plus rentables.", 
+    "g": "Objectif : +10% de marge brute", 
+    "s": [
+      ["m5s1", "Structure du Menu", "Identification des plats 'stars' et suppression des produits inutiles ou coûteux."],
+      ["m5s2", "Psychologie de Carte", "Réorganisation visuelle pour attirer l'œil sur les produits à forte marge."],
+      ["m5s3", "Valorisation Produits", "Travail sur les appellations et le storytelling pour justifier vos prix."],
+      ["m5s4", "Briefing Équipe", "Coaching des serveurs pour qu'ils sachent conseiller et 'pousser' les plats clés."]
+    ] 
+  },
+  "module6": { 
+    "t": "Réseau & Alliances", 
+    "d": "Sortez de vos murs pour aller chercher vos clients là où ils dorment et là où ils travaillent.", 
+    "g": "Objectif : Flux régulier d'apporteur d'affaires", 
+    "s": [
+      ["m6s1", "Partenariats Hébergements", "Devenir l'adresse recommandée par les hôtels et locations de courte durée voisins."],
+      ["m6s2", "Offres Entreprises", "Création de solutions spécifiques (déjeuners d'affaires, menus rapides) pour les bureaux."],
+      ["m6s3", "Synergie Commerçants", "Mise en place d'échanges de visibilité avec les commerces de proximité."],
+      ["m6s4", "Action de Quartier", "Présence et visibilité lors des événements locaux pour ancrer votre établissement."]
+    ] 
+  },
+  "module7": { 
+    "t": "Identité Sonore", 
+    "d": "Le son n'est pas un détail : il influence le confort des clients et l'énergie de vos équipes.", 
+    "g": "Objectif : Confort acoustique optimal", 
+    "s": [
+      ["m7s1", "Audit Acoustique", "Analyse de la salle (écho, bruits de cuisine) pour un confort de conversation idéal."],
+      ["m7s2", "Curation Musicale", "Création de playlists sur-mesure adaptées à chaque moment de la journée."],
+      ["m7s3", "Gestion de l'Énergie", "Ajustement précis du volume et du zonage (terrasse, bar, salle) selon l'affluence."],
+      ["m7s4", "Signature Sonore", "Définition d'un style musical unique qui renforce l'identité de votre marque."]
+    ] 
+  },
+  "module8": { 
+    "t": "Événements", 
+    "d": "Transformez votre établissement en un lieu de vie dynamique pour remplir vos heures creuses.", 
+    "g": "Objectif : Hausse du ticket moyen groupe", 
+    "s": [
+      ["m8s1", "Conception de Soirées", "Planification de rendez-vous réguliers (soirées thématiques, dégustations, live)."],
+      ["m8s2", "Offre Privatisations", "Création de formules packagées pour anniversaires, séminaires et événements pro."],
+      ["m8s3", "Logistique Interne", "Mise en place des process pour gérer l'événement sans perturber le service."],
+      ["m8s4", "Stratégie Remplissage", "Méthodes simples pour communiquer et garantir le succès de chaque date."]
+    ] 
+  },
+  "module9": { 
+    "t": "Rayonnement Digital", 
+    "d": "Votre présence en ligne doit être votre meilleure alliée pour remplir la salle.", 
+    "g": "Objectif : Domination des recherches locales", 
+    "s": [
+      ["m9s1", "Mise en valeur Vitrine", "Shooting photo pro et style visuel attractif pour donner faim sur les réseaux."],
+      ["m9s2", "Maîtrise Réputation", "Stratégie pour booster les avis positifs et répondre aux critiques intelligemment."],
+      ["m9s3", "Domination Google", "Optimisation technique pour apparaître en tête des résultats Google Maps."],
+      ["m9s4", "Ciblage de Proximité", "Publicités ultra-locales pour toucher les clients à moins de 2km de votre porte."]
+    ] 
+  }
 };
 
-// Cet objet va stocker les IDs des sous-modules sélectionnés : { "module1": ["m1s1", "m1s3"], ... }
 let userSelections = {};
-
 let curId = null;
 
 function openModule(id) {
   curId = id; 
   const m = DATA[id];
-  if (!userSelections[id]) userSelections[id] = []; // Initialise si vide
+  if (!userSelections[id]) userSelections[id] = [];
 
   document.getElementById('modal-title').textContent = m.t;
   document.getElementById('modal-desc').textContent = m.d;
   document.getElementById('modal-goal').textContent = m.g;
   
-  // Génération des choix avec vérification si déjà coché
   document.getElementById('modal-choices').innerHTML = m.s.map(s => {
     const isChecked = userSelections[id].includes(s[0]) ? 'checked' : '';
     return `
@@ -203,7 +281,7 @@ function closeModal() {
 
 function saveAndClose() {
   const checks = document.querySelectorAll('.sub-check');
-  userSelections[curId] = []; // Reset pour ce module
+  userSelections[curId] = [];
   
   checks.forEach(c => {
     if(c.checked) {
@@ -211,7 +289,6 @@ function saveAndClose() {
     }
   });
 
-  // Mise à jour visuelle de la carte (allumée ou éteinte)
   const hasSelection = userSelections[curId].length > 0;
   document.getElementById(curId).classList.toggle('selected', hasSelection);
   
@@ -229,14 +306,13 @@ function updateFinalSummary() {
     if (userSelections[modId].length > 0) {
       totalModules++;
       const modName = DATA[modId].t;
-      // Récupérer les noms des sous-options cochées
       const subNames = DATA[modId].s
         .filter(s => userSelections[modId].includes(s[0]))
         .map(s => s[1]);
 
-      htmlContent += `<li style="margin-bottom:15px; color:#fff;">
-        <strong style="color:var(--violet)">${modName}</strong><br>
-        <span style="font-size:0.9rem; color:#aaa;">Options : ${subNames.join(', ')}</span>
+      htmlContent += `<li style="margin-bottom:15px; color:#fff; border-left: 3px solid var(--violet); padding-left: 15px;">
+        <strong style="color:var(--violet); font-size:1.1rem;">${modName}</strong><br>
+        <span style="font-size:0.85rem; color:#aaa; line-height:1.4;">Sélection : ${subNames.join(' • ')}</span>
       </li>`;
     }
   }
@@ -247,6 +323,7 @@ function updateFinalSummary() {
 </script>
 </body>
 </html>
+
 
 
 
