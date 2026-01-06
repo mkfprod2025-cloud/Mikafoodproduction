@@ -300,16 +300,32 @@ textarea{min-height:140px}
 const MODULES_DATA = {
   "module1": {
     "titre": "Clientèle & Fidélité",
-    "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une ingénierie de données précise.",
-    "points": [
-      "Audit de la base de données et segmentation RFM.",
-      "Mise en place d'un système de parrainage.",
-      "Automation Marketing (Relances, Anniversaires).",
-      "Objectif : +15% de panier moyen."
-    ]
+    "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une gestion précise des données.",
+    "sub_modules": [
+      {
+        "id": "m1_s1",
+        "label": "Data-Capture & Souveraineté",
+        "detail": "Déploiement de tunnels de capture (Wi-Fi, QR codes, réservations) pour extraire les données brutes sans intermédiaire."
+      },
+      {
+        "id": "m1_s2",
+        "label": "Audit & Analyse de Récence",
+        "detail": "Analyse du délai depuis la dernière visite pour identifier et réactiver les clients qui s'éloignent de votre enseigne."
+      },
+      {
+        "id": "m1_s3",
+        "label": "Segmentation Fréquence/Montant",
+        "detail": "Ciblage des profils selon leur nombre de visites et leur panier moyen pour supprimer la dépendance aux plateformes tierces."
+      },
+      {
+        "id": "m1_s4",
+        "label": "Automation & Parrainage",
+        "detail": "Mise en place de systèmes de parrainage et de scénarios automatisés (Relances personnalisées, Anniversaires)."
+      }
+    ],
+    "objectif": "Objectif : Augmentation du panier moyen de 10%."
   }
 };
-
 function openModule(id) {
   const data = MODULES_DATA[id];
   if (!data) return;
@@ -373,6 +389,7 @@ function updateSelection(){
 </body>
 </html>
 ```
+
 
 
 
