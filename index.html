@@ -3,139 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mikafood Production - Configuration</title>
+    <title>Mikafood Production</title>
     <style>
-        :root {
-            --primary: #6a0dad;
-            --bg: #050505;
-            --card-bg: #111;
-            --text: #ffffff;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-        }
-
-        /* GRILLE 3X3 */
+        body { background: #050505; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
+        
+        /* GRILLE 3X3 FORCÉE */
         .modules-container {
             display: grid !important;
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 20px;
-            max-width: 1000px;
+            gap: 15px;
+            max-width: 900px;
             margin: 40px auto;
         }
 
         .module-card {
-            background: var(--card-bg);
+            background: #111;
             border: 1px solid #333;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1/1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            border-radius: 12px;
             cursor: pointer;
-            border-radius: 15px;
-            transition: 0.3s;
-            text-align: center;
+            padding: 10px;
         }
 
-        .module-card:hover { border-color: var(--primary); }
-        .module-card.selected { border: 2px solid var(--primary); box-shadow: 0 0 15px rgba(106, 13, 173, 0.5); }
+        .module-card:hover { border-color: #6a0dad; }
+        .module-card.selected { border: 2px solid #6a0dad; box-shadow: 0 0 15px #6a0dad80; }
 
         .module-thumb {
             width: 80%;
             height: 55%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
-        .module-card h3 { font-size: 0.9rem; margin: 0; }
+        h3 { font-size: 0.8rem; margin: 0; text-align: center; }
 
-        /* MODALE */
+        /* FENÊTRE CONFIGURATION */
         #custom-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            z-index: 10000; display: flex; align-items: center; justify-content: center;
         }
 
         .modal-content {
-            background: #0a0a0a;
-            border: 1px solid var(--primary);
-            width: 66vw;
-            height: 80vh;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            background: #0a0a0a; border: 1px solid #6a0dad;
+            width: 66vw; height: 80vh; border-radius: 15px;
+            display: flex; flex-direction: column;
         }
 
-        .modal-header { padding: 30px; border-bottom: 1px solid #222; }
-        .modal-body { flex: 1; padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; overflow-y: auto; }
-        .modal-footer { padding: 30px; border-top: 1px solid #222; background: #0f0f0f; display: flex; justify-content: space-between; align-items: center; }
-
+        .modal-body { flex: 1; padding: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
         .choice-item {
-            display: flex;
-            align-items: center;
-            background: #161616;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            cursor: pointer;
-        }
-
-        .btn-valider {
-            background: var(--primary);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
+            background: #161616; padding: 15px; border-radius: 8px; border: 1px solid #333;
+            display: flex; align-items: center; cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <h1>CONFIGURATION MODULES</h1>
-
     <div class="modules-container">
         <div class="module-card" id="module1" onclick="openModule('module1')">
-            <img src="assets/1Fidélitéexclusivité.png" class="module-thumb" alt="Fidélité">
+            <img src="assets/1Fidélitéexclusivité.png" class="module-thumb">
             <h3>Clientèle & Fidélité</h3>
         </div>
-        <div class="module-card" id="module2"><h3>Module 2</h3></div>
-        <div class="module-card" id="module3"><h3>Module 3</h3></div>
-        <div class="module-card" id="module4"><h3>Module 4</h3></div>
-        <div class="module-card" id="module5"><h3>Module 5</h3></div>
-        <div class="module-card" id="module6"><h3>Module 6</h3></div>
-        <div class="module-card" id="module7"><h3>Module 7</h3></div>
-        <div class="module-card" id="module8"><h3>Module 8</h3></div>
-        <div class="module-card" id="module9"><h3>Module 9</h3></div>
+        <div class="module-card"><h3>Module 2</h3></div>
+        <div class="module-card"><h3>Module 3</h3></div>
+        <div class="module-card"><h3>Module 4</h3></div>
+        <div class="module-card"><h3>Module 5</h3></div>
+        <div class="module-card"><h3>Module 6</h3></div>
+        <div class="module-card"><h3>Module 7</h3></div>
+        <div class="module-card"><h3>Module 8</h3></div>
+        <div class="module-card"><h3>Module 9</h3></div>
     </div>
 
     <script>
         const MODULES_DATA = {
             "module1": {
                 "titre": "Clientèle & Fidélité",
-                "description": "Transformez vos visiteurs en ambassadeurs actifs par une gestion précise des données.",
                 "sub_modules": [
-                    { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Wi-Fi, QR codes, réservations pour extraire les données." },
-                    { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Réactivation des clients selon le délai de visite." },
-                    { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat." },
-                    { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Relances personnalisées et système de parrainage." }
-                ],
-                "objectif": "Objectif : Augmentation du panier moyen de 10%."
+                    { "id": "m1_s1", "label": "Data-Capture", "detail": "Wi-Fi, QR, réservations." },
+                    { "id": "m1_s2", "label": "Analyse Récence", "detail": "Réactiver les clients absents." },
+                    { "id": "m1_s3", "label": "Segmentation", "detail": "Ciblage Fréquence/Montant." },
+                    { "id": "m1_s4", "label": "Automation", "detail": "Relances et Parrainage." }
+                ]
             }
         };
 
@@ -143,40 +96,30 @@
             const data = MODULES_DATA[id];
             if (!data) return;
 
-            let htmlChoices = data.sub_modules.map(sub => `
+            let choices = data.sub_modules.map(sub => `
                 <label class="choice-item">
-                    <input type="checkbox" id="${sub.id}" style="width:20px; height:20px; margin-right:15px;">
-                    <div style="text-align:left;">
-                        <strong style="display:block; font-size:0.9em;">${sub.label}</strong>
-                        <span style="color:#888; font-size:0.75em;">${sub.detail}</span>
-                    </div>
+                    <input type="checkbox" id="${sub.id}" style="margin-right:12px;">
+                    <div><strong>${sub.label}</strong><br><small style="color:#888">${sub.detail}</small></div>
                 </label>
             `).join('');
 
             const modal = document.createElement('div');
             modal.id = "custom-modal";
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 style="color:#6a0dad; margin:0;">${data.titre}</h2>
-                        <p style="font-size:0.9em; margin-top:10px;">${data.description}</p>
-                    </div>
-                    <div class="modal-body">${htmlChoices}</div>
-                    <div class="modal-footer">
-                        <span style="color:#6a0dad; font-weight:bold;">${data.objectif}</span>
-                        <button class="btn-valider" onclick="saveChoices('${id}')">VALIDER</button>
-                    </div>
-                </div>`;
+            modal.innerHTML = `<div class="modal-content">
+                <div style="padding:20px; border-bottom:1px solid #222;"><h2>${data.titre}</h2></div>
+                <div class="modal-body">${choices}</div>
+                <div style="padding:20px; text-align:right;">
+                    <button onclick="saveChoices('${id}')" style="background:#6a0dad; color:white; border:none; padding:12px 30px; border-radius:8px; cursor:pointer;">VALIDER</button>
+                </div>
+            </div>`;
             document.body.appendChild(modal);
         }
 
         function saveChoices(id) {
-            let hasSelect = false;
-            MODULES_DATA[id].sub_modules.forEach(sub => {
-                if(document.getElementById(sub.id).checked) hasSelect = true;
-            });
+            let selected = false;
+            MODULES_DATA[id].sub_modules.forEach(s => { if(document.getElementById(s.id).checked) selected = true; });
             const card = document.getElementById(id);
-            if(card) hasSelect ? card.classList.add('selected') : card.classList.remove('selected');
+            selected ? card.classList.add('selected') : card.classList.remove('selected');
             document.getElementById('custom-modal').remove();
         }
     </script>
