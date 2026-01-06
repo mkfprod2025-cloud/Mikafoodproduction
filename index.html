@@ -1,127 +1,368 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mikafood Production</title>
-    <style>
-        body { background: #050505; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
-        
-        /* GRILLE 3X3 FORCÉE */
-        .modules-container {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 15px;
-            max-width: 900px;
-            margin: 40px auto;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agence Conseil – Modules Stratégiques</title>
 
-        .module-card {
-            background: #111;
-            border: 1px solid #333;
-            aspect-ratio: 1/1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 12px;
-            cursor: pointer;
-            padding: 10px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        .module-card:hover { border-color: #6a0dad; }
-        .module-card.selected { border: 2px solid #6a0dad; box-shadow: 0 0 15px #6a0dad80; }
+<style>
+:root{
+  --black:#0a0a0a;
+  --violet:#6a0dad;
+  --violet-soft:rgba(106,13,173,0.45);
+  --text:#f4f4f4;
+}
 
-        .module-thumb {
-            width: 80%;
-            height: 55%;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--black);
+  color:var(--text);
+}
 
-        h3 { font-size: 0.8rem; margin: 0; text-align: center; }
+/* ---------- GLOBAL ---------- */
+section{padding:100px 7vw}
+h1,h2,h3{font-weight:700;letter-spacing:0.3px}
+p{line-height:1.8;color:#d6d6d6;font-size:1.08rem}
+button{
+  background:none;
+  border:2px solid var(--violet);
+  border-radius:16px;
+  color:var(--text);
+  padding:20px 48px;
+  cursor:pointer;
+  font-size:1.15rem;
+  transition:.3s;
+}
+button:hover{
+  box-shadow:0 0 35px var(--violet-soft);
+}
 
-        /* FENÊTRE CONFIGURATION */
-        #custom-modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-            z-index: 10000; display: flex; align-items: center; justify-content: center;
-        }
+/* ---------- HERO ---------- */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.25;
+}
+.hero-content{
+  position:relative;
+  max-width:960px;
+  padding:40px;
+}
+.hero h1{
+  font-size:clamp(2.4rem,4.5vw,3.8rem);
+  margin-bottom:26px;
+}
+.hero p{
+  font-size:1.15rem;
+  margin-bottom:36px;
+}
+.hero .transition-text{
+  margin-bottom:46px;
+  font-size:1.08rem;
+  color:#cfcfcf;
+}
 
-        .modal-content {
-            background: #0a0a0a; border: 1px solid #6a0dad;
-            width: 66vw; height: 80vh; border-radius: 15px;
-            display: flex; flex-direction: column;
-        }
+/* ---------- MODULES ---------- */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Force 3 colonnes */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-        .modal-body { flex: 1; padding: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
-        .choice-item {
-            background: #161616; padding: 15px; border-radius: 8px; border: 1px solid #333;
-            display: flex; align-items: center; cursor: pointer;
-        }
-    </style>
+.module-card {
+  aspect-ratio: 1/1; /* Carré parfait */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+}
+
+.module-thumb {
+  width: 80%; /* Taille réduite pour tenir dans le carré */
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* ---------- STICKY BAR (AFFINÉE) ---------- */
+.sticky-bar{
+  position:fixed;
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(10px);
+  border:1.5px solid var(--violet-soft);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:10px 18px;
+  z-index:50;
+  opacity:.85;
+  transition:.3s;
+}
+.sticky-bar:hover{
+  opacity:1;
+}
+.sticky-bar strong{
+  color:var(--violet);
+  font-size:.95rem;
+}
+.sticky-bar button{
+  padding:10px 22px;
+  font-size:.95rem;
+  border-width:1.5px;
+}
+
+/* ---------- FORM ---------- */
+.form-box{
+  max-width:860px;
+  margin:auto;
+  border:3px solid var(--violet);
+  border-radius:26px;
+  padding:50px;
+  background:#000;
+}
+.form-box h2{
+  margin-bottom:30px;
+}
+.form-box ul{
+  margin-bottom:30px;
+}
+.form-box li{
+  list-style:none;
+  margin-bottom:8px;
+  color:#cfcfcf;
+}
+input,textarea{
+  width:100%;
+  margin-bottom:24px;
+  padding:16px;
+  background:#000;
+  border:2px solid var(--violet-soft);
+  border-radius:14px;
+  color:#fff;
+  font-size:1rem;
+}
+textarea{min-height:140px}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:600px){
+  section{padding:80px 6vw}
+  .sticky-bar{
+    bottom:10px;
+    gap:12px;
+    padding:10px 14px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="modules-container">
-        <div class="module-card" id="module1" onclick="openModule('module1')">
-            <img src="assets/1Fidélitéexclusivité.png" class="module-thumb">
-            <h3>Clientèle & Fidélité</h3>
-        </div>
-        <div class="module-card"><h3>Module 2</h3></div>
-        <div class="module-card"><h3>Module 3</h3></div>
-        <div class="module-card"><h3>Module 4</h3></div>
-        <div class="module-card"><h3>Module 5</h3></div>
-        <div class="module-card"><h3>Module 6</h3></div>
-        <div class="module-card"><h3>Module 7</h3></div>
-        <div class="module-card"><h3>Module 8</h3></div>
-        <div class="module-card"><h3>Module 9</h3></div>
+<section class="hero">
+  <!-- EMPLACEMENT VIDEO / LOGO ANIMÉ -->
+  <video autoplay muted loop>
+    <source src="assets/Mika Food Solutions.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>Le sur-mesure pour propulser votre établissement.</h1>
+    <p>Découvrez nos missions et composez votre stratégie idéale : sélectionnez les modules adaptés à vos besoins réels.</p>
+
+    <p class="transition-text">
+      Parce que chaque établissement est unique, nous avons déconstruit nos expertises en 9 modules indépendants.
+      Pas de package imposé, pas de superflu : vous faites votre marché.
+    </p>
+
+    <button onclick="document.getElementById('modules').scrollIntoView()">Explorer les Modules</button>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="modules">
+
+    <div class="module-card" data-title="Clientèle & Fidélité">
+  <div class="module-card" id="module1" onclick="openModule('module1')">
+     <img src="assets/1Fidélitéxclusivité.png" class="module-thumb" alt="Fidélité">
+      <h3>Clientèle & Fidélité</h3>
+      <span>Attirer, qualifier et retenir vos meilleurs clients.</span>
     </div>
 
-    <script>
-        const MODULES_DATA = {
-            "module1": {
-                "titre": "Clientèle & Fidélité",
-                "sub_modules": [
-                    { "id": "m1_s1", "label": "Data-Capture", "detail": "Wi-Fi, QR, réservations." },
-                    { "id": "m1_s2", "label": "Analyse Récence", "detail": "Réactiver les clients absents." },
-                    { "id": "m1_s3", "label": "Segmentation", "detail": "Ciblage Fréquence/Montant." },
-                    { "id": "m1_s4", "label": "Automation", "detail": "Relances et Parrainage." }
-                ]
-            }
-        };
+    <div class="module-card" data-title="Fluidité & Service">
+      <img src="assets/2FluiditéServiceVitesse.png" class="module-thumb" alt="Fluidité">
+      <h3>Fluidité & Service</h3>
+      <span>Optimiser les gestes, les flux et le temps.</span>
+    </div>
 
-        function openModule(id) {
-            const data = MODULES_DATA[id];
-            if (!data) return;
+    <div class="module-card" data-title="Expérience & Parcours Client">
+      <img src="assets/3ExpérienceParcoursClient.png" class="module-thumb" alt="Expérience">
+      <h3>Expérience & Parcours Client</h3>
+      <span>Créer un parcours mémorable et cohérent.</span>
+    </div>
 
-            let choices = data.sub_modules.map(sub => `
-                <label class="choice-item">
-                    <input type="checkbox" id="${sub.id}" style="margin-right:12px;">
-                    <div><strong>${sub.label}</strong><br><small style="color:#888">${sub.detail}</small></div>
-                </label>
-            `).join('');
+    <div class="module-card" data-title="Rentabilité & Gestion">
+     <img src="assets/4RentabilitéCroissance.png" class="module-thumb" alt="Rentabilité">
+      <h3>Rentabilité & Gestion</h3>
+      <span>Reprendre le contrôle des marges.</span>
+    </div>
 
-            const modal = document.createElement('div');
-            modal.id = "custom-modal";
-            modal.innerHTML = `<div class="modal-content">
-                <div style="padding:20px; border-bottom:1px solid #222;"><h2>${data.titre}</h2></div>
-                <div class="modal-body">${choices}</div>
-                <div style="padding:20px; text-align:right;">
-                    <button onclick="saveChoices('${id}')" style="background:#6a0dad; color:white; border:none; padding:12px 30px; border-radius:8px; cursor:pointer;">VALIDER</button>
-                </div>
-            </div>`;
-            document.body.appendChild(modal);
-        }
+    <div class="module-card" data-title="Carte & Menu Stratégique">
+    <img src="assets/5CarteMenuStratégique.jpg" class="module-thumb" alt="Carte">
+      <h3>Carte & Menu Stratégique</h3>
+      <span>Vendre mieux, sans vendre plus.</span>
+    </div>
 
-        function saveChoices(id) {
-            let selected = false;
-            MODULES_DATA[id].sub_modules.forEach(s => { if(document.getElementById(s.id).checked) selected = true; });
-            const card = document.getElementById(id);
-            selected ? card.classList.add('selected') : card.classList.remove('selected');
-            document.getElementById('custom-modal').remove();
-        }
-    </script>
+    <div class="module-card" data-title="Réseau & Alliances Locales">
+      <img src="assets/6RéseauAlliances.jpg" class="module-thumb" alt="Réseau">
+      <h3>Réseau & Alliances Locales</h3>
+      <span>Créer des synergies rentables.</span>
+    </div>
+
+    <div class="module-card" data-title="Ambiance & Identité Sonore">
+     <img src="assets/7SonoreIdentité.jpg" class="module-thumb" alt="Sonore">
+      <h3>Ambiance & Identité Sonore</h3>
+      <span>Faire ressentir avant de convaincre.</span>
+    </div>
+
+    <div class="module-card" data-title="Événements & Programmation">
+    <img src="assets/8ÉvénementsProgrammation.jpg" class="module-thumb" alt="Événements">
+      <h3>Événements & Programmation</h3>
+      <span>Créer le rendez-vous.</span>
+    </div>
+
+    <div class="module-card" data-title="Image & Rayonnement Digital">
+    <img src="assets/9DigitalRayonnement.jpg" class="module-thumb" alt="Digital">
+      <h3>Image & Rayonnement Digital</h3>
+      <span>Exister fort, clairement, durablement.</span>
+    </div>
+
+  </div>
+</section>
+
+<section id="formulaire">
+  <div class="form-box">
+    <h2>Votre Panier de Solutions</h2>
+    <ul id="selectedList"></ul>
+
+    <input type="text" placeholder="Nom de l'établissement">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Votre défi principal"></textarea>
+
+    <button>Envoyer la demande</button>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div><strong id="count">0</strong> module(s)</div>
+  <button onclick="document.getElementById('formulaire').scrollIntoView()">Finaliser</button>
+</div>
+
+<script>
+// 1. Base de données des modules
+const MODULES_DATA = {
+  "module1": {
+    "titre": "Clientèle & Fidélité",
+    "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une gestion précise des données.",
+    "sub_modules": [
+      { "id": "m1_s1", "label": "Data-Capture & Souveraineté", "detail": "Tunnels de capture (Wi-Fi, QR, résas) pour extraire les données brutes sans intermédiaire." },
+      { "id": "m1_s2", "label": "Audit & Analyse de Récence", "detail": "Analyse du délai depuis la dernière visite pour réactiver les clients qui s'éloignent." },
+      { "id": "m1_s3", "label": "Segmentation Fréquence/Montant", "detail": "Ciblage selon le volume d'achat pour supprimer la dépendance aux plateformes tierces." },
+      { "id": "m1_s4", "label": "Automation & Parrainage", "detail": "Systèmes de parrainage et scénarios automatisés (Relances, Anniversaires)." }
+    ],
+    "objectif": "Objectif : Augmentation du panier moyen de 10%."
+  }
+};
+
+// 2. Fonction d'ouverture de la fenêtre (Modale)
+function openModule(id) {
+  const data = MODULES_DATA[id];
+  if (!data) {
+    alert("Données du module en cours de configuration.");
+    return;
+  }
+
+  let htmlChoices = data.sub_modules.map(sub => `
+    <div style="background:#1a1a1a; padding:15px; border-radius:10px; margin-bottom:12px; border:1px solid #333; text-align:left;">
+      <strong style="color:#6a0dad; display:block; margin-bottom:5px;">${sub.label}</strong>
+      <p style="font-size:0.85em; color:#bbb; margin-bottom:12px;">${sub.detail}</p>
+      <select id="${sub.id}" style="width:100%; background:#000; color:white; border:1px solid #6a0dad; padding:8px; border-radius:5px;">
+        <option value="inutile">Inutile pour mon projet</option>
+        <option value="necessaire">Nécessaire</option>
+      </select>
+    </div>
+  `).join('');
+
+  const modal = document.createElement('div');
+  modal.id = "custom-modal";
+  modal.style = "position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:1000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(5px); padding:20px;";
+  modal.innerHTML = `
+    <div style="background:#111; border:2px solid #6a0dad; padding:30px; border-radius:20px; max-width:500px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
+      <h2 style="color:#6a0dad; margin-bottom:10px;">${data.titre}</h2>
+      <p style="margin-bottom:20px; font-size:0.9em; color:#eee;">${data.description}</p>
+      ${htmlChoices}
+      <p style="font-size:0.8em; color:#6a0dad; font-weight:bold; margin-top:15px;">${data.objectif}</p>
+      <button onclick="saveChoices('${id}')" style="width:100%; background:#6a0dad; color:white; padding:16px; border-radius:12px; margin-top:20px; font-weight:bold; border:none; cursor:pointer;">ENREGISTRER LA CONFIGURATION</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+// 3. Fonction de sauvegarde
+function saveChoices(moduleId) {
+  const data = MODULES_DATA[moduleId];
+  let hasNecessaire = false;
+  
+  data.sub_modules.forEach(sub => {
+    const el = document.getElementById(sub.id);
+    if(el && el.value === "necessaire") hasNecessaire = true;
+  });
+
+  const card = document.getElementById(moduleId);
+  if (card) {
+    hasNecessaire ? card.classList.add('selected') : card.classList.remove('selected');
+  }
+  
+  document.getElementById('custom-modal').remove();
+  if (typeof updateSelection === "function") updateSelection();
+}</script>
+
 </body>
 </html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
