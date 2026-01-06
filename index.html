@@ -9,7 +9,7 @@
 :root{ --black:#0a0a0a; --violet:#6a0dad; --violet-soft:rgba(106,13,173,0.45); --text:#f4f4f4; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; overflow-x: hidden; }
+body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; }
 
 /* ---------- HERO ---------- */
 .hero{
@@ -24,13 +24,10 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 .hero p{ font-size:1.15rem; margin-bottom:30px; color:#d6d6d6; line-height:1.6; }
 
 /* ---------- GRILLE MODULES ---------- */
-section{padding:80px 7vw}
+section{padding:60px 7vw}
 .modules {
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px; 
-  max-width: 1100px; 
-  margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 25px; max-width: 1100px; margin: 0 auto;
 }
 .module-card {
   border: 2px solid var(--violet-soft); border-radius: 20px; padding: 20px;
@@ -69,9 +66,8 @@ input, textarea {
   width: 100%; margin-bottom: 20px; padding: 15px; background: #111;
   border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem;
 }
-textarea { min-height: 120px; }
 
-/* ---------- STICKY & BUTTONS ---------- */
+/* ---------- STICKY & UI ---------- */
 .sticky-bar {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
   background: rgba(0,0,0,0.85); border: 1px solid var(--violet);
@@ -79,12 +75,12 @@ textarea { min-height: 120px; }
 }
 .btn-main {
   background: var(--violet); color: white; border: none; padding: 15px 35px;
-  border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; transition: 0.3s;
+  border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem;
 }
 
 @media(max-width:900px){
   .modules { grid-template-columns: 1fr 1fr; }
-  .modal-content { width: 90vw; padding: 20px; }
+  .modal-content { width: 90vw; }
   .choice-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -92,28 +88,64 @@ textarea { min-height: 120px; }
 <body>
 
 <section class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="assets/Mika Food Solutions.mp4" type="video/mp4">
-  </video>
+  <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
   <div class="hero-content">
     <h1>Le sur-mesure pour propulser votre établissement.</h1>
-    <p>Découvrez nos missions et composez votre stratégie idéale : sélectionnez les modules adaptés à vos besoins réels.</p>
-    <button class="btn-main" onclick="document.getElementById('modules-section').scrollIntoView()">Explorer les Modules</button>
+    <p>Composez votre stratégie idéale en sélectionnant les modules adaptés à vos besoins.</p>
+    <button class="btn-main" onclick="document.getElementById('modules-grid').scrollIntoView()">Explorer les Modules</button>
   </div>
 </section>
 
-<section id="modules-section">
-  <div class="modules" id="main-grid">
+<section id="modules-grid">
+  <div class="modules">
+    <div class="module-card" id="module1" onclick="openModule('module1')">
+      <img src="assets/1Fidélitéxclusivité.png" class="module-thumb">
+      <h3>Clientèle & Fidélité</h3><span>Acquisition & Rétention</span>
     </div>
+    <div class="module-card" id="module2" onclick="openModule('module2')">
+      <img src="assets/2FluiditéServiceVitesse.png" class="module-thumb">
+      <h3>Fluidité & Service</h3><span>Vitesse & Organisation</span>
+    </div>
+    <div class="module-card" id="module3" onclick="openModule('module3')">
+      <img src="assets/3ExpérienceParcoursClient.png" class="module-thumb">
+      <h3>Expérience Client</h3><span>Parcours & Immersion</span>
+    </div>
+    <div class="module-card" id="module4" onclick="openModule('module4')">
+      <img src="assets/4RentabilitéCroissance.png" class="module-thumb">
+      <h3>Rentabilité & Gestion</h3><span>Contrôle des Marges</span>
+    </div>
+    <div class="module-card" id="module5" onclick="openModule('module5')">
+      <img src="assets/5CarteMenuStratégique.jpg" class="module-thumb">
+      <h3>Carte Stratégique</h3><span>Menu Engineering</span>
+    </div>
+    <div class="module-card" id="module6" onclick="openModule('module6')">
+      <img src="assets/6RéseauAlliances.jpg" class="module-thumb">
+      <h3>Réseau & Alliances</h3><span>Partenariats Locaux</span>
+    </div>
+    <div class="module-card" id="module7" onclick="openModule('module7')">
+      <img src="assets/7SonoreIdentité.jpg" class="module-thumb">
+      <h3>Identité Sonore</h3><span>Ambiance & Acoustique</span>
+    </div>
+    <div class="module-card" id="module8" onclick="openModule('module8')">
+      <img src="assets/8ÉvénementsProgrammation.jpg" class="module-thumb">
+      <h3>Événements</h3><span>Programmation & Vie</span>
+    </div>
+    <div class="module-card" id="module9" onclick="openModule('module9')">
+      <img src="assets/9DigitalRayonnement.jpg" class="module-thumb">
+      <h3>Rayonnement Digital</h3><span>Visibilité & Avis</span>
+    </div>
+  </div>
 </section>
 
 <section id="formulaire">
   <div class="form-box">
-    <h2 style="margin-bottom:20px; color:var(--violet);">Votre Panier de Solutions</h2>
-    <ul id="selectedList" style="margin-bottom:30px; list-style: none; color:#ccc;"></ul>
-    <input type="text" placeholder="Nom de l'établissement">
-    <input type="email" placeholder="Votre Email">
-    <textarea placeholder="Décrivez votre défi principal..."></textarea>
+    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Sélection</h2>
+    <ul id="selectedList" style="margin-bottom:30px; list-style:none; color:#aaa;">
+      <li>Aucun module sélectionné</li>
+    </ul>
+    <input type="text" placeholder="Établissement">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Votre message..."></textarea>
     <button class="btn-main" style="width:100%">Envoyer la demande</button>
   </div>
 </section>
@@ -136,7 +168,36 @@ textarea { min-height: 120px; }
 </div>
 
 <script>
-const MODULES_DATA = {
-  "module1": { "titre": "Clientèle & Fidélité", "label": "Acquisition & Rétention", "img": "assets/1Fidélitéxclusivité.png", "desc": "L'acquisition coûte 5x plus cher que la rétention. Transformez vos visiteurs en ambassadeurs actifs.", "goal": "Objectif : +10% de panier moyen", "subs": [
-    ["m1s1", "Data-Capture", "Wi-Fi, QR, réservations."], ["m1s2", "Analyse Récence", "Réactiver les clients absents."], ["m1s3", "Segmentation RFM", "Ciblage Fréquence/Montant."], ["m1s4", "Automation", "Relances et anniversaires."]
-    
+const DATA = {
+  "module1": { "t": "Clientèle & Fidélité", "d": "L'acquisition coûte 5x plus cher que la rétention.", "g": "Objectif : +10% de panier moyen", "s": [["s1", "Data-Capture", "Wi-Fi, QR, réservations."], ["s2", "Analyse Récence", "Réactiver les clients absents."]] },
+  "module2": { "t": "Fluidité & Service", "d": "Un service fluide réduit le stress et augmente la rotation.", "g": "Objectif : +10% de productivité", "s": [["s1", "Audit des Flux", "Supprimer les pas inutiles."], ["s2", "Organisation Espaces", "Aménagement optimisé (salle/stock)."]] },
+  "module3": { "t": "Expérience Client", "d": "Chaque détail du parcours doit être soigné.", "g": "Objectif : +0.5 sur Google", "s": [["s1", "Audit du Parcours", "De l'accueil à l'encaissement."], ["s2", "Mise en scène", "Visuel et gestuelle du service."]] },
+  "module4": { "t": "Rentabilité & Gestion", "d": "Reprenez le contrôle total sur vos marges.", "g": "Objectif : -5% de coût matière", "s": [["s1", "Fiches Techniques", "Calcul des ratios précis."], ["s2", "Audit Achats", "Négociation fournisseurs."]] },
+  "module5": { "t": "Carte Stratégique", "d": "Orientez le client vers vos plats rentables.", "g": "Objectif : +10% de marge brute", "s": [["s1", "Structure du Menu", "Identification des stars."], ["s2", "Valorisation", "Justifier vos prix."]] },
+  "module6": { "t": "Réseau & Alliances", "d": "Allez chercher vos clients là où ils dorment.", "g": "Objectif : Flux régulier", "s": [["s1", "Hébergements", "Recommandation officielle."], ["s2", "Bureaux", "Capter les déjeuners d'affaires."]] },
+  "module7": { "t": "Identité Sonore", "d": "Le son influence le confort et l'énergie.", "g": "Objectif : Confort acoustique", "s": [["s1", "Audit Acoustique", "Supprimer les bruits parasites."], ["s2", "Curation Musicale", "Playlists sur-mesure."]] },
+  "module8": { "t": "Événements", "d": "Faites de votre établissement un lieu de vie.", "g": "Objectif : Hausse du ticket groupe", "s": [["s1", "Conception Soirées", "Rendez-vous thématiques."], ["s2", "Privatisations", "Offres packagées anniversaires/pro."]] },
+  "module9": { "t": "Rayonnement Digital", "d": "Devenez l'adresse n°1 sur les recherches locales.", "g": "Objectif : Domination locale", "s": [["s1", "Domination Google", "Optimisation technique Maps."], ["s2", "Ciblage Proximité", "Pub ultra-locale."]] }
+};
+
+let curId = null;
+function openModule(id) {
+  curId = id; const m = DATA[id];
+  document.getElementById('modal-title').textContent = m.t;
+  document.getElementById('modal-desc').textContent = m.d;
+  document.getElementById('modal-goal').textContent = m.g;
+  document.getElementById('modal-choices').innerHTML = m.s.map(s => `<label class="choice-item"><input type="checkbox" class="sub-check"><div><strong>${s[1]}</strong><br><small style="color:#666">${s[2]}</small></div></label>`).join('');
+  document.getElementById('modal-overlay').style.display = 'flex';
+}
+function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+function saveAndClose() {
+  const has = Array.from(document.querySelectorAll('.sub-check')).some(c => c.checked);
+  document.getElementById(curId).classList.toggle('selected', has);
+  const sel = document.querySelectorAll('.module-card.selected');
+  document.getElementById('count').textContent = sel.length;
+  document.getElementById('selectedList').innerHTML = sel.length ? Array.from(sel).map(c => `<li>• ${DATA[c.id].t}</li>`).join('') : "<li>Aucun module sélectionné</li>";
+  closeModal();
+}
+</script>
+</body>
+</html>
