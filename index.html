@@ -123,12 +123,27 @@ input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #
 </section>
 
 <section id="formulaire">
-  <div class="form-box">
-    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Sélection</h2>
-    <ul id="selectedList" style="margin-bottom:30px; list-style:none; color:#aaa;"><li>Aucun module sélectionné</li></ul>
-    <input type="text" placeholder="Nom de l'établissement"><input type="email" placeholder="Email"><textarea placeholder="Détails de votre projet..."></textarea>
-    <button class="btn-main" style="width:100%">Envoyer la demande</button>
-  </div>
+ <div class="form-box">
+    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Stratégie Personnalisée</h2>
+    
+    <div id="summary-container" style="background: rgba(106,13,173,0.1); padding: 20px; border-radius: 15px; margin-bottom: 30px;">
+        <ul id="selectedList" style="margin-bottom:20px; list-style:none; color:#aaa;"></ul>
+        <p id="target-phrase" style="font-weight: bold; color: #fff; border-top: 1px solid var(--violet); padding-top: 15px; display: none;"></p>
+    </div>
+
+    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <input type="text" id="f_nom_gerant" placeholder="Nom du Gérant">
+        <input type="text" id="f_prenom_gerant" placeholder="Prénom du Gérant">
+        <input type="text" id="f_resto" placeholder="Nom du Restaurant" style="grid-column: span 2;">
+        <input type="text" id="f_societe" placeholder="Nom de la Société">
+        <input type="tel" id="f_tel" placeholder="Téléphone">
+        <input type="email" id="f_mail" placeholder="Email professionnel" style="grid-column: span 2;">
+        <input type="text" id="f_adresse" placeholder="Adresse complète du restaurant" style="grid-column: span 2;">
+    </div>
+    <textarea id="f_situation" placeholder="Définissez votre situation et votre recherche principale actuelle..."></textarea>
+    
+    <button class="btn-main" onclick="sendByEmail()" style="width:100%">Envoyer la demande d'audit</button>
+</div>
 </section>
 
 <div id="modal-overlay" onclick="closeModal()">
@@ -323,6 +338,7 @@ function updateFinalSummary() {
 </script>
 </body>
 </html>
+
 
 
 
