@@ -11,58 +11,12 @@
 html{scroll-behavior:smooth}
 body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; }
 
-/* ---------- HERO CORRIGÉ ---------- */
-.hero {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #000; /* Fond de secours */
-}
-
-.hero video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  opacity: 0.3; /* Ajuste pour la lisibilité du texte */
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2; /* Force l'affichage devant la vidéo */
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px;
-}
-
-.hero h1 {
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-  line-height: 1.2;
-  margin-bottom: 20px;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Ombre pour détacher du fond */
-}
-
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  margin-bottom: 35px;
-  color: #eeeeee;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* ---------- HERO ---------- */
+.hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+.hero video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; opacity: 0.3; z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; width: 90%; text-align: center; padding: 20px; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 35px; color: #eee; }
 
 /* ---------- GRILLE MODULES ---------- */
 section{padding:60px 7vw}
@@ -82,9 +36,11 @@ h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
 .choice-item:hover { border-color: var(--violet); }
 .choice-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: var(--violet); }
 
-/* ---------- FORMULAIRE ---------- */
-.form-box{ max-width:800px; margin:50px auto; border:2px solid var(--violet); border-radius:26px; padding:50px; background:#000; }
-input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem; }
+/* ---------- FORMULAIRE COMPACT ---------- */
+.form-box{ max-width:800px; margin:50px auto; border:2px solid var(--violet); border-radius:26px; padding:40px; background:#000; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem; }
+textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
 
 /* ---------- UI ---------- */
 .sticky-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid var(--violet); padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100; }
@@ -99,11 +55,7 @@ input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #
   <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
   <div class="hero-content">
     <h1>Le sur-mesure pour propulser votre établissement.</h1>
-   <p>Découvrez nos missions et composez votre stratégie idéale : sélectionnez les modules adaptés à vos besoins réels.</p>
-   <p class="transition-text">
-      Parce que chaque établissement est unique, nous avons déconstruit nos expertises en 9 modules indépendants.
-      Pas de package imposé, pas de superflu : vous faites votre marché.
-    </p>
+    <p>Composez votre stratégie idéale en sélectionnant les modules adaptés à vos besoins.</p>
     <button class="btn-main" onclick="document.getElementById('modules-grid').scrollIntoView()">Explorer les Modules</button>
   </div>
 </section>
@@ -123,189 +75,119 @@ input, textarea { width: 100%; margin-bottom: 20px; padding: 15px; background: #
 </section>
 
 <section id="formulaire">
-<div class="form-box">
+  <div class="form-box">
+    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Sélection Stratégique</h2>
+    <ul id="selectedList" style="margin-bottom:30px; list-style:none; color:#aaa; border-left: 2px solid var(--violet); padding-left: 15px;"><li>Aucun module sélectionné</li></ul>
+    
+    <div class="form-grid">
+        <input type="text" id="f_nom_complet" placeholder="Nom & Prénom du Gérant" style="grid-column: span 2;">
+        <input type="text" id="f_resto_adresse" placeholder="Nom et Adresse du Restaurant" style="grid-column: span 2;">
+        <input type="text" id="f_societe" placeholder="Nom de la Société (Optionnel)">
+        <input type="tel" id="f_tel" placeholder="Téléphone">
+        <input type="email" id="f_mail" placeholder="Email professionnel" style="grid-column: span 2;">
+        <textarea id="f_situation" placeholder="Votre situation actuelle et votre recherche principale..."></textarea>
+    </div>
+    <button class="btn-main" onclick="sendData()" style="width:100%; margin-top:20px;">Envoyer la demande d'audit</button>
+  </div>
+</section>
+
+<div id="modal-overlay" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h2 id="modal-title" style="color:var(--violet)"></h2>
+    <p id="modal-desc" style="margin-top:10px; color:#ccc;"></p>
+    <div class="choice-grid" id="modal-choices"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <span id="modal-goal" style="color:var(--violet); font-weight:bold;"></span>
+        <button class="btn-main" onclick="saveAndClose()" style="padding:10px 20px; font-size:0.9rem;">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-bar">
+  <span><strong id="count" style="color:var(--violet)">0</strong> module(s)</span>
+  <button onclick="document.getElementById('formulaire').scrollIntoView()" style="background:none; border:none; color:var(--violet); cursor:pointer; font-weight:bold;">Finaliser</button>
+</div>
 
 <script>
 const DATA = {
-  "module1": { 
-    "t": "Clientèle & Fidélité", 
-    "d": "L'acquisition coûte 5x plus cher que la rétention. Transformez vos visiteurs en ambassadeurs actifs.", 
-    "g": "Objectif : +10% de panier moyen", 
-    "s": [
-      ["m1s1", "Data-Capture", "Mise en place d'outils (Wi-Fi, QR, réservations) pour récolter les données clients."],
-      ["m1s2", "Analyse de Récence", "Identification et réactivation ciblée des clients qui ne sont pas revenus récemment."],
-      ["m1s3", "Segmentation RFM", "Ciblage précis selon la Fréquence de visite et le Montant des dépenses."],
-      ["m1s4", "Automation Marketing", "Envoi automatisé de relances et d'offres pour les anniversaires ou événements."]
-    ] 
-  },
-  "module2": { 
-    "t": "Fluidité & Service", 
-    "d": "Un service fluide réduit le stress des équipes et augmente naturellement la rotation des tables.", 
-    "g": "Objectif : +10% de productivité", 
-    "s": [
-      ["m2s1", "Audit des Flux & Postes", "Analyse des déplacements salle/cuisine pour supprimer les pas inutiles."],
-      ["m2s2", "Organisation des Espaces", "Aménagement de tous les volumes (salle, stock, débarras) pour fluidifier le passage."],
-      ["m2s3", "Standardisation", "Fiches réflexes et protocoles de service pour garantir une qualité constante."],
-      ["m2s4", "Gestion de la Casse", "Contrôles simples pour réduire les pertes matières et les erreurs de commande."]
-    ] 
-  },
-  "module3": { 
-    "t": "Expérience Client", 
-    "d": "On ne vend plus seulement un plat, on vend un moment. Chaque détail du parcours doit être soigné.", 
-    "g": "Objectif : +0.5 sur vos notes Google", 
-    "s": [
-      ["m3s1", "Audit du Parcours", "Analyse critique du parcours client, de l'accueil jusqu'à l'encaissement."],
-      ["m3s2", "Mise en scène", "Optimisation du visuel de la table et de la gestuelle de service pour l'immersion."],
-      ["m3s3", "Gestion de l'Attente", "Stratégies pour transformer les temps morts inévitables en moments positifs."],
-      ["m3s4", "Avis Instantanés", "Système pour capter la satisfaction ou les griefs avant le départ du client."]
-    ] 
-  },
-  "module4": { 
-    "t": "Rentabilité & Gestion", 
-    "d": "Reprenez le contrôle total sur vos marges pour que chaque plat servi soit réellement profitable.", 
-    "g": "Objectif : -5% de coût matière", 
-    "s": [
-      ["m4s1", "Fiches Techniques", "Calcul précis et mise à jour des ratios et coûts de revient par recette."],
-      ["m4s2", "Analyse des Écarts", "Identification des sources de pertes de marchandise entre achat et vente."],
-      ["m4s3", "Audit Achats", "Négociation, optimisation des volumes et mise en concurrence des fournisseurs."],
-      ["m4s4", "Suivi Flash", "Installation d'un tableau de bord de rentabilité simple pour un pilotage hebdomadaire."]
-    ] 
-  },
-  "module5": { 
-    "t": "Carte Stratégique", 
-    "d": "Votre carte est votre premier vendeur. Elle doit orienter le client vers vos plats les plus rentables.", 
-    "g": "Objectif : +10% de marge brute", 
-    "s": [
-      ["m5s1", "Structure du Menu", "Identification des plats 'stars' et suppression des produits inutiles ou coûteux."],
-      ["m5s2", "Psychologie de Carte", "Réorganisation visuelle pour attirer l'œil sur les produits à forte marge."],
-      ["m5s3", "Valorisation Produits", "Travail sur les appellations et le storytelling pour justifier vos prix."],
-      ["m5s4", "Briefing Équipe", "Coaching des serveurs pour qu'ils sachent conseiller et 'pousser' les plats clés."]
-    ] 
-  },
-  "module6": { 
-    "t": "Réseau & Alliances", 
-    "d": "Sortez de vos murs pour aller chercher vos clients là où ils dorment et là où ils travaillent.", 
-    "g": "Objectif : Flux régulier d'apporteur d'affaires", 
-    "s": [
-      ["m6s1", "Partenariats Hébergements", "Devenir l'adresse recommandée par les hôtels et locations de courte durée voisins."],
-      ["m6s2", "Offres Entreprises", "Création de solutions spécifiques (déjeuners d'affaires, menus rapides) pour les bureaux."],
-      ["m6s3", "Synergie Commerçants", "Mise en place d'échanges de visibilité avec les commerces de proximité."],
-      ["m6s4", "Action de Quartier", "Présence et visibilité lors des événements locaux pour ancrer votre établissement."]
-    ] 
-  },
-  "module7": { 
-    "t": "Identité Sonore", 
-    "d": "Le son n'est pas un détail : il influence le confort des clients et l'énergie de vos équipes.", 
-    "g": "Objectif : Confort acoustique optimal", 
-    "s": [
-      ["m7s1", "Audit Acoustique", "Analyse de la salle (écho, bruits de cuisine) pour un confort de conversation idéal."],
-      ["m7s2", "Curation Musicale", "Création de playlists sur-mesure adaptées à chaque moment de la journée."],
-      ["m7s3", "Gestion de l'Énergie", "Ajustement précis du volume et du zonage (terrasse, bar, salle) selon l'affluence."],
-      ["m7s4", "Signature Sonore", "Définition d'un style musical unique qui renforce l'identité de votre marque."]
-    ] 
-  },
-  "module8": { 
-    "t": "Événements", 
-    "d": "Transformez votre établissement en un lieu de vie dynamique pour remplir vos heures creuses.", 
-    "g": "Objectif : Hausse du ticket moyen groupe", 
-    "s": [
-      ["m8s1", "Conception de Soirées", "Planification de rendez-vous réguliers (soirées thématiques, dégustations, live)."],
-      ["m8s2", "Offre Privatisations", "Création de formules packagées pour anniversaires, séminaires et événements pro."],
-      ["m8s3", "Logistique Interne", "Mise en place des process pour gérer l'événement sans perturber le service."],
-      ["m8s4", "Stratégie Remplissage", "Méthodes simples pour communiquer et garantir le succès de chaque date."]
-    ] 
-  },
-  "module9": { 
-    "t": "Rayonnement Digital", 
-    "d": "Votre présence en ligne doit être votre meilleure alliée pour remplir la salle.", 
-    "g": "Objectif : Domination des recherches locales", 
-    "s": [
-      ["m9s1", "Mise en valeur Vitrine", "Shooting photo pro et style visuel attractif pour donner faim sur les réseaux."],
-      ["m9s2", "Maîtrise Réputation", "Stratégie pour booster les avis positifs et répondre aux critiques intelligemment."],
-      ["m9s3", "Domination Google", "Optimisation technique pour apparaître en tête des résultats Google Maps."],
-      ["m9s4", "Ciblage de Proximité", "Publicités ultra-locales pour toucher les clients à moins de 2km de votre porte."]
-    ] 
-  }
+  "module1": { "t": "Clientèle & Fidélité", "d": "Transformez vos visiteurs en ambassadeurs actifs.", "g": "Objectif : +10% de panier moyen", 
+    "s": [["m1s1", "Data-Capture", "Mise en place d'outils (Wi-Fi, QR) pour récolter les données."], ["m1s2", "Analyse de Récence", "Identification et réactivation des clients absents."], ["m1s3", "Segmentation RFM", "Ciblage précis selon Fréquence et Montant."], ["m1s4", "Automation Marketing", "Relances automatiques (anniversaires, offres)."]] },
+  "module2": { "t": "Fluidité & Service", "d": "Un service fluide réduit le stress et augmente la rotation.", "g": "Objectif : +10% de productivité", 
+    "s": [["m2s1", "Audit des Flux & Postes", "Analyse salle/cuisine pour supprimer les pas inutiles."], ["m2s2", "Organisation des Espaces", "Aménagement optimisé pour fluidifier le passage."], ["m2s3", "Standardisation", "Fiches réflexes pour une qualité constante."], ["m2s4", "Gestion de la Casse", "Contrôles pour réduire les pertes et erreurs."]] },
+  "module3": { "t": "Expérience Client", "d": "Chaque détail du parcours doit être soigné.", "g": "Objectif : +0.5 sur vos notes Google", 
+    "s": [["m3s1", "Audit du Parcours", "Analyse critique de l'accueil à l'encaissement."], ["m3s2", "Mise en scène", "Optimisation du visuel table et de la gestuelle."], ["m3s3", "Gestion de l'Attente", "Transformer les temps morts en moments positifs."], ["m3s4", "Avis Instantanés", "Capter la satisfaction avant le départ."]] },
+  "module4": { "t": "Rentabilité & Gestion", "d": "Reprenez le contrôle total sur vos marges.", "g": "Objectif : -5% de coût matière", 
+    "s": [["m4s1", "Fiches Techniques", "Calcul précis des ratios et coûts par recette."], ["m4s2", "Analyse des Écarts", "Identifier les sources de pertes de marchandise."], ["m4s3", "Audit Achats", "Négociation et mise en concurrence fournisseurs."], ["m4s4", "Suivi Flash", "Tableau de bord de rentabilité hebdomadaire."]] },
+  "module5": { "t": "Carte Stratégique", "d": "Orientez le client vers vos plats les plus rentables.", "g": "Objectif : +10% de marge brute", 
+    "s": [["m5s1", "Structure du Menu", "Identification des stars et suppression des poids morts."], ["m5s2", "Psychologie de Carte", "Réorganisation visuelle stratégique."], ["m5s3", "Valorisation Produits", "Appellations et storytelling pour justifier les prix."], ["m5s4", "Briefing Équipe", "Coaching pour 'pousser' les plats clés."]] },
+  "module6": { "t": "Réseau & Alliances", "d": "Allez chercher vos clients là où ils dorment et travaillent.", "g": "Objectif : Flux régulier d'apporteur d'affaires", 
+    "s": [["m6s1", "Partenariats Hébergements", "Devenir l'adresse recommandée par les hôtels."], ["m6s2", "Offres Entreprises", "Solutions spécifiques pour les bureaux."], ["m6s3", "Synergie Commerçants", "Échanges de visibilité de proximité."], ["m6s4", "Action de Quartier", "Visibilité lors des événements locaux."]] },
+  "module7": { "t": "Identité Sonore", "d": "Le son influence le confort et l'énergie des équipes.", "g": "Objectif : Confort acoustique optimal", 
+    "s": [["m7s1", "Audit Acoustique", "Analyse de la salle pour un confort idéal."], ["m7s2", "Curation Musicale", "Playlists sur-mesure selon les moments du jour."], ["m7s3", "Gestion de l'Énergie", "Ajustement du volume et du zonage."], ["m7s4", "Signature Sonore", "Style musical unique renforçant votre marque."]] },
+  "module8": { "t": "Événements", "d": "Faites de votre établissement un lieu de vie dynamique.", "g": "Objectif : Hausse du ticket moyen groupe", 
+    "s": [["m8s1", "Conception de Soirées", "Planification de rendez-vous thématiques réguliers."], ["m8s2", "Offre Privatisations", "Formules packagées anniversaires et pro."], ["m8s3", "Logistique Interne", "Gérer l'événement sans perturber le service."], ["m8s4", "Stratégie Remplissage", "Communication ciblée pour vos temps forts."]] },
+  "module9": { "t": "Rayonnement Digital", "d": "Votre présence en ligne doit remplir votre salle.", "g": "Objectif : Domination des recherches locales", 
+    "s": [["m9s1", "Mise en valeur Vitrine", "Shooting photo pro et style visuel attractif."], ["m9s2", "Maîtrise Réputation", "Booster les avis et répondre stratégiquement."], ["m9s3", "Domination Google", "Optimisation technique pour Maps."], ["m9s4", "Ciblage de Proximité", "Publicités ultra-locales (rayon 2km)."]] }
 };
 
 let userSelections = {};
 let curId = null;
+const WEBHOOK_URL = "https://hook.eu1.make.com/xxxxxxxxxxxx"; // On changera ça à l'étape 2
 
 function openModule(id) {
-  curId = id; 
-  const m = DATA[id];
+  curId = id; const m = DATA[id];
   if (!userSelections[id]) userSelections[id] = [];
-
   document.getElementById('modal-title').textContent = m.t;
   document.getElementById('modal-desc').textContent = m.d;
   document.getElementById('modal-goal').textContent = m.g;
-  
   document.getElementById('modal-choices').innerHTML = m.s.map(s => {
     const isChecked = userSelections[id].includes(s[0]) ? 'checked' : '';
-    return `
-      <label class="choice-item">
-        <input type="checkbox" class="sub-check" data-subid="${s[0]}" data-subname="${s[1]}" ${isChecked}>
-        <div><strong>${s[1]}</strong><br><small style="color:#666">${s[2]}</small></div>
-      </label>`;
+    return `<label class="choice-item"><input type="checkbox" class="sub-check" data-subid="${s[0]}" ${isChecked}><div><strong>${s[1]}</strong><br><small style="color:#666">${s[2]}</small></div></label>`;
   }).join('');
-  
   document.getElementById('modal-overlay').style.display = 'flex';
 }
 
-function closeModal() { 
-  document.getElementById('modal-overlay').style.display = 'none'; 
-}
+function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
 function saveAndClose() {
   const checks = document.querySelectorAll('.sub-check');
   userSelections[curId] = [];
-  
-  checks.forEach(c => {
-    if(c.checked) {
-      userSelections[curId].push(c.dataset.subid);
-    }
-  });
-
-  const hasSelection = userSelections[curId].length > 0;
-  document.getElementById(curId).classList.toggle('selected', hasSelection);
-  
+  checks.forEach(c => { if(c.checked) userSelections[curId].push(c.dataset.subid); });
+  document.getElementById(curId).classList.toggle('selected', userSelections[curId].length > 0);
   updateFinalSummary();
   closeModal();
 }
 
 function updateFinalSummary() {
-  const selectedList = document.getElementById('selectedList');
-  const countDisplay = document.getElementById('count');
-  let totalModules = 0;
-  let htmlContent = "";
-
-  for (const modId in userSelections) {
-    if (userSelections[modId].length > 0) {
-      totalModules++;
-      const modName = DATA[modId].t;
-      const subNames = DATA[modId].s
-        .filter(s => userSelections[modId].includes(s[0]))
-        .map(s => s[1]);
-
-      htmlContent += `<li style="margin-bottom:15px; color:#fff; border-left: 3px solid var(--violet); padding-left: 15px;">
-        <strong style="color:var(--violet); font-size:1.1rem;">${modName}</strong><br>
-        <span style="font-size:0.85rem; color:#aaa; line-height:1.4;">Sélection : ${subNames.join(' • ')}</span>
-      </li>`;
+  const list = document.getElementById('selectedList');
+  let total = 0; let html = "";
+  for (const id in userSelections) {
+    if (userSelections[id].length > 0) {
+      total++;
+      const subs = DATA[id].s.filter(s => userSelections[id].includes(s[0])).map(s => s[1]);
+      html += `<li style="margin-bottom:10px; color:#fff;"><strong style="color:var(--violet)">${DATA[id].t}</strong><br><small style="color:#aaa">Sélection : ${subs.join(' • ')}</small></li>`;
     }
   }
+  document.getElementById('count').textContent = total;
+  list.innerHTML = html || "<li>Aucun module sélectionné</li>";
+}
 
-  countDisplay.textContent = totalModules;
-  selectedList.innerHTML = htmlContent || "<li>Aucun module sélectionné</li>";
+async function sendData() {
+  const btn = document.querySelector('.btn-main');
+  const formData = {
+    gerant: document.getElementById('f_nom_complet').value,
+    email: document.getElementById('f_mail').value,
+    resto: document.getElementById('f_resto_adresse').value,
+    situation: document.getElementById('f_situation').value,
+    missions: document.getElementById('selectedList').innerText
+  };
+  if(!formData.email) return alert("Email requis");
+  btn.textContent = "Transmission...";
+  try {
+    await fetch(WEBHOOK_URL, { method: "POST", body: JSON.stringify(formData) });
+    alert("Succès ! Mika Food reviendra vers vous.");
+  } catch (e) { alert("Erreur d'envoi."); }
 }
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
