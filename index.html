@@ -301,13 +301,51 @@ const MODULES_DATA = {
     "titre": "Clientèle & Fidélité",
     "description": "L'acquisition coûte 5x plus cher que la rétention. Ce module transforme vos visiteurs occasionnels en ambassadeurs actifs par une ingénierie de données précise.",
     "points": [
-      "Audit de la base de données actuelle et segmentation RFM (Récence, Fréquence, Montant).",
-      "Mise en place d'un système de parrainage à haute valeur perçue.",
-      "Scénarios d'automation marketing (Relance post-visite, anniversaires, offres exclusives).",
-      "Indicateurs clés : Augmentation du panier moyen de 15% et réduction du churn rate."
-    ],
-    "selectionne": false
+      "Audit de la base de données et segmentation RFM.",
+      "Mise en place d'un système de parrainage.",
+      "Automation Marketing (Relances, Anniversaires).",
+      "Objectif : +15% de panier moyen."
+    ]
   }
+};
+
+function openModule(id) {
+  const data = MODULES_DATA[id];
+  if (!data) return;
+
+  // Création dynamique de la modale
+  const modal = document.createElement('div');
+  modal.id = "custom-modal";
+  modal.innerHTML = `
+    <div style="position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px;">
+      <div style="background:#111; border:2px solid #6a0dad; padding:40px; border-radius:20px; max-width:600px; width:100%; position:relative;">
+        <button onclick="this.parentElement.parentElement.remove()" style="position:absolute; top:20px; right:20px; border:none; color:white; cursor:pointer;">✕ Fermer</button>
+        <h2 style="color:#6a0dad; margin-bottom:20px;">${data.titre}</h2>
+        <p style="margin-bottom:20px; line-height:1.6;">${data.description}</p>
+        <ul style="margin-bottom:30px; color:#cfcfcf;">
+          ${data.points.map(p => `<li style='margin-bottom:10px;'>• ${p}</li>`).join('')}
+        </ul>
+        <div style="display:flex; gap:15px;">
+          <button onclick="confirmSelection('${id}', true)" style="background:#6a0dad; flex:1;">Nécessaire</button>
+          <button onclick="confirmSelection('${id}', false)" style="border:1px solid #444; flex:1;">Inutile</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function confirmSelection(id, isNeeded) {
+  const card = document.getElementById(id);
+  if (isNeeded) {
+    card.classList.add('selected');
+  } else {
+    card.classList.remove('selected');
+  }
+  document.getElementById('custom-modal').remove();
+  // La fonction updateSelection() existante mettra à jour le compteur
+  if (typeof updateSelection === "function") updateSelection();
+}
 const cards=document.querySelectorAll('.module-card');
 const countEl=document.getElementById('count');
 const list=document.getElementById('selectedList');
@@ -334,6 +372,7 @@ function updateSelection(){
 </body>
 </html>
 ```
+
 
 
 
