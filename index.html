@@ -1,7 +1,284 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" /><!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mikafood Production - Stratégie</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --black:#0a0a0a; --violet:#6a0dad; --violet-soft:rgba(106,13,173,0.45); --text:#f4f4f4; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; }
+
+/* ---------- HERO ---------- */
+.hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+.hero video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; opacity: 0.3; z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; width: 90%; text-align: center; padding: 20px; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 35px; color: #eee; }
+
+/* ---------- GRILLE MODULES ---------- */
+section{padding:60px 7vw}
+.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
+.module-card { border: 2px solid var(--violet-soft); border-radius: 20px; padding: 20px; cursor: pointer; background: rgba(20,20,20,0.6); aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s; }
+.module-card:hover { border-color: var(--violet); transform: translateY(-5px); }
+.module-card.selected { border-color: var(--violet); box-shadow: 0 0 30px var(--violet); background: rgba(106,13,173,0.1); }
+.module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; pointer-events: none;}
+h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
+.module-card span { font-size: 0.8rem; color: #aaa; pointer-events: none;}
+
+/* ---------- MODALE ---------- */
+#modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+.modal-content { background: #050505; border: 1px solid var(--violet); width: 70vw; max-height: 90vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
+.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+.choice-item { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; align-items: center; cursor: pointer; transition: 0.2s; }
+.choice-item:hover { border-color: var(--violet); }
+.choice-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: var(--violet); }
+
+/* ---------- FORMULAIRE COMPACT ---------- */
+.form-box{ max-width:800px; margin:50px auto; border:2px solid var(--violet); border-radius:26px; padding:40px; background:#000; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem; }
+textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
+
+/* ---------- UI ---------- */
+.sticky-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid var(--violet); padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100; }
+.btn-main { background: var(--violet); color: white; border: none; padding: 15px 35px; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
+
+@media(max-width:900px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 95vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
+.hero-video-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%); /* Le secret du centrage parfait */
+    object-fit: cover;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
+  <div class="hero-content">
+    <h1>Le sur-mesure pour propulser votre établissement.</h1>
+    <p>Composez votre stratégie idéale en sélectionnant les modules adaptés à vos besoins.</p>
+    <button class="btn-main" onclick="document.getElementById('modules-grid').scrollIntoView()">Explorer les Modules</button>
+  </div>
+</section>
+
+<section id="modules-grid">
+  <div class="modules">
+    <div class="module-card" id="module1" onclick="openModule('module1')"><img src="assets/1Fidélitéxclusivité.png" class="module-thumb"><h3>Clientèle & Fidélité</h3><span>Acquisition & Rétention</span></div>
+    <div class="module-card" id="module2" onclick="openModule('module2')"><img src="assets/2FluiditéServiceVitesse.png" class="module-thumb"><h3>Fluidité & Service</h3><span>Vitesse & Organisation</span></div>
+    <div class="module-card" id="module3" onclick="openModule('module3')"><img src="assets/3ExpérienceParcoursClient.png" class="module-thumb"><h3>Expérience Client</h3><span>Parcours & Immersion</span></div>
+    <div class="module-card" id="module4" onclick="openModule('module4')"><img src="assets/4RentabilitéCroissance.png" class="module-thumb"><h3>Rentabilité & Gestion</h3><span>Contrôle des Marges</span></div>
+    <div class="module-card" id="module5" onclick="openModule('module5')"><img src="assets/5CarteMenuStratégique.jpg" class="module-thumb"><h3>Carte Stratégique</h3><span>Menu Engineering</span></div>
+    <div class="module-card" id="module6" onclick="openModule('module6')"><img src="assets/6RéseauAlliances.jpg" class="module-thumb"><h3>Réseau & Alliances</h3><span>Partenariats Locaux</span></div>
+    <div class="module-card" id="module7" onclick="openModule('module7')"><img src="assets/7SonoreIdentité.jpg" class="module-thumb"><h3>Identité Sonore</h3><span>Ambiance & Acoustique</span></div>
+    <div class="module-card" id="module8" onclick="openModule('module8')"><img src="assets/8ÉvénementsProgrammation.jpg" class="module-thumb"><h3>Événements</h3><span>Programmation & Vie</span></div>
+    <div class="module-card" id="module9" onclick="openModule('module9')"><img src="assets/9DigitalRayonnement.jpg" class="module-thumb"><h3>Rayonnement Digital</h3><span>Visibilité & Avis</span></div>
+  </div>
+</section>
+<div style="width: 100%; padding: 40px 10px; box-sizing: border-box;">
+    
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px;">
+        
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="color: #a855f7; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85em; text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); margin-left: 5px;">
+                Canaux Prioritaires
+            </span>
+            
+            <div style="display: flex; gap: 15px;">
+                <a href="https://t.me/+JO6sCY2tZng0MTg0" target="_blank" title="Telegram">
+                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-2.003 9.442c-.149.659-.541.823-1.091.515l-3.058-2.254-1.475 1.419c-.163.163-.3.3-.615.3l.219-3.113 5.666-5.119c.246-.219-.054-.341-.381-.124l-7.001 4.409-3.017-.944c-.656-.205-.669-.656.137-.97l11.794-4.545c.546-.205 1.023.121.824.984z"/></svg>
+                    </div>
+                </a>
+                <a href="tel:0664624506" title="Appeler">
+                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.509-8.954.058-.028 2.022-1.001 2.022-1.001l-3.522-6.795c-.001 0-1.928.932-2.032.981-3.23 1.513-1.61 12.28 4.104 18.212 5.713 5.931 15.284 4.862 17.552 1.353.104-.16 1.97-3.012 1.97-3.012z"/></svg>
+                    </div>
+                </a>
+                <a href="mailto:mkfprod@gmail.com" title="Envoyer un email">
+                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/></svg>
+                    </div>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=4+avenue+de+la+baronne+06400+Cannes" target="_blank" title="Voir sur Maps">
+                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <a href="page-suivante.html" style="background: linear-gradient(135deg, #cd7f32 0%, #e6c288 50%, #c0c0c0 100%); color: #000; padding: 14px 40px; text-decoration: none; border-radius: 8px; font-weight: 900; font-size: 0.95em; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 25px rgba(205, 127, 50, 0.25); border: 1px solid rgba(255,255,255,0.15); display: inline-block; white-space: nowrap;">
+            En Savoir Plus →
+        </a>
+
+    </div>
+</div>
+<section id="formulaire">
+  <div class="form-box">
+    <h2 style="color:var(--violet); margin-bottom:20px;">Votre Sélection Stratégique</h2>
+    <ul id="selectedList" style="margin-bottom:30px; list-style:none; color:#aaa; border-left: 2px solid var(--violet); padding-left: 15px;"><li>Aucun module sélectionné</li></ul>
+    
+    <div class="form-grid">
+        <input type="text" id="f_nom_complet" placeholder="Nom & Prénom du Gérant" style="grid-column: span 2;">
+        <input type="text" id="f_resto_adresse" placeholder="Nom et Adresse du Restaurant" style="grid-column: span 2;">
+        <input type="text" id="f_societe" placeholder="Nom de la Société (Optionnel)">
+        <input type="tel" id="f_tel" placeholder="Téléphone">
+        <input type="email" id="f_mail" placeholder="Email professionnel" style="grid-column: span 2;">
+        <textarea id="f_situation" placeholder="Votre situation actuelle et votre recherche principale..."></textarea>
+    </div>
+    <button class="btn-main" onclick="sendData()" style="width:100%; margin-top:20px;">Envoyer la demande d'audit</button>
+  </div>
+</section>
+
+<div id="modal-overlay" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h2 id="modal-title" style="color:var(--violet)"></h2>
+    <p id="modal-desc" style="margin-top:10px; color:#ccc;"></p>
+    <div class="choice-grid" id="modal-choices"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <span id="modal-goal" style="color:var(--violet); font-weight:bold;"></span>
+        <button class="btn-main" onclick="saveAndClose()" style="padding:10px 20px; font-size:0.9rem;">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-bar">
+  <span><strong id="count" style="color:var(--violet)">0</strong> module(s)</span>
+  <button onclick="document.getElementById('formulaire').scrollIntoView()" style="background:none; border:none; color:var(--violet); cursor:pointer; font-weight:bold;">Finaliser</button>
+</div>
+
+<script>
+const DATA = {
+  "module1": { "t": "Clientèle & Fidélité", "d": "Transformez vos visiteurs en ambassadeurs actifs.", "g": "Objectif : +10% de panier moyen", 
+    "s": [["m1s1", "Data-Capture", "Mise en place d'outils (Wi-Fi, QR) pour récolter les données."], ["m1s2", "Analyse de Récence", "Identification et réactivation des clients absents."], ["m1s3", "Segmentation RFM", "Ciblage précis selon Fréquence et Montant."], ["m1s4", "Automation Marketing", "Relances automatiques (anniversaires, offres)."]] },
+  "module2": { "t": "Fluidité & Service", "d": "Un service fluide réduit le stress et augmente la rotation.", "g": "Objectif : +10% de productivité", 
+    "s": [["m2s1", "Audit des Flux & Postes", "Analyse salle/cuisine pour supprimer les pas inutiles."], ["m2s2", "Organisation des Espaces", "Aménagement optimisé pour fluidifier le passage."], ["m2s3", "Standardisation", "Fiches réflexes pour une qualité constante."], ["m2s4", "Gestion de la Casse", "Contrôles pour réduire les pertes et erreurs."]] },
+  "module3": { "t": "Expérience Client", "d": "Chaque détail du parcours doit être soigné.", "g": "Objectif : +0.5 sur vos notes Google", 
+    "s": [["m3s1", "Audit du Parcours", "Analyse critique de l'accueil à l'encaissement."], ["m3s2", "Mise en scène", "Optimisation du visuel table et de la gestuelle."], ["m3s3", "Gestion de l'Attente", "Transformer les temps morts en moments positifs."], ["m3s4", "Avis Instantanés", "Capter la satisfaction avant le départ."]] },
+  "module4": { "t": "Rentabilité & Gestion", "d": "Reprenez le contrôle total sur vos marges.", "g": "Objectif : -5% de coût matière", 
+    "s": [["m4s1", "Fiches Techniques", "Calcul précis des ratios et coûts par recette."], ["m4s2", "Analyse des Écarts", "Identifier les sources de pertes de marchandise."], ["m4s3", "Audit Achats", "Négociation et mise en concurrence fournisseurs."], ["m4s4", "Suivi Flash", "Tableau de bord de rentabilité hebdomadaire."]] },
+  "module5": { "t": "Carte Stratégique", "d": "Orientez le client vers vos plats les plus rentables.", "g": "Objectif : +10% de marge brute", 
+    "s": [["m5s1", "Structure du Menu", "Identification des stars et suppression des poids morts."], ["m5s2", "Psychologie de Carte", "Réorganisation visuelle stratégique."], ["m5s3", "Valorisation Produits", "Appellations et storytelling pour justifier les prix."], ["m5s4", "Briefing Équipe", "Coaching pour 'pousser' les plats clés."]] },
+  "module6": { "t": "Réseau & Alliances", "d": "Allez chercher vos clients là où ils dorment et travaillent.", "g": "Objectif : Flux régulier d'apporteur d'affaires", 
+    "s": [["m6s1", "Partenariats Hébergements", "Devenir l'adresse recommandée par les hôtels."], ["m6s2", "Offres Entreprises", "Solutions spécifiques pour les bureaux."], ["m6s3", "Synergie Commerçants", "Échanges de visibilité de proximité."], ["m6s4", "Action de Quartier", "Visibilité lors des événements locaux."]] },
+  "module7": { "t": "Identité Sonore", "d": "Le son influence le confort et l'énergie des équipes.", "g": "Objectif : Confort acoustique optimal", 
+    "s": [["m7s1", "Audit Acoustique", "Analyse de la salle pour un confort idéal."], ["m7s2", "Curation Musicale", "Playlists sur-mesure selon les moments du jour."], ["m7s3", "Gestion de l'Énergie", "Ajustement du volume et du zonage."], ["m7s4", "Signature Sonore", "Style musical unique renforçant votre marque."]] },
+  "module8": { "t": "Événements", "d": "Faites de votre établissement un lieu de vie dynamique.", "g": "Objectif : Hausse du ticket moyen groupe", 
+    "s": [["m8s1", "Conception de Soirées", "Planification de rendez-vous thématiques réguliers."], ["m8s2", "Offre Privatisations", "Formules packagées anniversaires et pro."], ["m8s3", "Logistique Interne", "Gérer l'événement sans perturber le service."], ["m8s4", "Stratégie Remplissage", "Communication ciblée pour vos temps forts."]] },
+  "module9": { "t": "Rayonnement Digital", "d": "Votre présence en ligne doit remplir votre salle.", "g": "Objectif : Domination des recherches locales", 
+    "s": [["m9s1", "Mise en valeur Vitrine", "Shooting photo pro et style visuel attractif."], ["m9s2", "Maîtrise Réputation", "Booster les avis et répondre stratégiquement."], ["m9s3", "Domination Google", "Optimisation technique pour Maps."], ["m9s4", "Ciblage de Proximité", "Publicités ultra-locales (rayon 2km)."]] }
+};
+
+let userSelections = {};
+let curId = null;
+  
+const WEBHOOK_URL = "https://hook.eu1.make.com/qti49ea0q4r5l45e0afgpeqnevss1wv1"; // On changera ça à l'étape 2
+
+function openModule(id) {
+  curId = id; const m = DATA[id];
+  if (!userSelections[id]) userSelections[id] = [];
+  document.getElementById('modal-title').textContent = m.t;
+  document.getElementById('modal-desc').textContent = m.d;
+  document.getElementById('modal-goal').textContent = m.g;
+  document.getElementById('modal-choices').innerHTML = m.s.map(s => {
+    const isChecked = userSelections[id].includes(s[0]) ? 'checked' : '';
+    return `<label class="choice-item"><input type="checkbox" class="sub-check" data-subid="${s[0]}" ${isChecked}><div><strong>${s[1]}</strong><br><small style="color:#666">${s[2]}</small></div></label>`;
+  }).join('');
+  document.getElementById('modal-overlay').style.display = 'flex';
+}
+
+function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+
+function saveAndClose() {
+  const checks = document.querySelectorAll('.sub-check');
+  userSelections[curId] = [];
+  checks.forEach(c => { if(c.checked) userSelections[curId].push(c.dataset.subid); });
+  document.getElementById(curId).classList.toggle('selected', userSelections[curId].length > 0);
+  updateFinalSummary();
+  closeModal();
+}
+
+function updateFinalSummary() {
+  const list = document.getElementById('selectedList');
+  let total = 0; let html = "";
+  for (const id in userSelections) {
+    if (userSelections[id].length > 0) {
+      total++;
+      const subs = DATA[id].s.filter(s => userSelections[id].includes(s[0])).map(s => s[1]);
+      html += `<li style="margin-bottom:10px; color:#fff;"><strong style="color:var(--violet)">${DATA[id].t}</strong><br><small style="color:#aaa">Sélection : ${subs.join(' • ')}</small></li>`;
+    }
+  }
+  document.getElementById('count').textContent = total;
+  list.innerHTML = html || "<li>Aucun module sélectionné</li>";
+}
+async function sendData() { 
+  const WEBHOOK_URL = "https://hook.eu1.make.com/qti49ea0q4r5l45e0afgpeqnevss1wv1";
+  const btn = document.querySelector('#formulaire .btn-main');
+  const formData = {
+    gerant: document.getElementById('f_nom_complet').value,
+    email: document.getElementById('f_mail').value,
+    resto: document.getElementById('f_resto_adresse').value,
+    societe: document.getElementById('f_societe').value, // Ajouté
+    tel: document.getElementById('f_tel').value,         // Ajouté
+    situation: document.getElementById('f_situation').value,
+    missions: document.getElementById('selectedList').innerText
+  };
+
+  if(!formData.email || !formData.gerant) return alert("Nom et Email requis");
+
+  btn.textContent = "Transmission...";
+  btn.disabled = true;
+
+  try {
+    await fetch(WEBHOOK_URL, { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, // Ajouté
+      body: JSON.stringify(formData) 
+    });
+    alert("Succès ! Mika Food reviendra vers vous.");
+    btn.textContent = "Demande envoyée";
+  } catch (e) { 
+    alert("Erreur de connexion."); 
+    btn.textContent = "Envoyer la demande d'audit";
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mikafood Production - Stratégie</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -80,3 +357,4 @@
                     <a href="tel:0664624506" class="neon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.509-8.954.058-.028 2.022-1.001 2.022-1.001l-3.522-6.795c-.001 0-1.928.932-2.032.981-3.23 1.513-1.61 12.28 4.104 18.212 5.713 5.931 15.284 4.862 17.552 1.353.104-.16 1.97-3.012 1.97-3.012z"/></svg></a>
                     <a href="mailto:mkfprod@gmail.com" class="neon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/></svg></a>
                     <a href="
+
