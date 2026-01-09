@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" /><!DOCTYPE html>
-<html lang="fr">
-<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mikafood Production - Stratégie</title>
@@ -277,84 +274,4 @@ async function sendData() {
 
 
 
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mikafood Production - Stratégie</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root{ --black:#0a0a0a; --violet:#6a0dad; --violet-neon:#a855f7; --text:#f4f4f4; }
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); overflow-x: hidden; }
-
-        /* HERO - Centrage Absolu */
-        .hero { position: relative; height: 100vh; width: 100vw; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000; }
-        .hero video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; opacity: 0.4; }
-        .hero-content { position: relative; z-index: 2; text-align: center; width: 90%; max-width: 800px; }
-
-        /* STRUCTURE & RESPONSIVE */
-        section { padding: 60px 5vw; width: 100%; display: flex; justify-content: center; }
-        .container-centre { width: 100%; max-width: 1100px; margin: 0 auto; }
-
-        /* GRILLE MODULES */
-        .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .module-card { border: 2px solid rgba(106,13,173,0.3); border-radius: 20px; padding: 20px; background: rgba(20,20,20,0.6); aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s; cursor: pointer; }
-        .module-card.selected { border-color: var(--violet-neon); box-shadow: 0 0 20px var(--violet-neon); }
-        .module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
-
-        /* CONTACT & NAVIGATION (Correction Centrage) */
-        .contact-nav-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px; width: 100%; }
-        .icon-group { display: flex; gap: 15px; }
-        .neon-icon { width: 50px; height: 50px; border: 2px solid var(--violet-neon); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); background: #000; transition: 0.3s; }
-        .neon-icon:hover { transform: scale(1.1); box-shadow: 0 0 25px var(--violet-neon); }
-
-        /* BOUTON BRONZE/ARGENT */
-        .btn-premium { background: linear-gradient(135deg, #cd7f32 0%, #e6c288 50%, #c0c0c0 100%); color: #000; padding: 14px 40px; text-decoration: none; border-radius: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; border: none; }
-
-        /* FORMULAIRE */
-        .form-box { border: 2px solid var(--violet); border-radius: 26px; padding: 40px; background: #000; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; }
-        textarea { grid-column: span 2; min-height: 100px; }
-
-        @media (max-width: 768px) {
-            .modules { grid-template-columns: 1fr; }
-            .contact-nav-bar { flex-direction: column; text-align: center; }
-            .form-grid { grid-template-columns: 1fr; }
-            input, textarea { grid-column: span 1; }
-            .hero { height: 70vh; }
-        }
-    </style>
-</head>
-<body>
-
-<section class="hero">
-    <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
-    <div class="hero-content">
-        <h1>Le sur-mesure pour propulser votre établissement.</h1>
-        <p>Composez votre stratégie idéale en sélectionnant les modules adaptés.</p>
-        <button class="btn-premium" onclick="document.getElementById('modules-grid').scrollIntoView()" style="color:#000">Explorer les Modules</button>
-    </div>
-</section>
-
-<section id="modules-grid">
-    <div class="container-centre">
-        <div class="modules">
-            <div class="module-card" id="module1" onclick="openModule('module1')"><img src="assets/1Fidélitéxclusivité.png" class="module-thumb"><h3>Clientèle & Fidélité</h3><span>Acquisition & Rétention</span></div>
-            <div class="module-card" id="module2" onclick="openModule('module2')"><img src="assets/2FluiditéServiceVitesse.png" class="module-thumb"><h3>Fluidité & Service</h3><span>Vitesse & Organisation</span></div>
-            <div class="module-card" id="module3" onclick="openModule('module3')"><img src="assets/3ExpérienceParcoursClient.png" class="module-thumb"><h3>Expérience Client</h3><span>Parcours & Immersion</span></div>
-            </div>
-    </div>
-</section>
-
-<section style="background: rgba(255,255,255,0.02); border-top: 1px solid #222; border-bottom: 1px solid #222;">
-    <div class="container-centre">
-        <div class="contact-nav-bar">
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <span style="color: var(--violet-neon); font-weight: bold; text-transform: uppercase; font-size: 0.8em; letter-spacing: 2px;">Canal Prioritaire</span>
-                <div class="icon-group">
-                    <a href="https://t.me/+JO6sCY2tZng0MTg0" target="_blank" class="neon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-2.003 9.442c-.149.659-.541.823-1.091.515l-3.058-2.254-1.475 1.419c-.163.163-.3.3-.615.3l.219-3.113 5.666-5.119c.246-.219-.054-.341-.381-.124l-7.001 4.409-3.017-.944c-.656-.205-.669-.656.137-.97l11.794-4.545c.546-.205 1.023.121.824.984z"/></svg></a>
-                    <a href="tel:0664624506" class="neon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.509-8.954.058-.028 2.022-1.001 2.022-1.001l-3.522-6.795c-.001 0-1.928.932-2.032.981-3.23 1.513-1.61 12.28 4.104 18.212 5.713 5.931 15.284 4.862 17.552 1.353.104-.16 1.97-3.012 1.97-3.012z"/></svg></a>
-                    <a href="mailto:mkfprod@gmail.com" class="neon-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/></svg></a>
-                    <a href="
 
