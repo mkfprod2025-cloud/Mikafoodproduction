@@ -54,8 +54,8 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     align-items: center;
     gap: 20px;            /* Espace entre titre, texte et bouton */
 }
-.hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 0px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 35px; color: #eee; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 0px; font-weight:auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: auto; color: #eee; }
 
 /* ---------- GRILLE MODULES ---------- */
 section{padding:60px 7vw}
@@ -94,7 +94,7 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
 <section class="hero">
   <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
   <div class="hero-content">
-    <h1> MiKaFood Solution Le sur-mesure pour propulser votre établissement.</h1>
+    <h1> Le sur-mesure pour propulser votre établissement.</h1>
     <p>Composez votre stratégie idéale en sélectionnant les modules adaptés à vos besoins.</p>
     <button class="btn-main" onclick="document.getElementById('modules-grid').scrollIntoView()">Explorer les Modules</button>
   </div>
@@ -285,6 +285,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
