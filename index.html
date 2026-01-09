@@ -33,7 +33,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     width: auto;
     height: auto;
     object-fit: cover;
-    opacity: 0.4; /* Retour de la transparence pour la lisibilité */
+    opacity: 0.3; /* Retour de la transparence pour la lisibilité */
     z-index: 1;
 }
 
@@ -41,7 +41,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     position: relative;
     z-index: 2; /* Force le texte à passer devant la vidéo */
     text-align: center;
-    width: 90%;
+    width: 100%;
 }
 .hero-content { position: relative; z-index: 2; max-width: 800px; width: 90%; text-align: center; padding: 20px; }
 .hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
@@ -59,7 +59,7 @@ h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
 
 /* ---------- MODALE ---------- */
 #modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-.modal-content { background: #050505; border: 1px solid var(--violet); width: 70vw; max-height: 90vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
+.modal-content { background: #050505; border: 1px solid var(--violet); width: 90vw; max-height: 85vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
 .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
 .choice-item { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; align-items: center; cursor: pointer; transition: 0.2s; }
 .choice-item:hover { border-color: var(--violet); }
@@ -275,6 +275,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
