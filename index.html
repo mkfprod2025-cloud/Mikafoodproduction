@@ -41,11 +41,12 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     position: absolute;   /* Détaché du flux pour flotter sur la vidéo */
     z-index: 10;          /* Passe au-dessus de tout */
     top: 50%;             /* Place le haut du bloc au milieu vertical */
-    left: 65%;            /* Place la gauche du bloc au milieu horizontal */
+    left: 55%;            /* Place la gauche du bloc au milieu horizontal */
     transform: translate(-50%, -50%); /* Décale de sa propre moitié pour un centrage parfait */
     
-    width:100%;           /* Largeur responsive */
-    max-width: 800px;     /* Limite sur PC */
+    width:90%;           /* Largeur responsive */
+    max-width: 800px;   /* Limite sur PC */
+    margin: 0;
     text-align: center;   /* Centre le texte à l'intérieur */
     padding: 20px;        /* Respiration interne */
     display: flex;        /* Aligne les éléments internes (titre, bouton) */
@@ -284,6 +285,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
