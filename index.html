@@ -276,8 +276,25 @@ async function sendData() {
   }
 }
 </script>
+<script>
+function fixHero() {
+    const hero = document.querySelector('.hero');
+    const video = document.querySelector('.hero video');
+    if(hero && video) {
+        hero.style.width = window.innerWidth + 'px';
+        hero.style.left = '0px';
+        video.style.width = window.innerWidth + 'px';
+        video.style.left = '50%';
+        video.style.transform = 'translateX(-50%)';
+    }
+}
+window.addEventListener('resize', fixHero);
+window.addEventListener('load', fixHero);
+fixHero();
+</script>
 </body>
 </html>
+
 
 
 
