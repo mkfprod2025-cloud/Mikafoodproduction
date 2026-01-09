@@ -15,7 +15,6 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     width: auto;
     height: 20vh;
     position: flexed;
-  / Coupe ce qui dépasse à droite sur mobile */
     display:inline-block;
     align-items: center;
     justify-content: flex-start;
@@ -36,7 +35,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 }
 /* Remplace ton bloc .hero-content actuel par celui-ci */
 .hero-content {
-    position:relative;   /* Détaché du flux pour flotter sur la vidéo */
+    position: relative;   /* Détaché du flux pour flotter sur la vidéo */
     z-index: 1;          /* Passe au-dessus de tout */
     top: 100%;             /* Place le haut du bloc au milieu vertical */
     left: 50%;            /* Place la gauche du bloc au milieu horizontal */
@@ -283,6 +282,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
