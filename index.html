@@ -38,10 +38,10 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 }
 /* Remplace ton bloc .hero-content actuel par celui-ci */
 .hero-content {
-    position: absolute;   /* Détaché du flux pour flotter sur la vidéo */
+    position: relative;   /* Détaché du flux pour flotter sur la vidéo */
     z-index: 10;          /* Passe au-dessus de tout */
     top: 50%;             /* Place le haut du bloc au milieu vertical */
-    left: 50%;            /* Place la gauche du bloc au milieu horizontal */
+    left: 0%;            /* Place la gauche du bloc au milieu horizontal */
     transform: translate(-50%, -50%); /* Décale de sa propre moitié pour un centrage parfait */
     
     width: 90%;           /* Largeur responsive */
@@ -285,6 +285,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
