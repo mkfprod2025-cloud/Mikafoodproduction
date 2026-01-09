@@ -71,10 +71,10 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
 .sticky-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid var(--violet); padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100; }
 .btn-main { background: var(--violet); color: white; border: none; padding: 15px 35px; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
 
-@media(max-width:900px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 95vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
+@media(max-width:360px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 70vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
 .hero-video-container {
-    width: 100vw;
-    height: 100vh;
+    width: 80vw;
+    height: 80vh;
     position: relative;
     overflow: hidden;
 }
@@ -83,8 +83,8 @@ video {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 75%;
-    min-height: 100%;
+    min-width: 90%;
+    min-height: 90%;
     width: auto;
     height: auto;
     transform: translate(-50%, -50%); /* Le secret du centrage parfait */
@@ -288,6 +288,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
