@@ -12,14 +12,14 @@ html{scroll-behavior:smooth}
 body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 100px; }
 
 /* ---------- HERO ---------- */
-
-.hero {
-    width: absolute;
-    height: absolute;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.hero { 
+    position: relative; 
+    height: 100vh; 
+    width: 100%; 
+    display: flex; 
+    align-items: center;    /* Centrage vertical du contenu */
+    justify-content: center; /* Centrage horizontal du contenu */
+    overflow: hidden; 
     background: #000;
 }
 .hero video {
@@ -38,7 +38,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 
 .hero-content {
     position: center;
-    z-index: 1; /* Force le texte à passer devant la vidéo */
+    z-index: 2; /* Force le texte à passer devant la vidéo */
     text-align: center;
     width: 120%;
 }
@@ -273,6 +273,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
