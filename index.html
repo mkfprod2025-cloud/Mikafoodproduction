@@ -13,7 +13,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 
 /* ---------- HERO ---------- */
 
-.hero {
+.hero 
     width: 100%;
     height: 100vh;
    
@@ -23,36 +23,57 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     justify-content: center;
     background: #000;
 }
+/* ---------- HERO ---------- */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
 .hero video {
     position: absolute;
-    top: 40%;
-    left: 40%;
-    transform: translate(-50%, -50%); /* Centrage parfait */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
     object-fit: cover;
-    opacity: 0.2; /* Retour de la transparence pour la lisibilité */
+    opacity: 0.2;
     z-index: 1;
 }
-/* Remplace ton bloc .hero-content actuel par celui-ci */
-.hero-content {
-    position: absolute;   /* Détaché du flux pour flotter sur la vidéo */
-    z-index: 10;          /* Passe au-dessus de tout */
-    top: 50%;             /* Place le haut du bloc au milieu vertical */
-    left: 50%;            /* Place la gauche du bloc au milieu horizontal */
-    transform: translate(-50%, -50%); /* Décale de sa propre moitié pour un centrage parfait */
-    
-    width: responsive;           /* Largeur responsive */
-    max-width: 600px;   /* Limite sur PC */
-    margin: 0;
-    text-align: center;   /* Centre le texte à l'intérieur */
-    padding: 0px;        /* Respiration interne */
-    display: block;        /* Aligne les éléments internes (titre, bouton) */
+
+/* ---------- HERO CONTENT (EN DESSOUS DE LA VIDEO) ---------- */
+.hero-description {
+    position: relative;
+    width: 100%;
+    background: #000;
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;            /* Espace entre titre, texte et bouton */
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-description h1 {
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    max-width: 800px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-description p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #eee;
+    margin: 0;
+    max-width: 600px;
 }
 .hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 0px; font-weight:auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: auto; color: #eee; }
@@ -285,6 +306,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
