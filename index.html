@@ -39,7 +39,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
 /* Remplace ton bloc .hero-content actuel par celui-ci */
 .hero-content {
     position:relative;   /* Détaché du flux pour flotter sur la vidéo */
-    z-index: 10;          /* Passe au-dessus de tout */
+    z-index: 1;          /* Passe au-dessus de tout */
     top: 50%;             /* Place le haut du bloc au milieu vertical */
     left: 55%;            /* Place la gauche du bloc au milieu horizontal */
     transform: translate(-50%, -50%); /* Décale de sa propre moitié pour un centrage parfait */
@@ -48,11 +48,11 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     max-width: 800px;   /* Limite sur PC */
     margin: 0;
     text-align: center;   /* Centre le texte à l'intérieur */
-    padding: 20px;        /* Respiration interne */
+    padding: 10px;        /* Respiration interne */
     display: flex;        /* Aligne les éléments internes (titre, bouton) */
     flex-direction: column;
     align-items: center;
-    gap: 20px;            /* Espace entre titre, texte et bouton */
+    gap: 10px;            /* Espace entre titre, texte et bouton */
 }
 .hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 35px; color: #eee; }
@@ -285,6 +285,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
