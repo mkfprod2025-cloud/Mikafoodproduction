@@ -27,8 +27,8 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     position: absolute;
     top: 50%;
     left: 20%;
-    transform: translate(-20%, -50%); /* Centrage parfait */
-    min-width: 50%;
+    transform: translate(-100%, -50%); /* Centrage parfait */
+    min-width: 150%;
     min-height: 100%;
     width: auto;
     height: auto;
@@ -76,9 +76,7 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
 .btn-main { background: var(--violet); color: white; border: none; padding: 15px 35px; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
 
 @media(max-width:900px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 95vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
-/* --- CORRECTION CIBLÉE DE LA ZONE HERO --- */
-
-/* --- FIN DE LA CORRECTION --- */
+    
 </style>
 </head>
 <body>
@@ -277,6 +275,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
