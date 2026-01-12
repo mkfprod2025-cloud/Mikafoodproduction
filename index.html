@@ -44,7 +44,42 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     text-align: center;
     gap: 15px; /* Espacement cohérent */
 }
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap; /* Adaptation mobile : passage sur 2 lignes si l'écran est trop étroit */
+    justify-content: center;
+    gap: 20px; /* Espace entre les deux boutons */
+    margin-top: 30px;
+}
 
+/* Base commune pour les boutons */
+.hero-actions a {
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease;
+}
+
+.hero-actions a:hover {
+    transform: translateY(-3px);
+}
+
+/* Bouton Violet (Modules) */
+.btn-primary {
+    background: #6a0dad;
+    color: #fff;
+}
+
+/* Bouton Bronze (En savoir plus) */
+.btn-secondary {
+    background: linear-gradient(135deg, #cd7f32 0%, #e6c288 50%, #c0c0c0 100%);
+    color: #000;
+    box-shadow: 0 4px 25px rgba(205, 127, 50, 0.25);
+}
 .hero h1 { 
     font-size: clamp(1.8rem, 5vw, 3rem); 
     color: #fff;
@@ -179,7 +214,11 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
         <span></span>
         <span></span>
     </div>
-
+<div class="hero-actions">
+    <a href="#modules-section" class="btn-primary">Explorer les Modules</a>
+    
+    <a href="page-suivante.html" class="btn-secondary">En Savoir Plus →</a>
+</div>
 </div>
     <button class="btn-main" onclick="document.getElementById('modules-grid').scrollIntoView()"> choisir ses Modules</button>
   </div>
@@ -370,6 +409,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
