@@ -87,6 +87,34 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0; }
     50% { transform: rotate(45deg) translate(10px, 10px); opacity: 1; }
 }
+    /* Style spécifique au contenu pédagogique */
+.badge-experience {
+    background: var(--violet);
+    color: #fff;
+    padding: 5px 15px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+
+.description-text {
+    max-width: 650px;
+    margin: 20px 0;
+}
+
+.description-text p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.description-text strong {
+    color: #fff;
+    border-bottom: 1px solid var(--violet);
+}
 /* ---------- GRILLE MODULES ---------- */
 section{padding:60px 7vw}
 .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
@@ -338,6 +366,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
