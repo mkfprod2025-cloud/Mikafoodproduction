@@ -164,7 +164,31 @@ section{padding:60px 7vw}
 .module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; pointer-events: none;}
 h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
 .module-card span { font-size: 0.8rem; color: #aaa; pointer-events: none;}
-
+.contact-bar-pedagogique {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 40px 10px;
+    width: 100%;
+}
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #a855f7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #a855f7;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    transition: transform 0.3s ease;
+}
+.icon-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
 /* ---------- MODALE ---------- */
 #modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
 .modal-content { background: #050505; border: 1px solid var(--violet); width: 90vw; max-height: 85vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
@@ -237,36 +261,31 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
     <div class="module-card" id="module9" onclick="openModule('module9')"><img src="assets/9DigitalRayonnement.jpg" class="module-thumb"><h3>Rayonnement Digital</h3><span>Visibilité & Avis</span></div>
   </div>
 </section>
-<div style="width: 100%; padding: 40px 10px; box-sizing: border-box;">
-    
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px;">
-        
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <span style="color: #a855f7; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85em; text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); margin-left: 5px;">
-                Canaux Prioritaires
-            </span>
-            
-            <div style="display: flex; gap: 15px;">
-                <a href="https://t.me/+JO6sCY2tZng0MTg0" target="_blank" title="Telegram">
-                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-2.003 9.442c-.149.659-.541.823-1.091.515l-3.058-2.254-1.475 1.419c-.163.163-.3.3-.615.3l.219-3.113 5.666-5.119c.246-.219-.054-.341-.381-.124l-7.001 4.409-3.017-.944c-.656-.205-.669-.656.137-.97l11.794-4.545c.546-.205 1.023.121.824.984z"/></svg>
-                    </div>
-                </a>
-                <a href="tel:0664624506" title="Appeler">
-                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.509-8.954.058-.028 2.022-1.001 2.022-1.001l-3.522-6.795c-.001 0-1.928.932-2.032.981-3.23 1.513-1.61 12.28 4.104 18.212 5.713 5.931 15.284 4.862 17.552 1.353.104-.16 1.97-3.012 1.97-3.012z"/></svg>
-                    </div>
-                </a>
-                <a href="mailto:mkfprod@gmail.com" title="Envoyer un email">
-                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/></svg>
-                    </div>
-                </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=4+avenue+de+la+baronne+06400+Cannes" target="_blank" title="Voir sur Maps">
-                    <div style="width: 50px; height: 50px; border: 2px solid #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2); background: #000;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a855f7"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
-                    </div>
-                </a>
+<div class="contact-bar-pedagogique">
+    <span>Canaux Prioritaires</span>
+    <div class="contact-icons-wrapper">
+        <a href="https://t.me/+JO6sCY2tZng0MTg0" target="_blank" aria-label="Telegram">
+            <div class="icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-2.003 9.442c-.149.659-.541.823-1.091.515l-3.058-2.254-1.475 1.419c-.163.163-.3.3-.615.3l.219-3.113 5.666-5.119c.246-.219-.054-.341-.381-.124l-7.001 4.409-3.017-.944c-.656-.205-.669-.656.137-.97l11.794-4.545c.546-.205 1.023.121.824.984z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="tel:0664624506" aria-label="Téléphone">
+            <div class="icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.509-8.954.058-.028 2.022-1.001 2.022-1.001l-3.522-6.795c-.001 0-1.928.932-2.032.981-3.23 1.513-1.61 12.28 4.104 18.212 5.713 5.931 15.284 4.862 17.552 1.353.104-.16 1.97-3.012 1.97-3.012z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="mailto:mkfprod@gmail.com" aria-label="Email">
+            <div class="icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/>
+                </svg>
+            </div>
+        </a>
+    </div>
 </div>
 <section id="formulaire">
   <div class="form-box">
@@ -401,3 +420,4 @@ async function sendData() {
 </script>
 </body>
 </html>
+
