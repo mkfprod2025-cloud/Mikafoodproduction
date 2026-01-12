@@ -88,17 +88,21 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     50% { transform: rotate(45deg) translate(10px, 10px); opacity: 1; }
 }
     /* Style spécifique au contenu pédagogique */
+
+/* REECRITURE DU BADGE : ALIGNEMENT COULEUR BOUTON */
 .badge-experience {
-    background: var(--violet);
-    color: #fff;
-    padding: 5px 15px;
-    font-weight: 800;
+    background: linear-gradient(135deg, #cd7f32 0%, #e6c288 50%, #c0c0c0 100%);
+    color: #000; /* Contraste maximal sur fond clair */
+    padding: 6px 18px;
+    font-weight: 900;
     font-size: 0.8rem;
     letter-spacing: 2px;
-    margin-bottom: 10px;
-    border-radius: 2px;
+    text-transform: uppercase;
+    border-radius: 4px; /* Plus anguleux que le bouton pour distinction structurelle */
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(205, 127, 50, 0.3);
 }
-
 .description-text {
     max-width: 650px;
     margin: 20px 0;
@@ -153,7 +157,7 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
   <video autoplay muted loop playsinline><source src="assets/Mika Food Solutions.mp4" type="video/mp4"></video>
  <div class="hero-content">
     
-    <div class="badge-experience">28 ANS D'EXPERTISE</div>
+    <div class="badge-experience">30 ANS D'EXPERTISE</div>
     
     <h1>RESTAURATION : LA PERFORMANCE PAR LE TERRAIN</h1>
     
@@ -366,6 +370,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
