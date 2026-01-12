@@ -164,7 +164,26 @@ section{padding:60px 7vw}
 .module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; pointer-events: none;}
 h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
 .module-card span { font-size: 0.8rem; color: #aaa; pointer-events: none;}
-.contact-bar-pedagogique {
+/* ---------- MODALE ---------- */
+#modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+.modal-content { background: #050505; border: 1px solid var(--violet); width: 90vw; max-height: 85vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
+.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+.choice-item { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; align-items: center; cursor: pointer; transition: 0.2s; }
+.choice-item:hover { border-color: var(--violet); }
+.choice-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: var(--violet); }
+
+/* ---------- FORMULAIRE COMPACT ---------- */
+.form-box{ max-width:800px; margin:50px auto; border:2px solid var(--violet); border-radius:26px; padding:40px; background:#000; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem; }
+textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
+
+/* ---------- UI ---------- */
+.sticky-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid var(--violet); padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100; }
+.btn-main { background: var(--violet); color: white; border: none; padding: 15px 35px; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
+
+@media(max-width:900px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 95vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
+   .contact-bar-pedagogique {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,27 +207,7 @@ h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
 .icon-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-}
-/* ---------- MODALE ---------- */
-#modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-.modal-content { background: #050505; border: 1px solid var(--violet); width: 90vw; max-height: 85vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
-.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-.choice-item { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; align-items: center; cursor: pointer; transition: 0.2s; }
-.choice-item:hover { border-color: var(--violet); }
-.choice-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: var(--violet); }
-
-/* ---------- FORMULAIRE COMPACT ---------- */
-.form-box{ max-width:800px; margin:50px auto; border:2px solid var(--violet); border-radius:26px; padding:40px; background:#000; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: #fff; font-size: 1rem; }
-textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
-
-/* ---------- UI ---------- */
-.sticky-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid var(--violet); padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 20px; z-index: 100; }
-.btn-main { background: var(--violet); color: white; border: none; padding: 15px 35px; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
-
-@media(max-width:900px){ .modules { grid-template-columns: 1fr 1fr; } .modal-content { width: 95vw; padding: 20px; } .choice-grid { grid-template-columns: 1fr; } }
-    
+} 
 </style>
 </head>
 <body>
@@ -423,6 +422,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
