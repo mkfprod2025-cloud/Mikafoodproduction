@@ -10,54 +10,83 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text); padding-bottom: 50px; }
-
+/* ---------- SECTION HERO OPTIMISÉE ---------- */
 .hero {
-    width: auto;
-    height: auto;
-    position: flex;
-    display:flex;
+    width: 100%;
+    min-height: 100vh; /* Occupe tout l'écran au chargement */
+    display: flex;
+    flex-direction: column; /* Empilement vertical : Vidéo puis Texte */
     align-items: center;
-    justify-content: flex-start;
     background: #000;
-    margin-top: 50!important; /* Supprime toute marge haute */
-    padding-top: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
 }
+
+/* 1. Zone Vidéo (Logo) */
 .hero video {
-    position: relative;
+    width: 100%;
+    max-height: 50vh; /* Limite la vidéo à la moitié de l'écran */
     display: block;
-    top: 50;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centrage parfait */
-    min-width: 100%;
-    min-height:100%;
-    width: auto;
-    height: auto;
     object-fit: cover;
-    object-position: aouto;
-    opacity: 0.3; /* Retour de la transparence pour la lisibilité */
-    z-index: 1;
+    object-position: top; /* Calage strict en haut */
+    opacity: 0.8; /* Légère transparence pour focus texte */
 }
-/* Remplace ton bloc .hero-content actuel par celui-ci */
+
+/* 2. Zone Contenu (Pédagogie) */
 .hero-content {
-    position: relative;   /* Détaché du flux pour flotter sur la vidéo */
-    z-index: 1;          /* Passe au-dessus de tout */
-    top: 100%;             /* Place le haut du bloc au milieu vertical */
-    left: 50%;            /* Place la gauche du bloc au milieu horizontal */
-    transform: translate(-50%, -50%); /* Décale de sa propre moitié pour un centrage parfait */
-    
-    width:auto;           /* Largeur responsive */
-    max-width: 800px;   /* Limite sur PC */
-    margin: 0;
-    text-align: center;   /* Centre le texte à l'intérieur */
-    padding: 01px;        /* Respiration interne */
-    display: flex;        /* Aligne les éléments internes (titre, bouton) */
+    width: 100%;
+    max-width: 800px;
+    padding: 40px 20px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1px;            /* Espace entre titre, texte et bouton */
+    text-align: center;
+    gap: 15px; /* Espacement cohérent */
 }
-.hero h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 10px; font-weight: 700; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
-.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 35px; color: #eee; }
 
+.hero h1 { 
+    font-size: clamp(1.8rem, 5vw, 3rem); 
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.hero h2 {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--violet); /* Utilise ta variable root */
+    font-weight: 400;
+}
+
+.hero p { 
+    font-size: 1rem;
+    color: #eee;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 3. Indicateur de descente */
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.scroll-indicator span {
+    width: 15px;
+    height: 15px;
+    border-bottom: 2px solid var(--violet);
+    border-right: 2px solid var(--violet);
+    transform: rotate(45deg);
+    animation: scroll-bounce 2s infinite;
+}
+
+@keyframes scroll-bounce {
+    0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0; }
+    50% { transform: rotate(45deg) translate(10px, 10px); opacity: 1; }
+}
 /* ---------- GRILLE MODULES ---------- */
 section{padding:60px 7vw}
 .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
@@ -286,6 +315,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
