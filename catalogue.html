@@ -111,16 +111,16 @@
             width: 100%;
             background: linear-gradient(to top, var(--black), transparent);
         }
-.module-content h3 { 
-    position: relative;
-     width: 100%;
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+.module-content h3 {  display: flex; /* Active le mode alignement */
+    flex-direction: column; /* Titre au dessus du sous-titre */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    text-align: center;
+    position: absolute;
+    inset: 0; /* Obligatoire pour prendre toute la place de la carte */
+    background: rgba(0, 0, 0, 0.6); /* Pour la lisibilité */
 }
+  
     </style>
 </head>
 <body>
