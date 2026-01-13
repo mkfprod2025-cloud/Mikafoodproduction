@@ -154,17 +154,6 @@ clip-path: inset(0 0 5% 0);
     color: #fff;
     border-bottom: 1px solid var(--violet);
 }
-/* ---------- GRILLE MODULES ---------- */
-section{padding:60px 7vw}
-.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
-.module-card { border: 2px solid var(--violet-soft); border-radius: 20px; padding: 20px; cursor: pointer; background: rgba(20,20,20,0.6); aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s; }
-.module-card:hover { border-color: var(--violet); transform: translateY(-5px); }
-.module-card.selected { border-color: var(--violet); box-shadow: 0 0 30px var(--violet); background: rgba(106,13,173,0.1); }
-.module-thumb { width: 100%; height: 60%; object-fit: cover; border-radius: 12px; margin-bottom: 15px; pointer-events: none;}
-h3 { font-size: 1rem; margin-bottom: 8px; pointer-events: none;}
-.module-card span { font-size: 0.8rem; color: #aaa; pointer-events: none;}
-
-/* ---------- MODALE ---------- */
 #modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
 .modal-content { background: #050505; border: 1px solid var(--violet); width: 90vw; max-height: 85vh; border-radius: 24px; padding: 40px; position: relative; display: flex; flex-direction: column; overflow-y: auto; }
 .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
@@ -405,6 +394,7 @@ async function sendData() {
 </script>
 </body>
 </html>
+
 
 
 
