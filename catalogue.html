@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <header>
+<head><header>
     <div class="title-container">
         <h1 class="dynamic-title">Expertise Modulaire</h1>
     </div>
@@ -9,72 +8,114 @@
 </header>
 
 <style>
-<style>
-    /* Import d'une police plus arrondie et moderne */
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@900&display=swap');
+    /* Import d'une police plus ronde mais impactante */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
 
-    /* TITRE AVEC DÉGRADÉ SUR LA FONT */
+    header { 
+        padding: 80px 20px 40px;
+        text-align: center;
+    }
+
+    .title-container {
+        display: inline-block;
+        position: relative;
+        padding: 10px 30px;
+        background: linear-gradient(110deg, var(--violet) 0%, #4b0082 100%);
+        border-radius: 8px 40px 8px 40px; /* Forme organique non carrée */
+        box-shadow: 0 15px 35px rgba(106, 13, 173, 0.3);
+    }
+
     .dynamic-title { 
-        font-family: 'Outfit', sans-serif; 
+        font-family: 'Montserrat', sans-serif; 
         font-weight: 900;
+        font-style: italic;
         font-size: clamp(2rem, 6vw, 3.8rem); 
         text-transform: uppercase;
-        
-        /* Effet dégradé sur le texte */
+      /* Effet dégradé sur le texte */
         background: linear-gradient(180deg, #d4a373 0%, #f4f4f4 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        
         margin: 0;
-        letter-spacing: -1px;
+        letter-spacing: -1px; /* Resserre pour enlever le côté carré */
         line-height: 1;
     }
 
-    /* AGRANDISSEMENT SOUS-TITRE */
     .subtitle { 
         margin-top: 25px;
         font-family: 'Inter', sans-serif;
-        font-weight: 400;
-        font-size: 1.3rem; /* Agrandissement */
+        font-weight: 400;font-size: 1.3rem; /* Agrandissement */
         letter-spacing: 0.5px;
-        color: var(--text);
         opacity: 0.95;
-    }
-
-    /* CORRECTION VISIBILITÉ ET CENTRAGE MODULES */
-    .module-content {
-        position: absolute;
-        inset: 0; /* Prend toute la place pour le centrage */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centrage vertical */
-        align-items: center;    /* Centrage horizontal */
-        text-align: center;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.6); /* Overlay plus sombre pour lecture */
-        transition: 0.3s;
-    }
-
-    .module-link:hover .module-content {
-        background: rgba(106, 13, 173, 0.4); /* Teinte violette au survol */
-    }
-
-    .module-content h3 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #ffffff; /* Blanc pur pour contraste */
-        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        margin-bottom: 8px;
-    }
-
-    .module-content p {
-        font-weight: 600;
-        font-size: 1rem;
-        color: #d4a373; /* Rappel du beige */
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        color: var(--text);
     }
 </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalogue des Modules - Mikafood</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --black: #0a0a0a; 
+            --violet: #6a0dad; 
+            --violet-soft: rgba(106, 13, 173, 0.45); 
+            --text: #f4f4f4; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--black); 
+            color: var(--text); 
+            min-height: 100vh;
+        }
+
+        header { text-align: center; padding: 60px 20px; }
+        h1 { font-size: 3rem; color: var(--text); text-transform: uppercase; }
+        .subtitle { opacity: 0.6; margin-top: 10px; }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-link {
+            position: relative;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            border: 1px solid #222;
+            background: #151515; /* Fond de secours si image absente */
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .module-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; /* Assure la visibilité du texte */
+            transition: 0.3s;
+        }
+
+        .module-link:hover .module-bg { opacity: 0.8; transform: scale(1.05); }
+        .module-link:hover { border-color: var(--violet); box-shadow: 0 0 20px var(--violet-soft); }
+
+        .module-content {
+            position:absolute;
+            z-index: 2;
+            padding: 20px;
+            width: 100%;
+            background: linear-gradient(to top, var(--black), transparent);
+        }
+
+        .module-content h3 { color: var(--text); font-size: 1.4rem; }
+        .module-content p { color: var(--violet); font-size: 0.9rem; }
+    </style>
 </head>
 <body>
     <main class="modules-grid">
