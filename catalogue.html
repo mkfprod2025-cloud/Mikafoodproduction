@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalogue des Modules - Mikafood</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --black: #0a0a0a; 
+            --violet: #6a0dad; 
+            --violet-soft: rgba(106, 13, 173, 0.45); 
+            --text: #f4f4f4; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--black); 
+            color: var(--text); 
+            padding-bottom: 50px; 
+            overflow-x: hidden;
+        }
 
+        header { 
+            text-align: center; 
+            padding: 80px 20px 60px; 
+        }
+        h1 { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            letter-spacing: -1px;
+            color: var(--text);
+            text-shadow: 0 0 30px var(--violet-soft);
+        }
+        .subtitle { 
+            font-weight: 300; 
+            opacity: 0.7; 
+            font-size: 1.2rem; 
+            margin-top: 10px; 
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 0 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .module-link {
+            position: relative;
+            aspect-ratio: 16/11;
+            border-radius: 15px;
+            overflow: hidden;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .module-link:hover {
+            transform: translateY(-8px);
+            border-color: var(--violet);
+            box-shadow: 0 10px 40px var(--violet-soft);
+        }
+
+        .module-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(40%) brightness(0.6);
+            transition: 0.4s;
+        }
+
+        .module-link:hover .module-bg {
+            filter: grayscale(0%) brightness(0.8);
+            transform:
