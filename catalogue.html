@@ -17,51 +17,32 @@
             font-family: 'Inter', sans-serif; 
             background: var(--black); 
             color: var(--text); 
-            padding-bottom: 50px; 
-            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        header { 
-            text-align: center; 
-            padding: 80px 20px 60px; 
-        }
-        h1 { 
-            font-size: 3.5rem; 
-            font-weight: 700; 
-            letter-spacing: -1px;
-            color: var(--text);
-            text-shadow: 0 0 30px var(--violet-soft);
-        }
-        .subtitle { 
-            font-weight: 300; 
-            opacity: 0.7; 
-            font-size: 1.2rem; 
-            margin-top: 10px; 
-        }
+        header { text-align: center; padding: 60px 20px; }
+        h1 { font-size: 3rem; color: var(--text); text-transform: uppercase; }
+        .subtitle { opacity: 0.6; margin-top: 10px; }
 
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            padding: 0 40px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .module-link {
             position: relative;
-            aspect-ratio: 16/11;
-            border-radius: 15px;
+            height: 250px;
+            border-radius: 12px;
             overflow: hidden;
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .module-link:hover {
-            transform: translateY(-8px);
-            border-color: var(--violet);
-            box-shadow: 0 10px 40px var(--violet-soft);
+            border: 1px solid #222;
+            background: #151515; /* Fond de secours si image absente */
+            display: flex;
+            align-items: flex-end;
         }
 
         .module-bg {
@@ -69,10 +50,70 @@
             inset: 0;
             background-size: cover;
             background-position: center;
-            filter: grayscale(40%) brightness(0.6);
-            transition: 0.4s;
+            opacity: 0.5; /* Assure la visibilité du texte */
+            transition: 0.3s;
         }
 
-        .module-link:hover .module-bg {
-            filter: grayscale(0%) brightness(0.8);
-            transform:
+        .module-link:hover .module-bg { opacity: 0.8; transform: scale(1.05); }
+        .module-link:hover { border-color: var(--violet); box-shadow: 0 0 20px var(--violet-soft); }
+
+        .module-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            width: 100%;
+            background: linear-gradient(to top, var(--black), transparent);
+        }
+
+        .module-content h3 { color: var(--text); font-size: 1.4rem; }
+        .module-content p { color: var(--violet); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Expertise Modulaire</h1>
+        <p class="subtitle">Choisissez un module pour voir les détails Flash & Immersion</p>
+    </header>
+
+    <main class="modules-grid">
+        <a href="detail-module.html?id=1" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/1Fidélitéxclusivité.png');"></div>
+            <div class="module-content"><h3>Clientèle & Fidélité</h3><p>Acquisition & Rétention</p></div>
+        </a>
+        <a href="detail-module.html?id=2" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/2FluiditéServiceVitesse.png');"></div>
+            <div class="module-content"><h3>Fluidité & Service</h3><p>Vitesse & Organisation</p></div>
+        </a>
+        <a href="detail-module.html?id=3" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/3ExpérienceParcoursClient.png');"></div>
+            <div class="module-content"><h3>Expérience Client</h3><p>Parcours & Immersion</p></div>
+        </a>
+        <a href="detail-module.html?id=4" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/4RentabilitéCroissance.png');"></div>
+            <div class="module-content"><h3>Rentabilité & Gestion</h3><p>Contrôle des Marges</p></div>
+        </a>
+        <a href="detail-module.html?id=5" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/5CarteMenuStratégique.jpg');"></div>
+            <div class="module-content"><h3>Carte Stratégique</h3><p>Menu Engineering</p></div>
+        </a>
+        <a href="detail-module.html?id=6" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/6RéseauAlliances.jpg');"></div>
+            <div class="module-content"><h3>Réseau & Alliances</h3><p>Partenariats Locaux</p></div>
+        </a>
+        <a href="detail-module.html?id=7" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/7SonoreIdentité.jpg');"></div>
+            <div class="module-content"><h3>Identité Sonore</h3><p>Ambiance & Acoustique</p></div>
+        </a>
+        <a href="detail-module.html?id=8" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/8ÉvénementsProgrammation.jpg');"></div>
+            <div class="module-content"><h3>Événements</h3><p>Programmation & Vie</p></div>
+        </a>
+        <a href="detail-module.html?id=9" class="module-link">
+            <div class="module-bg" style="background-image: url('assets/9DigitalRayonnement.jpg');"></div>
+            <div class="module-content"><h3>Rayonnement Digital</h3><p>Visibilité & Avis</p></div>
+        </a>
+    </main>
+
+</body>
+</html>
