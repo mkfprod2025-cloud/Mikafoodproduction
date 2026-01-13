@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><header>
+    <div class="title-container">
+        <h1 class="dynamic-title">Expertise Modulaire</h1>
+    </div>
+    <p class="subtitle">Sélectionnez un pilier stratégique pour explorer les solutions.</p>
+</header>
+
+<style>
+    /* Import d'une police plus ronde mais impactante */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+    header { 
+        padding: 80px 20px 40px;
+        text-align: center;
+    }
+
+    .title-container {
+        display: inline-block;
+        position: relative;
+        padding: 10px 30px;
+        background: linear-gradient(110deg, var(--violet) 0%, #4b0082 100%);
+        border-radius: 8px 40px 8px 40px; /* Forme organique non carrée */
+        box-shadow: 0 15px 35px rgba(106, 13, 173, 0.3);
+    }
+
+    .dynamic-title { 
+        font-family: 'Montserrat', sans-serif; 
+        font-weight: 900;
+        font-style: italic;
+        font-size: clamp(2rem, 6vw, 3.8rem); 
+        text-transform: uppercase;
+        color: #d4a373; /* Ton beige bouton */
+        margin: 0;
+        letter-spacing: -1px; /* Resserre pour enlever le côté carré */
+        line-height: 1;
+    }
+
+    .subtitle { 
+        margin-top: 25px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        letter-spacing: 1px;
+        opacity: 0.9;
+        color: var(--text);
+    }
+</style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catalogue des Modules - Mikafood</title>
- <link href="  https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
-  <style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
         :root { 
             --black: #0a0a0a; 
             --violet: #6a0dad; 
