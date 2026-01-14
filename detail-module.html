@@ -192,8 +192,9 @@
     * Rentabilité, résultats et tarifs communiqués à titre <strong>indicatif</strong> et prévisionnel. <br>
     Temps de visio inclus : 1h max par session. Soumis à audit préalable.
 </div>
-
 <script>
+    const STORAGE_KEY = 'mikafood_selection';
+
     const modulesData = {
         "4": {
             title: "Rentabilité & Gestion",
@@ -209,40 +210,64 @@
                 livrable: "Process opérationnel anti-gaspillage" 
             }
         }
-        // Ajouter les ID 1 à 9 ici
+        // IDs 1 à 9 à compléter ici
     };
 
+    // 1. CHARGEMENT DES DONNÉES DEPUIS L'URL
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || "4"; // Par défaut 4 pour test
+    const id = params.get('id') || "4";
     const data = modulesData[id];
 
     if (data) {
         document.getElementById('mod-title').innerText = data.title;
         document.getElementById('mod-obj').innerText = data.obj;
         
+        // Remplissage dynamique (Demat)
         document.getElementById('demat-action').innerText = data.demat.action;
         document.getElementById('demat-livrable').innerText = data.demat.livrable;
+        const dematList = document.getElementById('demat-missions');
+        dematList.innerHTML = ""; // Nettoyage
         data.demat.missions.forEach(m => {
             let li = document.createElement('li'); li.innerText = m;
-            document.getElementById('demat-missions').appendChild(li);
+            dematList.appendChild(li);
         });
 
+        // Remplissage dynamique (Immersion)
         document.getElementById('immersion-action').innerText = data.immersion.action;
         document.getElementById('immersion-livrable').innerText = data.immersion.livrable;
+        const immersionList = document.getElementById('immersion-missions');
+        immersionList.innerHTML = ""; // Nettoyage
         data.immersion.missions.forEach(m => {
             let li = document.createElement('li'); li.innerText = m;
-            document.getElementById('immersion-missions').appendChild(li);
+            immersionList.appendChild(li);
         });
     }
 
-    // GESTION DU GLOW ET DES CHECKBOXES
+    // 2. GESTION DE LA PERSISTENCE (LOCALSTORAGE)
     const checks = document.querySelectorAll('.checkbox-input');
+    
+    // Charger l'état sauvegardé au chargement de la page
+    function loadSavedState() {
+        const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        if (selections[id]) {
+            const selectedType = selections[id]; // 'card-demat' ou 'card-immersion'
+            const check = document.querySelector(`input[data-target="${selectedType}"]`);
+            if (check) {
+                check.checked = true;
+                document.getElementById(selectedType).classList.add('active-glow');
+            }
+        }
+    }
+
+    // Sauvegarder le choix
     checks.forEach(check => {
         check.addEventListener('change', function() {
-            const targetCard = document.getElementById(this.dataset.target);
+            let selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            const targetId = this.dataset.target;
+            const targetCard = document.getElementById(targetId);
             
             if (this.checked) {
-                // Décocher les autres
+                // Décocher les autres visuellement
                 checks.forEach(c => {
                     if(c !== this) {
                         c.checked = false;
@@ -250,12 +275,13 @@
                     }
                 });
                 targetCard.classList.add('active-glow');
+                selections[id] = targetId; // On stocke l'ID du module et l'offre choisie
             } else {
                 targetCard.classList.remove('active-glow');
+                delete selections[id]; // On supprime si décoché
             }
-        });
-    });
+     localStorage.setItem(STORAGE_KEY, JSON.stringify(selections));   }); });
+    window.onload = loadSavedState;
 </script>
-
 </body>
 </html>
