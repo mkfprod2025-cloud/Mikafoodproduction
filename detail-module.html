@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du Module - Mikafood</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* CHARTE GRAPHIQUE MIKAFOOD */
+        :root { 
+            --black: #0a0a0a; 
+            --violet: #6a0dad; 
+            --violet-glow: rgba(106, 13, 173, 0.6); 
+            --beige: #d4a373;
+            --text: #f4f4f4;
+            --card-bg: #151515;
+        }
+
+        body { 
+            background-color: var(--black); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        /* HEADER DU MODULE */
+        .header-module { text-align: center; margin-bottom: 60px; margin-top: 20px; }
+        
+        h1 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 900; 
+            font-style: italic;
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            text-transform: uppercase; 
+            margin-bottom: 10px;
+            /* Dégradé Beige comme sur le catalogue */
+            background: linear-gradient(180deg, var(--beige) 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #mod-obj {
+            color: var(--violet);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* BOUTON RETOUR */
+        .btn-back { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            color: #888; 
+            text-decoration: none; 
+            font-weight: 600; 
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+        .btn-back:hover { color: var(--beige); transform: translateX(-5px); }
+
+        /* GRID DUEL (Flash vs Immersion) */
+        .grid-duel { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+            align-items: stretch;
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid #222; 
+            border-radius: 16px; 
+            padding: 35px; 
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { 
+            border-color: var(--violet); 
+            box-shadow: 0 0 30px var(--violet-glow); 
+            transform: translateY(-5px);
+        }
+
+        /* BADGES */
+        .badge { 
+            display: inline-block; 
+            padding: 8px 16px; 
+            border-radius: 50px; 
+            font-weight: 800; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            align-self: flex-start;
+        }
+        .badge-flash { background: #333; color: #fff; border: 1px solid #555; }
+        .badge-immersion { background: var(--violet); color: white; border: 1px solid var(--violet); }
+
+        /* CONTENU CARTE */
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            min-height: 3em; /* Pour aligner les titres */
+        }
+
+        ul { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: #ccc;
+        }
+        ul li::before {
+            content: "•";
+            color: var(--beige);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1rem;
+        }
+
+        .livrable-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--beige);
+        }
+        .livrable-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .livrable-text {
+            color: var(--beige);
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) { .grid-duel { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="catalogue.html" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au catalogue</a>
+    
+    <div class="header-module">
+        <h1 id="mod-title">Chargement...</h1>
+        <p id="mod-obj"></p> 
+    </div>
+
+    <div class="grid-duel">
+        <div class="card">
+            <span class="badge badge-flash">⚡ Offre Flash (Distanciel)</span>
+            <h3 id="flash-action"></h3>
+            <ul id="flash-missions"></ul>
+            <div class="livrable-box">
+                <span class="livrable-label">Livrable</span>
+                <span id="flash-livrable" class="livrable-text"></span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="badge badge-immersion">🔥 Offre Immersion (Terrain)</span>
+            <h3 id="immersion-action"></h3>
+            <ul id="immersion-missions"></ul>
+            <div class="livrable-box">
+                <span class="livrable-label">Livrable</span>
+                <span id="immersion-livrable" class="livrable-text"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // BASE DE DONNÉES DES MODULES
+    // C'est ici que tu ajouteras les textes des 8 autres modules plus tard.
+    const modulesData = {
+        "4": { // ID 4 correspond à "Rentabilité & Gestion" dans ta grille
+            title: "Rentabilité & Gestion",
+            obj: "Contrôle des Marges", // Repris du sous-titre catalogue
+            flash: { 
+                action: "Analyse des factures & Fiches techniques.", 
+                missions: [
+                    "Focus : La rentabilité théorique (Le papier).", 
+                    "Méthode : Envoi de documents + 1h de Visio."
+                ], 
+                livrable: "Tableau de bord de correction des prix." 
+            },
+            immersion: { 
+                action: "Pesée des pertes & Audit des stocks.", 
+                missions: [
+                    "Focus : La rentabilité réelle (La poubelle).", 
+                    "Méthode : Présence physique (1 à 2 jours)."
+                ], 
+                livrable: "Mise en place de process anti-gaspillage." 
+            }
+        },
+        // Exemple pour le Module 1 (vide pour l'instant)
+        "1": {
+            title: "Clientèle & Fidélité",
+            obj: "Acquisition & Rétention",
+            flash: { action: "À définir...", missions: ["..."], livrable: "..." },
+            immersion: { action: "À définir...", missions: ["..."], livrable: "..." }
+        }
+    };
+
+    // LOGIQUE DE CHARGEMENT
+    // 1. Récupère l'ID dans l'URL (ex: ?id=4)
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const data = modulesData[id];
+
+    // 2. Si les données existent, on remplit la page
+    if (data) {
+        document.title = data.title + " - Mikafood";
+        document.getElementById('mod-title').innerText = data.title;
+        document.getElementById('mod-obj').innerText = data.obj;
+        
+        // Remplissage Flash
+        document.getElementById('flash-action').innerText = data.flash.action;
+        document.getElementById('flash-livrable').innerText = data.flash.livrable;
+        data.flash.missions.forEach(m => {
+            let li = document.createElement('li'); 
+            li.innerHTML = m.replace("Focus :", "<strong>Focus :</strong>").replace("Méthode :", "<strong>Méthode :</strong>");
+            document.getElementById('flash-missions').appendChild(li);
+        });
+
+        // Remplissage Immersion
+        document.getElementById('immersion-action').innerText = data.immersion.action;
+        document.getElementById('immersion-livrable').innerText = data.immersion.livrable;
+        data.immersion.missions.forEach(m => {
+            let li = document.createElement('li'); 
+            li.innerHTML = m.replace("Focus :", "<strong>Focus :</strong>").replace("Méthode :", "<strong>Méthode :</strong>");
+            document.getElementById('immersion-missions').appendChild(li);
+        });
+    } else {
+        // Sécurité si l'ID n'existe pas
+        document.getElementById('mod-title').innerText = "Module non trouvé";
+        document.querySelector('.grid-duel').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
