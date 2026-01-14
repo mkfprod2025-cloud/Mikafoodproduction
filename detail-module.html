@@ -23,24 +23,42 @@
             background-color: var(--black); 
             color: var(--text); 
             font-family: 'Inter', sans-serif; 
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            font-size: 1.1rem;
-            padding-bottom: 100px; /* Espace augmenté pour le bandeau CGU */
+            margin: 0; padding: 0;
+            font-size: 1.15rem; /* Augmentation générale */
+            padding-bottom: 120px; 
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        .header-module { text-align: center; margin-bottom: 60px; margin-top: 20px; }
+        /* BOUTON RETOUR ULTRA VISIBLE */
+        .btn-back-container { margin-bottom: 30px; }
+        .btn-back { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 12px;
+            background-color: #1a1a1a;
+            color: #fff; 
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: 0.3s;
+            border: 2px solid var(--violet);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .btn-back:hover { 
+            background-color: var(--violet); 
+            transform: scale(1.05); 
+        }
+
+        .header-module { text-align: center; margin-bottom: 50px; }
         
         h1 { 
             font-family: 'Montserrat', sans-serif; 
-            font-weight: 900; 
-            font-style: italic;
+            font-weight: 900; font-style: italic;
             font-size: clamp(2.2rem, 5vw, 3.8rem); 
             text-transform: uppercase; 
-            margin-bottom: 10px;
+            margin: 0;
             background: linear-gradient(180deg, var(--beige) 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -49,178 +67,86 @@
         #mod-obj {
             color: var(--violet);
             font-weight: 600;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* BOUTON RETOUR PLUS VISIBLE */
-        .btn-back { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff; 
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: 0.3s;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .btn-back:hover { 
-            background-color: var(--violet); 
-            border-color: var(--violet);
-            transform: translateX(-5px); 
+            margin-top: 10px;
         }
 
         .grid-duel { 
             display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 40px; 
-            align-items: stretch;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 30px; 
         }
 
         .card { 
             background: var(--card-bg); 
-            border: 1px solid #222; 
-            border-radius: 16px; 
-            padding: 35px; 
-            transition: 0.4s;
+            border: 2px solid #222; 
+            border-radius: 20px; 
+            padding: 40px; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             position: relative;
         }
 
-        /* EFFET GLOW AU SURVOL OU SI COCHÉ */
-        .card:hover, .card.active-glow { 
+        /* GLOW PERSISTANT */
+        .card.active-glow { 
             border-color: var(--violet); 
-            box-shadow: 0 0 30px var(--violet-glow); 
-            transform: translateY(-5px);
+            box-shadow: 0 0 40px var(--violet-glow); 
+            transform: translateY(-10px);
+            background: #1c1c1c;
         }
 
-        /* BADGES */
         .badge { 
-            display: inline-block; 
-            padding: 10px 20px; 
-            border-radius: 50px; 
-            font-weight: 800; 
-            font-size: 0.9rem; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            align-self: flex-start;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            padding: 10px 20px; border-radius: 50px; font-weight: 800; font-size: 0.9rem; 
+            text-transform: uppercase; margin-bottom: 25px; align-self: flex-start;
         }
-        
-        .badge-demat { background: var(--silver); color: #000; border: none; }
-        .badge-immersion { background: var(--violet); color: white; border: 1px solid var(--violet); }
+        .badge-demat { background: var(--silver); color: #000; }
+        .badge-immersion { background: var(--violet); color: white; }
 
-        /* ZONE VIDEO / GIF */
         .media-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #000;
-            border: 1px dashed #444;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 0.8rem;
-            overflow: hidden;
+            width: 100%; height: 220px; background: #000; border-radius: 12px;
+            margin-bottom: 25px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid #333; color: #444;
         }
 
-        .card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            color: white;
-            margin-bottom: 20px;
-            line-height: 1.3;
-            min-height: 2.5em;
-        }
+        .card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.7rem; color: #fff; margin-bottom: 20px; }
 
         ul { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
-        ul li {
-            margin-bottom: 18px;
-            padding-left: 25px;
-            position: relative;
-            color: #ddd;
-            font-size: 1.05rem;
-        }
-        ul li::before {
-            content: "•";
-            color: var(--beige);
-            position: absolute;
-            left: 0;
-            font-size: 1.5rem;
-            line-height: 1rem;
-        }
+        ul li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        ul li::before { content: "→"; color: var(--beige); position: absolute; left: 0; font-weight: bold; }
 
         .livrable-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 3px solid var(--beige);
-            margin-bottom: 20px;
+            background: rgba(212, 163, 115, 0.1);
+            padding: 20px; border-radius: 12px; border-left: 4px solid var(--beige); margin-bottom: 25px;
         }
-        .livrable-label {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 5px;
-        }
-        .livrable-text { color: var(--beige); font-weight: 700; font-size: 1.1rem; }
+        .livrable-text { color: var(--beige); font-weight: 700; font-size: 1.2rem; display: block; }
 
-        /* CHECKBOX SELECTION */
-        .selector-container {
-            margin-top: auto;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-        }
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            gap: 15px;
-            font-weight: 600;
-            color: #fff;
-            transition: 0.3s;
-        }
-        .checkbox-label:hover { color: var(--beige); }
-        .checkbox-input {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--violet);
-            cursor: pointer;
-        }
+        /* SÉLECTEUR */
+        .selector-container { border-top: 1px solid #333; padding-top: 20px; }
+        .checkbox-label { display: flex; align-items: center; cursor: pointer; gap: 15px; font-weight: 700; }
+        .checkbox-input { width: 25px; height: 25px; accent-color: var(--violet); }
 
-        /* BANNIÈRE FIXE MISE À JOUR */
+        /* BANDEAU CGU */
         .legal-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            border-top: 1px solid #333;
-            padding: 20px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #888;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.9); padding: 25px;
+            text-align: center; font-size: 0.9rem; color: #aaa;
+            border-top: 1px solid var(--violet); z-index: 9999;
+            backdrop-filter: blur(10px);
         }
 
-        @media (max-width: 900px) { .grid-duel { grid-template-columns: 1fr; } }
+        @media (max-width: 800px) { .grid-duel { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <a href="catalogue.html" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au catalogue</a>
+    <div class="btn-back-container">
+        <a href="catalogue.html" class="btn-back">
+            <i class="fas fa-chevron-left"></i> RETOUR AU CATALOGUE
+        </a>
+    </div>
     
     <div class="header-module">
         <h1 id="mod-title">Chargement...</h1>
@@ -229,11 +155,107 @@
 
     <div class="grid-duel">
         <div class="card" id="card-demat">
-            <span class="badge badge-demat">⚡ Offre Dématérialisée</span>
-            
-            <div class="media-placeholder" id="media-demat">
-                <span>[Zone GIF/Vidéo - Remplir via Assets]</span>
-            </div>
-
+            <span class="badge badge-demat">⚡ Dématérialisée</span>
+            <div class="media-placeholder">[ASSETS VIDÉO/GIF]</div>
             <h3 id="demat-action"></h3>
             <ul id="demat-missions"></ul>
+            <div class="livrable-box">
+                <span class="livrable-text" id="demat-livrable"></span>
+            </div>
+            <div class="selector-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" data-target="card-demat">
+                    SÉLECTIONNER CETTE OFFRE
+                </label>
+            </div>
+        </div>
+
+        <div class="card" id="card-immersion">
+            <span class="badge badge-immersion">🔥 Immersion Terrain</span>
+            <div class="media-placeholder">[ASSETS VIDÉO/GIF]</div>
+            <h3 id="immersion-action"></h3>
+            <ul id="immersion-missions"></ul>
+            <div class="livrable-box">
+                <span class="livrable-text" id="immersion-livrable"></span>
+            </div>
+            <div class="selector-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" data-target="card-immersion">
+                    SÉLECTIONNER CETTE OFFRE
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="legal-banner">
+    * Rentabilité, résultats et tarifs communiqués à titre <strong>indicatif</strong> et prévisionnel. <br>
+    Temps de visio inclus : 1h max par session. Soumis à audit préalable.
+</div>
+
+<script>
+    const modulesData = {
+        "4": {
+            title: "Rentabilité & Gestion",
+            obj: "Contrôle des Marges",
+            demat: { 
+                action: "Analyse des factures & Fiches techniques.", 
+                missions: ["Focus : Rentabilité théorique (Papier)", "Méthode : Envoi docs + 1h Visio"], 
+                livrable: "Tableau de bord de correction des prix" 
+            },
+            immersion: { 
+                action: "Pesée des pertes & Audit des stocks.", 
+                missions: ["Focus : Rentabilité réelle (Poubelle)", "Méthode : Présence physique (1-2 jrs)"], 
+                livrable: "Process opérationnel anti-gaspillage" 
+            }
+        }
+        // Ajouter les ID 1 à 9 ici
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id') || "4"; // Par défaut 4 pour test
+    const data = modulesData[id];
+
+    if (data) {
+        document.getElementById('mod-title').innerText = data.title;
+        document.getElementById('mod-obj').innerText = data.obj;
+        
+        document.getElementById('demat-action').innerText = data.demat.action;
+        document.getElementById('demat-livrable').innerText = data.demat.livrable;
+        data.demat.missions.forEach(m => {
+            let li = document.createElement('li'); li.innerText = m;
+            document.getElementById('demat-missions').appendChild(li);
+        });
+
+        document.getElementById('immersion-action').innerText = data.immersion.action;
+        document.getElementById('immersion-livrable').innerText = data.immersion.livrable;
+        data.immersion.missions.forEach(m => {
+            let li = document.createElement('li'); li.innerText = m;
+            document.getElementById('immersion-missions').appendChild(li);
+        });
+    }
+
+    // GESTION DU GLOW ET DES CHECKBOXES
+    const checks = document.querySelectorAll('.checkbox-input');
+    checks.forEach(check => {
+        check.addEventListener('change', function() {
+            const targetCard = document.getElementById(this.dataset.target);
+            
+            if (this.checked) {
+                // Décocher les autres
+                checks.forEach(c => {
+                    if(c !== this) {
+                        c.checked = false;
+                        document.getElementById(c.dataset.target).classList.remove('active-glow');
+                    }
+                });
+                targetCard.classList.add('active-glow');
+            } else {
+                targetCard.classList.remove('active-glow');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
