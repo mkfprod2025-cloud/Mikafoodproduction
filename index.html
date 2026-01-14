@@ -29,7 +29,7 @@ body{ font-family:'Inter',sans-serif; background:var(--black); color:var(--text)
     display: block;
     object-fit: contain;
     object-position: top; /* Calage strict en haut */
-    opacity: 0..3; /* Légère transparence pour focus texte */
+    opacity: 0.3; /* Légère transparence pour focus texte */
 clip-path: inset(0 0 5% 0);
 }
 
@@ -200,8 +200,6 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
     </div>
 
     <div class="scroll-indicator">
-        <span></span>
-        <span></span>
     </div>
 <div class="hero-actions">
   
@@ -212,7 +210,6 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
 <div style="width: 100%; padding: 40px 10px; box-sizing: border-box; display: flex; justify-content: center;">
     
     <div style="max-width: 750px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-        
         <span style="color: #a855f7; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85em; text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); text-align: center;">
             Canaux Prioritaires
         </span>
@@ -278,89 +275,48 @@ textarea { min-height: 100px; grid-column: span 2; margin-top: 10px; }
   <span><strong id="count" style="color:var(--violet)">0</strong> module(s)</span>
   <button onclick="document.getElementById('formulaire').scrollIntoView()" style="background:none; border:none; color:var(--violet); cursor:pointer; font-weight:bold;">Finaliser</button>
 </div>
-
-<script>
-<script>
+  <script>
 const DATA = {
-  "module1": { "t": "Clientèle & Fidélité", "d": "Transformez vos visiteurs en ambassadeurs actifs.", "g": "Objectif : +10% de panier moyen", 
-    "s": [["m1s1", "Data-Capture", "Mise en place d'outils (Wi-Fi, QR) pour récolter les données."], ["m1s2", "Analyse de Récence", "Identification et réactivation des clients absents."], ["m1s3", "Segmentation RFM", "Ciblage précis selon Fréquence et Montant."], ["m1s4", "Automation Marketing", "Relances automatiques (anniversaires, offres)."]] },
-  "module2": { "t": "Fluidité & Service", "d": "Un service fluide réduit le stress et augmente la rotation.", "g": "Objectif : +10% de productivité", 
-    "s": [["m2s1", "Audit des Flux & Postes", "Analyse salle/cuisine pour supprimer les pas inutiles."], ["m2s2", "Organisation des Espaces", "Aménagement optimisé pour fluidifier le passage."], ["m2s3", "Standardisation", "Fiches réflexes pour une qualité constante."], ["m2s4", "Gestion de la Casse", "Contrôles pour réduire les pertes et erreurs."]] },
-  "module3": { "t": "Expérience Client", "d": "Chaque détail du parcours doit être soigné.", "g": "Objectif : +0.5 sur vos notes Google", 
-    "s": [["m3s1", "Audit du Parcours", "Analyse critique de l'accueil à l'encaissement."], ["m3s2", "Mise en scène", "Optimisation du visuel table et de la gestuelle."], ["m3s3", "Gestion de l'Attente", "Transformer les temps morts en moments positifs."], ["m3s4", "Avis Instantanés", "Capter la satisfaction avant le départ."]] },
-  "module4": { "t": "Rentabilité & Gestion", "d": "Reprenez le contrôle total sur vos marges.", "g": "Objectif : -5% de coût matière", 
-    "s": [["m4s1", "Fiches Techniques", "Calcul précis des ratios et coûts par recette."], ["m4s2", "Analyse des Écarts", "Identifier les sources de pertes de marchandise."], ["m4s3", "Audit Achats", "Négociation et mise en concurrence fournisseurs."], ["m4s4", "Suivi Flash", "Tableau de bord de rentabilité hebdomadaire."]] },
-  "module5": { "t": "Carte Stratégique", "d": "Orientez le client vers vos plats les plus rentables.", "g": "Objectif : +10% de marge brute", 
-    "s": [["m5s1", "Structure du Menu", "Identification des stars et suppression des poids morts."], ["m5s2", "Psychologie de Carte", "Réorganisation visuelle stratégique."], ["m5s3", "Valorisation Produits", "Appellations et storytelling pour justifier les prix."], ["m5s4", "Briefing Équipe", "Coaching pour 'pousser' les plats clés."]] },
-  "module6": { "t": "Réseau & Alliances", "d": "Allez chercher vos clients là où ils dorment et travaillent.", "g": "Objectif : Flux régulier d'apporteur d'affaires", 
-    "s": [["m6s1", "Partenariats Hébergements", "Devenir l'adresse recommandée par les hôtels."], ["m6s2", "Offres Entreprises", "Solutions spécifiques pour les bureaux."], ["m6s3", "Synergie Commerçants", "Échanges de visibilité de proximité."], ["m6s4", "Action de Quartier", "Visibilité lors des événements locaux."]] },
-  "module7": { "t": "Identité Sonore", "d": "Le son influence le confort et l'énergie des équipes.", "g": "Objectif : Confort acoustique optimal", 
-    "s": [["m7s1", "Audit Acoustique", "Analyse de la salle pour un confort idéal."], ["m7s2", "Curation Musicale", "Playlists sur-mesure selon les moments du jour."], ["m7s3", "Gestion de l'Énergie", "Ajustement du volume et du zonage."], ["m7s4", "Signature Sonore", "Style musical unique renforçant votre marque."]] },
-  "module8": { "t": "Événements", "d": "Faites de votre établissement un lieu de vie dynamique.", "g": "Objectif : Hausse du ticket moyen groupe", 
-    "s": [["m8s1", "Conception de Soirées", "Planification de rendez-vous thématiques réguliers."], ["m8s2", "Offre Privatisations", "Formules packagées anniversaires et pro."], ["m8s3", "Logistique Interne", "Gérer l'événement sans perturber le service."], ["m8s4", "Stratégie Remplissage", "Communication ciblée pour vos temps forts."]] },
-  "module9": { "t": "Rayonnement Digital", "d": "Votre présence en ligne doit remplir votre salle.", "g": "Objectif : Domination des recherches locales", 
-    "s": [["m9s1", "Mise en valeur Vitrine", "Shooting photo pro et style visuel attractif."], ["m9s2", "Maîtrise Réputation", "Booster les avis et répondre stratégiquement."], ["m9s3", "Domination Google", "Optimisation technique pour Maps."], ["m9s4", "Ciblage de Proximité", "Publicités ultra-locales (rayon 2km)."]] }
+  "module1": { "t": "Clientèle & Fidélité" },
+  "module2": { "t": "Fluidité & Service" },
+  "module3": { "t": "Expérience Client" },
+  "module4": { "t": "Rentabilité & Gestion" },
+  "module5": { "t": "Carte Stratégique" },
+  "module6": { "t": "Réseau & Alliances" },
+  "module7": { "t": "Identité Sonore" },
+  "module8": { "t": "Événements" },
+  "module9": { "t": "Rayonnement Digital" }
 };
 
-let userSelections = {};
-let curId = null;
-  
-const WEBHOOK_URL = "https://hook.eu1.make.com/qti49ea0q4r5l45e0afgpeqnevss1wv1"; // On changera ça à l'étape 2
+function syncFinalForm() {
+    const STORAGE_KEY = 'mikafood_selection';
+    const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    const displayList = document.getElementById('selectedList');
+    const countBadge = document.getElementById('count');
+    
+    let html = "";
+    let counter = 0;
 
-function openModule(id) {
-  curId = id; const m = DATA[id];
-  if (!userSelections[id]) userSelections[id] = [];
-  document.getElementById('modal-title').textContent = m.t;
-  document.getElementById('modal-desc').textContent = m.d;
-  document.getElementById('modal-goal').textContent = m.g;
-  document.getElementById('modal-choices').innerHTML = m.s.map(s => {
-    const isChecked = userSelections[id].includes(s[0]) ? 'checked' : '';
-    return `<label class="choice-item"><input type="checkbox" class="sub-check" data-subid="${s[0]}" ${isChecked}><div><strong>${s[1]}</strong><br><small style="color:#666">${s[2]}</small></div></label>`;
-  }).join('');
-  document.getElementById('modal-overlay').style.display = 'flex';
-}
-
-function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
-
-function saveAndClose() {
-  const checks = document.querySelectorAll('.sub-check');
-  userSelections[curId] = [];
-  checks.forEach(c => { if(c.checked) userSelections[curId].push(c.dataset.subid); });
-  document.getElementById(curId).classList.toggle('selected', userSelections[curId].length > 0);
-  updateFinalSummary();
-  closeModal();
-}
-
-function updateFinalSummary() {
-  const list = document.getElementById('selectedList');
-  let total = 0; let html = "";
-  for (const id in userSelections) {
-    if (userSelections[id].length > 0) {
-      total++;
-      const subs = DATA[id].s.filter(s => userSelections[id].includes(s[0])).map(s => s[1]);
-      html += `<li style="margin-bottom:10px; color:#fff;"><strong style="color:var(--violet)">${DATA[id].t}</strong><br><small style="color:#aaa">Sélection : ${subs.join(' • ')}</small></li>`;
-    }
-  }
-  document.getElementById('count').textContent = total;
-  list.innerHTML = html || "<li>Aucun module sélectionné</li>";
-}
-   document.querySelector('form').addEventListener('submit', function() {
-    const selections = localStorage.getItem('mikafood_selection');
-    if (selections) {
-        let hiddenInput = document.getElementById('hidden-selections');
-        if (!hiddenInput) {
-            hiddenInput = document.createElement('input');
-            hiddenInput.id = 'hidden-selections';
-            hiddenInput.type = 'hidden';
-            hiddenInput.name = 'details_selection';
-            this.appendChild(hiddenInput);
+    Object.keys(selections).forEach(id => {
+        const dataKey = id.startsWith('module') ? id : 'module' + id;
+        const moduleInfo = DATA[dataKey];
+        if (moduleInfo) {
+            counter++;
+            const typeOffre = selections[id].includes('demat') ? '⚡ DÉMAT' : '🔥 IMMERSION';
+            html += `<li style="margin-bottom:12px; border-left:3px solid #6a0dad; padding-left:15px; list-style:none;">
+                        <strong style="color:#d4a373; text-transform:uppercase;">${moduleInfo.t}</strong><br>
+                        <small style="color:#fff; opacity:0.8;">Option choisie : ${typeOffre}</small>
+                     </li>`;
         }
-        hiddenInput.value = selections;
-    }
-}); 
+    });
+
+    if (countBadge) countBadge.innerText = counter;
+    if (displayList) displayList.innerHTML = html || "<li style='color:#666;'>Aucun module sélectionné.</li>";
+}
+
 async function sendData() { 
     const WEBHOOK_URL = "https://hook.eu1.make.com/qti49ea0q4r5l45e0afgpeqnevss1wv1";
-    const btn = document.querySelector('#formulaire .btn-main');
+    const btn = document.querySelector('.btn-main');
     const selections = localStorage.getItem('mikafood_selection') || "{}";
 
     const formData = {
@@ -370,7 +326,6 @@ async function sendData() {
         societe: document.getElementById('f_societe').value,
         tel: document.getElementById('f_tel').value,
         situation: document.getElementById('f_situation').value,
-        // Envoi des sélections brutes + le texte récapitulatif
         raw_selection: JSON.parse(selections),
         summary: document.getElementById('selectedList').innerText
     };
@@ -386,49 +341,21 @@ async function sendData() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData) 
         });
-        alert("Succès !");
-        btn.textContent = "Demande envoyée";
-        localStorage.removeItem('mikafood_selection'); // Nettoyage après succès
+        alert("Demande envoyée avec succès !");
+        localStorage.removeItem('mikafood_selection');
+        location.reload();
     } catch (e) { 
-        alert("Erreur de connexion."); 
+        alert("Erreur technique."); 
         btn.disabled = false;
         btn.textContent = "Réessayer";
     }
 }
-  function syncFinalForm() {
-    const STORAGE_KEY = 'mikafood_selection';
-    const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    const displayList = document.getElementById('selectedList');
-    const countBadge = document.getElementById('count');
-    
-    let html = "";
-    let counter = 0;
 
-    Object.keys(selections).forEach(id => {
-        // Normalisation : transforme "1" en "module1" pour lire votre objet DATA
-        const dataKey = id.startsWith('module') ? id : 'module' + id;
-        const moduleData = DATA[dataKey];
-
-        if (moduleData) {
-            counter++;
-            const typeOffre = selections[id].includes('demat') ? '⚡ DÉMAT' : '🔥 IMMERSION';
-            html += `
-                <li style="margin-bottom:12px; border-left:3px solid #6a0dad; padding-left:15px; list-style:none;">
-                    <strong style="color:#d4a373; text-transform:uppercase;">${moduleData.t}</strong><br>
-                    <small style="color:#fff; opacity:0.8;">Option choisie : ${typeOffre}</small>
-                </li>`;
-        }
-    });
-
-    if (countBadge) countBadge.innerText = counter;
-    if (displayList) displayList.innerHTML = html || "<li style='color:#666;'>Aucun module sélectionné.</li>";
-}
-
-// Exécution au chargement pour traiter le retour du catalogue
-window.addEventListener('DOMContentLoaded', syncFinalForm);  
-</script>
+window.addEventListener('DOMContentLoaded', syncFinalForm);
+</script>  
 </body>
 </html>
+
 
 
 
