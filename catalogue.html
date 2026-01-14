@@ -230,6 +230,36 @@ function refreshStickyButton() {
 // Synchro immédiate au chargement et au retour page
 window.addEventListener('pageshow', refreshStickyButton);
 window.addEventListener('DOMContentLoaded', refreshStickyButton);
+function syncCatalogueState() {
+    const STORAGE_KEY = 'mikafood_selection';
+    const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    const ids = Object.keys(selections);
+    
+    // 1. Mise à jour du bouton de sortie
+    const btn = document.getElementById('sticky-finaliser');
+    const countDisplay = document.getElementById('global-count');
+    if (btn && countDisplay) {
+        const count = ids.length;
+        btn.style.display = count > 0 ? 'block' : 'none';
+        countDisplay.innerText = count;
+    }
+
+    // 2. Application du Glow Lock sur les vignettes
+    document.querySelectorAll('.module-link').forEach(link => {
+        const match = link.href.match(/id=(\d+)/);
+        const id = match ? match[1] : null;
+
+        if (id && selections[id]) {
+            link.classList.add('active-glow');
+        } else {
+            link.classList.remove('active-glow');
+        }
+    });
+}
+
+// Appels impératifs pour gérer le cycle de vie de la page
+window.addEventListener('pageshow', syncCatalogueState);
+window.addEventListener('DOMContentLoaded', syncCatalogueState);
 </script>
 </body>
 </html>
