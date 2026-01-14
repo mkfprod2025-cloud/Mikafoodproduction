@@ -311,7 +311,8 @@
             action: "Logistique : Organisation physique des flux (1er évent).", 
             missions: ["Le Concept : La Régie Événementielle", "Stratégie Remplissage (Invitations locales/VIP)"], 
             livrable: "Premier événement piloté + Débriefing opérationnel" 
-        }
+          }
+    },
         "9": {
         title: "Marketing & Image",
         obj: "Boost de Visibilité",
@@ -329,7 +330,7 @@
 }; 
     // 1. CHARGEMENT DES DONNÉES DEPUIS L'URL
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || "4";
+    const id = params.get('id') || "1";
     const data = modulesData[id];
 
     if (data) {
