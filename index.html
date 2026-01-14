@@ -395,9 +395,41 @@ async function sendData() {
         btn.textContent = "Réessayer";
     }
 }
+  function syncFinalForm() {
+    const STORAGE_KEY = 'mikafood_selection';
+    const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    const displayList = document.getElementById('selectedList');
+    const countBadge = document.getElementById('count');
+    
+    let html = "";
+    let counter = 0;
+
+    Object.keys(selections).forEach(id => {
+        // Normalisation : transforme "1" en "module1" pour lire votre objet DATA
+        const dataKey = id.startsWith('module') ? id : 'module' + id;
+        const moduleData = DATA[dataKey];
+
+        if (moduleData) {
+            counter++;
+            const typeOffre = selections[id].includes('demat') ? '⚡ DÉMAT' : '🔥 IMMERSION';
+            html += `
+                <li style="margin-bottom:12px; border-left:3px solid #6a0dad; padding-left:15px; list-style:none;">
+                    <strong style="color:#d4a373; text-transform:uppercase;">${moduleData.t}</strong><br>
+                    <small style="color:#fff; opacity:0.8;">Option choisie : ${typeOffre}</small>
+                </li>`;
+        }
+    });
+
+    if (countBadge) countBadge.innerText = counter;
+    if (displayList) displayList.innerHTML = html || "<li style='color:#666;'>Aucun module sélectionné.</li>";
+}
+
+// Exécution au chargement pour traiter le retour du catalogue
+window.addEventListener('DOMContentLoaded', syncFinalForm);  
 </script>
 </body>
 </html>
+
 
 
 
