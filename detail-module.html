@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* CHARTE GRAPHIQUE MIKAFOOD */
         :root { 
             --black: #0a0a0a; 
             --violet: #6a0dad; 
             --violet-glow: rgba(106, 13, 173, 0.6); 
             --beige: #d4a373;
+            --silver: linear-gradient(135deg, #e0e0e0 0%, #909090 100%); /* Teinte Argent */
             --text: #f4f4f4;
             --card-bg: #151515;
         }
@@ -26,21 +26,21 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            font-size: 1.1rem; /* Augmentation générale de la police */
+            padding-bottom: 80px; /* Espace pour la bannière fixe */
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        /* HEADER DU MODULE */
         .header-module { text-align: center; margin-bottom: 60px; margin-top: 20px; }
         
         h1 { 
             font-family: 'Montserrat', sans-serif; 
             font-weight: 900; 
             font-style: italic;
-            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-size: clamp(2.2rem, 5vw, 3.8rem); 
             text-transform: uppercase; 
             margin-bottom: 10px;
-            /* Dégradé Beige comme sur le catalogue */
             background: linear-gradient(180deg, var(--beige) 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -49,12 +49,11 @@
         #mod-obj {
             color: var(--violet);
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* BOUTON RETOUR */
         .btn-back { 
             display: inline-flex; 
             align-items: center; 
@@ -64,10 +63,10 @@
             font-weight: 600; 
             transition: 0.3s;
             margin-bottom: 20px;
+            font-size: 1rem;
         }
         .btn-back:hover { color: var(--beige); transform: translateX(-5px); }
 
-        /* GRID DUEL (Flash vs Immersion) */
         .grid-duel { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -81,10 +80,9 @@
             border-radius: 16px; 
             padding: 35px; 
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .card:hover { 
@@ -96,34 +94,58 @@
         /* BADGES */
         .badge { 
             display: inline-block; 
-            padding: 8px 16px; 
+            padding: 10px 20px; 
             border-radius: 50px; 
             font-weight: 800; 
-            font-size: 0.85rem; 
+            font-size: 0.9rem; 
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-        .badge-flash { background: #333; color: #fff; border: 1px solid #555; }
+        
+        .badge-demat { background: var(--silver); color: #000; border: none; }
         .badge-immersion { background: var(--violet); color: white; border: 1px solid var(--violet); }
 
-        /* CONTENU CARTE */
+        /* ZONE VIDEO / GIF */
+        .media-placeholder {
+            width: 100%;
+            height: 200px; /* Hauteur fixe pour uniformité */
+            background-color: #000;
+            border: 1px dashed #444;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .media-placeholder img, .media-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .card h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: white;
             margin-bottom: 20px;
             line-height: 1.3;
-            min-height: 3em; /* Pour aligner les titres */
+            min-height: 2.5em;
         }
 
         ul { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
         ul li {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             padding-left: 25px;
             position: relative;
-            color: #ccc;
+            color: #ddd;
+            font-size: 1.05rem;
         }
         ul li::before {
             content: "•";
@@ -136,23 +158,59 @@
 
         .livrable-box {
             background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             border-left: 3px solid var(--beige);
+            margin-bottom: 20px;
         }
         .livrable-label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             color: #888;
             margin-bottom: 5px;
         }
-        .livrable-text {
-            color: var(--beige);
-            font-weight: 700;
+        .livrable-text { color: var(--beige); font-weight: 700; font-size: 1.1rem; }
+
+        /* CHECKBOX SELECTION */
+        .selector-container {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 15px;
+            font-weight: 600;
+            color: #fff;
+            transition: 0.3s;
+        }
+        .checkbox-label:hover { color: var(--beige); }
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--violet);
+            cursor: pointer;
         }
 
-        /* Responsive */
+        /* BANNIÈRE FIXE */
+        .legal-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid #333;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
         @media (max-width: 900px) { .grid-duel { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -168,35 +226,63 @@
 
     <div class="grid-duel">
         <div class="card">
-            <span class="badge badge-flash">⚡ Offre Flash (Distanciel)</span>
-            <h3 id="flash-action"></h3>
-            <ul id="flash-missions"></ul>
+            <span class="badge badge-demat">⚡ Offre Dématérialisée</span>
+            
+            <div class="media-placeholder" id="media-demat">
+                <span>[Zone GIF/Vidéo - Remplir via Assets]</span>
+            </div>
+
+            <h3 id="demat-action"></h3>
+            <ul id="demat-missions"></ul>
+            
             <div class="livrable-box">
                 <span class="livrable-label">Livrable</span>
-                <span id="flash-livrable" class="livrable-text"></span>
+                <span id="demat-livrable" class="livrable-text"></span>
+            </div>
+
+            <div class="selector-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" name="selection" value="demat">
+                    Sélectionner cette offre
+                </label>
             </div>
         </div>
 
         <div class="card">
             <span class="badge badge-immersion">🔥 Offre Immersion (Terrain)</span>
+
+            <div class="media-placeholder" id="media-immersion">
+                <span>[Zone GIF/Vidéo - Remplir via Assets]</span>
+            </div>
+
             <h3 id="immersion-action"></h3>
             <ul id="immersion-missions"></ul>
+
             <div class="livrable-box">
                 <span class="livrable-label">Livrable</span>
                 <span id="immersion-livrable" class="livrable-text"></span>
+            </div>
+
+            <div class="selector-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" name="selection" value="immersion">
+                    Sélectionner cette offre
+                </label>
             </div>
         </div>
     </div>
 </div>
 
+<div class="legal-banner">
+    * Rentabilité, résultats et tarifs communiqués à titre informatif et prévisionnel. Soumis à audit préalable.
+</div>
+
 <script>
-    // BASE DE DONNÉES DES MODULES
-    // C'est ici que tu ajouteras les textes des 8 autres modules plus tard.
     const modulesData = {
-        "4": { // ID 4 correspond à "Rentabilité & Gestion" dans ta grille
+        "4": {
             title: "Rentabilité & Gestion",
-            obj: "Contrôle des Marges", // Repris du sous-titre catalogue
-            flash: { 
+            obj: "Contrôle des Marges",
+            demat: { // Renommé de flash à demat
                 action: "Analyse des factures & Fiches techniques.", 
                 missions: [
                     "Focus : La rentabilité théorique (Le papier).", 
@@ -213,34 +299,30 @@
                 livrable: "Mise en place de process anti-gaspillage." 
             }
         },
-        // Exemple pour le Module 1 (vide pour l'instant)
         "1": {
             title: "Clientèle & Fidélité",
             obj: "Acquisition & Rétention",
-            flash: { action: "À définir...", missions: ["..."], livrable: "..." },
+            demat: { action: "À définir...", missions: ["..."], livrable: "..." },
             immersion: { action: "À définir...", missions: ["..."], livrable: "..." }
         }
     };
 
-    // LOGIQUE DE CHARGEMENT
-    // 1. Récupère l'ID dans l'URL (ex: ?id=4)
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const data = modulesData[id];
 
-    // 2. Si les données existent, on remplit la page
     if (data) {
         document.title = data.title + " - Mikafood";
         document.getElementById('mod-title').innerText = data.title;
         document.getElementById('mod-obj').innerText = data.obj;
         
-        // Remplissage Flash
-        document.getElementById('flash-action').innerText = data.flash.action;
-        document.getElementById('flash-livrable').innerText = data.flash.livrable;
-        data.flash.missions.forEach(m => {
+        // Remplissage Dématérialisée
+        document.getElementById('demat-action').innerText = data.demat.action;
+        document.getElementById('demat-livrable').innerText = data.demat.livrable;
+        data.demat.missions.forEach(m => {
             let li = document.createElement('li'); 
             li.innerHTML = m.replace("Focus :", "<strong>Focus :</strong>").replace("Méthode :", "<strong>Méthode :</strong>");
-            document.getElementById('flash-missions').appendChild(li);
+            document.getElementById('demat-missions').appendChild(li);
         });
 
         // Remplissage Immersion
@@ -252,10 +334,21 @@
             document.getElementById('immersion-missions').appendChild(li);
         });
     } else {
-        // Sécurité si l'ID n'existe pas
         document.getElementById('mod-title').innerText = "Module non trouvé";
         document.querySelector('.grid-duel').style.display = 'none';
     }
+
+    // Script pour s'assurer qu'on ne coche qu'une seule case à la fois (Optionnel)
+    const checkboxes = document.querySelectorAll('.checkbox-input');
+    checkboxes.forEach((box) => {
+        box.addEventListener('change', function() {
+            if (this.checked) {
+                checkboxes.forEach((other) => {
+                    if (other !== this) other.checked = false;
+                });
+            }
+        });
+    });
 </script>
 
 </body>
