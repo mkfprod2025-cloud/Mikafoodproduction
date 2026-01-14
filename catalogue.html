@@ -123,6 +123,19 @@
     text-transform: uppercase;
     margin-bottom: 10px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}/* Classe pour verrouiller l'éclat sur les modules sélectionnés */
+.module-link.active-glow {
+    border-color: var(--violet);
+    box-shadow: 0 0 25px var(--violet-glow);
+    transform: translateY(-5px);
+}
+.count-badge {
+    background: white;
+    color: var(--violet);
+    border-radius: 50%;
+    padding: 2px 8px;
+    margin-left: 10px;
+    font-size: 0.9rem;
 }
     </style>
 </head>
@@ -194,5 +207,36 @@
     }
     window.onload = checkSelection;
 </script>
+    function syncCatalogue() {
+    const STORAGE_KEY = 'mikafood_selection';
+    const selections = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    const modules = document.querySelectorAll('.module-link');
+    let count = 0;
+
+    modules.forEach(mod => {
+        // On extrait l'ID depuis l'URL du lien (ex: detail-module.html?id=4)
+        const url = new URL(mod.href, window.location.origin);
+        const id = url.searchParams.get('id');
+
+        if (selections[id]) {
+            mod.classList.add('active-glow');
+            count++;
+        } else {
+            mod.classList.remove('active-glow');
+        }
+    });
+
+    // Mise à jour du bouton Finaliser
+    const footer = document.getElementById('sticky-finaliser');
+    if (count > 0) {
+        footer.style.display = 'block';
+        footer.querySelector('a').innerHTML = `FINALISER MA SÉLECTION <span class="count-badge">${count}</span>`;
+    } else {
+        footer.style.display = 'none';
+    }
+}
+
+// Exécution au chargement
+window.onload = syncCatalogue;
 </body>
 </html>
