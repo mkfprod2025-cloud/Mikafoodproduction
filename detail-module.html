@@ -178,7 +178,7 @@
         <div class="card" id="card-demat">
             <span class="badge badge-demat">⚡ Dématérialisée</span>
           <div class="video-container">
-    <video id="vid-flash" autoplay loop muted playsinline poster="assets/cover-flash.jpg">
+    <video id="vid-flash" autoplay muted playsinline poster="assets/cover-flash.jpg">
         <source src="" type="video/mp4"> </video>
 </div>
             <h3 id="demat-action"></h3>
@@ -197,7 +197,7 @@
         <div class="card" id="card-immersion">
             <span class="badge badge-immersion">🔥 Immersion Terrain</span>
     <div class="video-container">
-    <video id="vid-immersion" autoplay loop muted playsinline poster="assets/cover-immersion.jpg">
+    <video id="vid-immersion" autoplay muted playsinline poster="assets/cover-immersion.jpg">
         <source src="" type="video/mp4">
     </video>
 </div>
@@ -454,7 +454,21 @@
         }
     }
 // Exécution au chargement de la page
-    window.addEventListener('DOMContentLoaded', loadModuleVideos);
+    window.addEventListener('DOMContentLoaded', loadModuleVideos);// Gestion du survol pour les vidéos
+const allVideos = document.querySelectorAll('video');
+
+allVideos.forEach(video => {
+    // Quand la souris entre sur la vidéo
+    video.parentElement.addEventListener('mouseenter', () => {
+        video.play();
+    });
+
+    // Quand la souris sort de la vidéo (optionnel : pause)
+    video.parentElement.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0; // Remet au début si vous voulez, sinon supprimez cette ligne
+    });
+});
 </script>
 </body>
 </html>
