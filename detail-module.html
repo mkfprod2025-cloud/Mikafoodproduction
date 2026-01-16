@@ -464,10 +464,6 @@ allVideos.forEach(video => {
     video.parentElement.addEventListener('mouseenter', () => {
         video.currentTime = 0; // Repart du début à chaque passage
         video.play();
-    });
-
-    // Note : On ne met pas de "mouseleave", ainsi la vidéo 
-    // continue de jouer jusqu'au bout même si la souris sort.
 });
 </script>
 </body>
