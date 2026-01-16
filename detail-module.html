@@ -108,7 +108,24 @@
             margin-bottom: 25px; display: flex; align-items: center; justify-content: center;
             border: 1px solid #333; color: #444;
         }
+/* Style pour le conteneur vidéo */
+.video-container {
+    width: 100%;
+    height: 220px; /* Ajuste la hauteur selon ton design actuel */
+    background-color: #000;
+    border-radius: 12px; /* Arrondi des coins */
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
 
+/* Style pour la vidéo elle-même */
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La vidéo remplit tout l'espace sans déformation */
+    display: block;
+}
         .card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.7rem; color: #fff; margin-bottom: 20px; }
 
         ul { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
@@ -160,7 +177,10 @@
     <div class="grid-duel">
         <div class="card" id="card-demat">
             <span class="badge badge-demat">⚡ Dématérialisée</span>
-            <div class="media-placeholder">[ASSETS VIDÉO/GIF]</div>
+          <div class="video-container">
+    <video id="vid-flash" autoplay loop muted playsinline poster="assets/cover-flash.jpg">
+        <source src="" type="video/mp4"> </video>
+</div>
             <h3 id="demat-action"></h3>
             <ul id="demat-missions"></ul>
             <div class="livrable-box">
@@ -176,7 +196,12 @@
 
         <div class="card" id="card-immersion">
             <span class="badge badge-immersion">🔥 Immersion Terrain</span>
-            <div class="media-placeholder">assets/module1video.mp4 </div>
+    <div class="video-container">
+    <video id="vid-immersion" autoplay loop muted playsinline poster="assets/cover-immersion.jpg">
+        <source src="" type="video/mp4">
+    </video>
+</div>
+</div>
             <h3 id="immersion-action"></h3>
             <ul id="immersion-missions"></ul>
             <div class="livrable-box">
@@ -395,7 +420,44 @@
                 delete selections[id]; // On supprime si décoché
             }
      localStorage.setItem(STORAGE_KEY, JSON.stringify(selections));   }); });
-    window.onload = loadSavedState;
+    window.onload = loadSavedState;   
+<script>
+    // 1. La Banque de Vidéos (Remplis les noms exacts de tes fichiers ici)
+    const videoDatabase = {
+        1: { flash: "assets/mod1_flash.mp4", immersion: "assets/mod1_immersion.mp4" },
+        2: { flash: "assets/mod2_flash.mp4", immersion: "assets/mod2_immersion.mp4" },
+        3: { flash: "assets/mod3_flash.mp4", immersion: "assets/mod3_immersion.mp4" },
+        4: { flash: "assets/mod4_flash.mp4", immersion: "assets/mod4_immersion.mp4" },
+        5: { flash: "assets/mod5_flash.mp4", immersion: "assets/mod5_immersion.mp4" },
+        6: { flash: "assets/mod6_flash.mp4", immersion: "assets/mod6_immersion.mp4" },
+        7: { flash: "assets/mod7_flash.mp4", immersion: "assets/mod7_immersion.mp4" },
+        8: { flash: "assets/mod8_flash.mp4", immersion: "assets/mod8_immersion.mp4" },
+        9: { flash: "assets/mod9_flash.mp4", immersion: "assets/mod9_immersion.mp4" }
+    };
+
+    // 2. Fonction d'injection automatique
+    function loadModuleVideos() {
+        // Récupère l'ID du module dans l'URL (ex: ?id=1)
+        const params = new URLSearchParams(window.location.search);
+        const moduleId = params.get('id');
+
+        // Vérifie si on a des vidéos pour cet ID
+        if (moduleId && videoDatabase[moduleId]) {
+            const vFlash = document.getElementById('vid-flash');
+            const vImmersion = document.getElementById('vid-immersion');
+
+            // Injection des sources
+            if (vFlash) vFlash.src = videoDatabase[moduleId].flash;
+            if (vImmersion) vImmersion.src = videoDatabase[moduleId].immersion;
+
+            // Recharger les lecteurs pour appliquer le changement
+            if (vFlash) vFlash.load();
+            if (vImmersion) vImmersion.load();
+        }
+    }
+// Exécution au chargement de la page
+    window.addEventListener('DOMContentLoaded', loadModuleVideos);
+</script>
 </script>
 </body>
 </html>
