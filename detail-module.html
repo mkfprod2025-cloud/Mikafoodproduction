@@ -456,18 +456,18 @@
 // Exécution au chargement de la page
     window.addEventListener('DOMContentLoaded', loadModuleVideos);// Gestion du survol pour les vidéos
 const allVideos = document.querySelectorAll('video');
+// Gestion du survol : Lecture complète unique par passage
+const allVideos = document.querySelectorAll('video');
 
 allVideos.forEach(video => {
-    // Quand la souris entre sur la vidéo
+    // On écoute l'entrée de la souris sur le conteneur
     video.parentElement.addEventListener('mouseenter', () => {
+        video.currentTime = 0; // Repart du début à chaque passage
         video.play();
     });
 
-    // Quand la souris sort de la vidéo (optionnel : pause)
-    video.parentElement.addEventListener('mouseleave', () => {
-        video.pause();
-        video.currentTime = 0; // Remet au début si vous voulez, sinon supprimez cette ligne
-    });
+    // Note : On ne met pas de "mouseleave", ainsi la vidéo 
+    // continue de jouer jusqu'au bout même si la souris sort.
 });
 </script>
 </body>
