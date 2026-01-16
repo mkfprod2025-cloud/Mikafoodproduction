@@ -456,15 +456,13 @@
 // Exécution au chargement de la page
     window.addEventListener('DOMContentLoaded', loadModuleVideos);// Gestion du survol pour les vidéos
 const allVideos = document.querySelectorAll('video');
-// Gestion du survol : Lecture complète unique par passage
-const allVideos = document.querySelectorAll('video');
 
 allVideos.forEach(video => {
     // On écoute l'entrée de la souris sur le conteneur
     video.parentElement.addEventListener('mouseenter', () => {
         video.currentTime = 0; // Repart du début à chaque passage
         video.play();
-});
+}); });
 </script>
 </body>
 </html>
